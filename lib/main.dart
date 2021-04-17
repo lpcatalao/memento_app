@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:memento_app/control/init_screen_control.dart';
+import 'package:memento_app/screen/profile_screen.dart';
 
 void main() {
   runApp(Memento());
@@ -8,26 +10,9 @@ class Memento extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Memento App Demo',
-      home: MyHomePage(),
+      home: ProfileScreen(),
     );
   }
 }
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Memento"),
-        ),
-        body: Center(
-            child: Text("Welcome to Memento")) // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
-
-
-
-
