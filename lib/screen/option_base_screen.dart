@@ -2,9 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:memento_app/blocs/nav_bloc.dart';
-import 'package:memento_app/repository/nav_screen_state_repository.dart';
-import 'package:memento_app/screen/add_activity_screen.dart';
 
 class OptionBaseScreen extends StatefulWidget {
   final String title;

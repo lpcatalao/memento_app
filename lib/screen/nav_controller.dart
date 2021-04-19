@@ -14,7 +14,6 @@ class Nav extends StatefulWidget {
 }
 
 class _NavState extends State<Nav> {
-  var variavel;
   final _navBloc = NavBloc();
 
   //TODO EXTRAIR mudar para arquitetura BLoC
@@ -54,10 +53,10 @@ class _NavState extends State<Nav> {
         title: Text("Memento"),
         centerTitle: true,
         actions: [
-          // IconButton(
-          //   icon: Icon(Icons.calendar_today_sharp),
-          //   onPressed: () {},
-          // ),
+          IconButton(
+            icon: Icon(Icons.calendar_today_sharp),
+            onPressed: () {},
+          ),
           SizedBox(
             width: 15,
           ),
