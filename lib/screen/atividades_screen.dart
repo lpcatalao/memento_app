@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:memento_app/screen/option_base_screen.dart';
 
-class AtividadeScreen extends StatelessWidget {
+import 'add_activity_screen.dart';
+
+class ActivitiesScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(color: Colors.green),
-        child: Center(
-          child: Text("Atividade"),
-        ),
-      ),
+    final _size = MediaQuery.of(context).size;
+
+    return Container(
+      width: _size.width,
+      height: _size.height,
+      decoration: BoxDecoration(color: Colors.green),
+      child: OptionBaseScreen(title: 'Atividade'),
     );
   }
 }

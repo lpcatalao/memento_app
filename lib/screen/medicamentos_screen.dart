@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:memento_app/screen/option_base_screen.dart';
 
-class MedicamentoScreen extends StatelessWidget {
+class MedicalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(color: Colors.orangeAccent),
-        child: Center(
-          child: Text("Medicamento"),
-        ),
+    return Container(
+      decoration: BoxDecoration(color: Colors.orangeAccent),
+      child: Center(
+        child: OptionBaseScreen(title: 'Medicamento'),
       ),
     );
   }

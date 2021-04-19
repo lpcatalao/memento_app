@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:memento_app/repository/onboard_repository.dart';
 
 import '../nav_controller.dart';
-import '../profile_screen.dart';
+import '../register_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -83,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             onTap: () {
               print("Starting...");
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+                  MaterialPageRoute(builder: (context) => RegisterScreen()));
 
               //TODO mudar isso para ficar no padrão de arquitetura BLoC
               setState(() {
