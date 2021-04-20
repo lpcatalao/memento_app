@@ -1,42 +1,20 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memento_app/models/activity_model.dart';
 import 'package:memento_app/models/brain_fitness_model.dart';
 import 'package:memento_app/models/medicine_model.dart';
-import 'package:memento_app/models/nav_option_base.dart';
+import 'package:memento_app/models/nav_option_card_base.dart';
+import 'package:memento_app/models/task_status.dart';
 
-class DashboardScreen extends StatefulWidget {
-  @override
-  _DashboardScreenState createState() => _DashboardScreenState();
-}
+class DashboardBody extends StatelessWidget {
+  final double width;
+  final double height;
+  final BoxConstraints constraints;
 
-class _DashboardScreenState extends State<DashboardScreen> {
+  DashboardBody({this.width, this.height, this.constraints});
+
   @override
   Widget build(BuildContext context) {
-    WidgetsFlutterBinding.ensureInitialized();
-
-    final _size = MediaQuery.of(context).size;
-    return Container(
-      color: Color(0xffd5dce6),
-      width: _size.width,
-      height: _size.height,
-      child: LayoutBuilder(builder: (context, constraints) {
-        final width = constraints.maxWidth;
-        final height = constraints.maxHeight;
-        return Column(
-          children: [
-            buildAppBar(width, height * .4),
-            buildBody(width, height * .6, constraints)
-          ],
-        );
-      }),
-    );
-  }
-
-  Container buildBody(double width, double height, BoxConstraints constraints) {
     return Container(
       color: Colors.transparent,
       width: width,
@@ -76,98 +54,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       color: const Color(0xff292929))),
             ),
             buildDashboardCard(
-                constraints, BrainFitnessModel(total: 10, completed: 5)),
+                constraints, BrainFitnessCardModel(taskStatus: TaskStatus(3, 10))),
             buildDashboardCard(
-                constraints, ActivityModel(total: 12, completed: 3)),
+                constraints, ActivityCardModel(taskStatus: TaskStatus(3, 10))),
             buildDashboardCard(
-                constraints, MedicineModel(total: 3, completed: 1)),
+                constraints, MedicineCardModel(taskStatus: TaskStatus(3, 10))),
           ],
         ),
-      ),
-    );
-  }
-
-  Container buildAppBar(double width, double height) {
-    return Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment(1, 0),
-              end: Alignment(0, 0.5938237309455872),
-              colors: [const Color(0xff1791be), const Color(0xff15d99d)]),
-          color: Colors.black,
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15))),
-      width: width,
-      height: height,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              color: Colors.transparent,
-              width: width * .8,
-              height: height / 2.5,
-              child: Padding(
-                padding: const EdgeInsets.all(0.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Olá José',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Bem vindo, você já olhou as suas fotos antigas hoje?',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              width: width,
-              height: height / 3,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  horizontalList(1, Colors.white),
-                  horizontalList(2, Colors.white),
-                  horizontalList(3, Colors.white),
-                  horizontalList(4, Colors.white),
-                  horizontalList(5, Colors.white),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Padding horizontalList(int index, Color color) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.all(Radius.circular(12))),
-        width: 130,
-        child: Text('Conteudo ${index}'),
       ),
     );
   }
 
   Widget buildDashboardCard(
       BoxConstraints constraints, NavOptionCardBase navOption) {
+    TaskStatus status = navOption.taskStatus;
+
     final height = 79.0.h;
     final width = constraints.maxWidth;
     final cardWidth = width - 8;
     final progressBarMaxWidth = cardWidth * .73;
-    final taskRemaing = checkDivision(navOption.completed, navOption.total);
+    final taskRemaing = checkDivision(status.completed, status.total);
 
     return Container(
       height: height,
@@ -206,7 +112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Text(navOption.title,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18.sp)),
-                        Text('${navOption.completed}/${navOption.total}'),
+                        Text('${status.completed}/${status.total}'),
                       ],
                     ),
                   ),

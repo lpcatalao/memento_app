@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/blocs/nav_bloc.dart';
-import 'package:memento_app/screen/add_activity_screen.dart';
+import 'package:memento_app/constants%20/general_app_constants.dart';
+import 'package:memento_app/constants%20/memento_icons.dart';
+import 'package:memento_app/screen/nav/dashboard/dashboard_screen.dart';
+import 'package:memento_app/screen/nav/fab_config.dart';
 import 'package:memento_app/screen/profile_screen.dart';
 
-import 'atividades_screen.dart';
-import 'brain_fitness_screen.dart';
-import 'dashboard_screen.dart';
-import 'medicamentos_screen.dart';
+import 'activity/activities_screen.dart';
+import 'brain_fitness/brain_fitness_screen.dart';
+import 'medicine/medicine_screen.dart';
 
 class Nav extends StatefulWidget {
   @override
@@ -14,10 +16,12 @@ class Nav extends StatefulWidget {
 }
 
 class _NavState extends State<Nav> {
+
   final _navBloc = NavBloc();
 
   //TODO EXTRAIR mudar para arquitetura BLoC
   int _itemSelected = 0;
+
 
   List<Widget> _optionScreen = [
     DashboardScreen(),
@@ -25,6 +29,8 @@ class _NavState extends State<Nav> {
     MedicalScreen(),
     BrainFitnessScreen()
   ];
+
+
 
   //TODO EXTRAIR mudar para arquitetura BLoC
   void _onItemTap(int index) {
@@ -48,17 +54,16 @@ class _NavState extends State<Nav> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Memento"),
         centerTitle: true,
+        elevation: 0,
         actions: [
           IconButton(
             icon: Icon(Icons.calendar_today_sharp),
             onPressed: () {},
-          ),
-          SizedBox(
-            width: 15,
           ),
           IconButton(
             icon: Icon(Icons.account_circle),
@@ -69,19 +74,19 @@ class _NavState extends State<Nav> {
                       builder: (BuildContext context) => ProfileScreen()));
             },
           ),
-          SizedBox(width: 10)
         ],
       ),
 
       //TODO RETORNAR apenas o resultado
       body: Center(child: _optionScreen.elementAt(_itemSelected)),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: GeneralAppColor.black,
         type: BottomNavigationBarType.fixed,
         items: [
-          createNavItem(Icons.dashboard, "Dashboard"),
-          createNavItem(Icons.fitness_center, "Atividades"),
-          createNavItem(Icons.medical_services, "Medicamentos"),
-          createNavItem(Icons.psychology, "Brain Fitness"),
+          createNavItem(MementoIcons.bxshomeheart, "Home"),
+          createNavItem(MementoIcons.iconawesomewalking, "Atividades"),
+          createNavItem(MementoIcons.iconmapdoctor, "Medicamentos"),
+          createNavItem(MementoIcons.bxbrain, "Brain Fitness"),
         ],
         currentIndex: _itemSelected,
         onTap: (value) {
@@ -94,21 +99,7 @@ class _NavState extends State<Nav> {
         initialData: false,
         stream: _navBloc.stateStream,
         builder: (context, snapshot) {
-          return Visibility(
-            visible: snapshot.data,
-            child: FloatingActionButton(
-              child: Icon(
-                Icons.add,
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            AddActivityScreen()));
-              },
-            ),
-          );
+          return MementoFab(visible: snapshot.data);
         },
       ),
     );

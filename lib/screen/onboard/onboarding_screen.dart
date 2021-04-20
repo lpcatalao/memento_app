@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/repository/onboard_repository.dart';
 
-import '../nav_controller.dart';
+import '../nav/nav_controller.dart';
 import '../register_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {

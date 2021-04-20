@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:memento_app/screen/nav_controller.dart';
+import 'package:memento_app/screen/nav/nav_controller.dart';
 
 class RegisterScreen extends StatelessWidget {
   @override
