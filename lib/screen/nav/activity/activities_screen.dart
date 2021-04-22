@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/models/activity_model.dart';
 import 'package:memento_app/models/task_status.dart';
-import 'package:memento_app/screen/nav/option_base_screen.dart';
+import 'package:memento_app/screen/nav/nav_content_layout.dart';
 
-class ActivitiesScreen extends StatelessWidget {
-
+class ActivityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
@@ -14,7 +13,7 @@ class ActivitiesScreen extends StatelessWidget {
       width: _size.width,
       height: _size.height,
       decoration: BoxDecoration(color: Color(0xffd5dce6)),
-      child: NavOptionBaseScreen(model: ActivityCardModel()),
+      child: NavContentLayout(model: ActivityCardModel(taskStatus: TaskStatus(3, 100))),
     );
   }
 }

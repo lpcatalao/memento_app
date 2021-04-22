@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:memento_app/blocs/nav_bloc.dart';
 import 'package:memento_app/constants%20/general_app_constants.dart';
 import 'package:memento_app/constants%20/memento_icons.dart';
 import 'package:memento_app/screen/nav/dashboard/dashboard_screen.dart';
-import 'package:memento_app/screen/nav/fab_config.dart';
+import 'package:memento_app/screen/nav/nav_fab_config.dart';
 import 'package:memento_app/screen/profile_screen.dart';
 
 import 'activity/activities_screen.dart';
@@ -16,21 +17,17 @@ class Nav extends StatefulWidget {
 }
 
 class _NavState extends State<Nav> {
-
   final _navBloc = NavBloc();
 
   //TODO EXTRAIR mudar para arquitetura BLoC
   int _itemSelected = 0;
 
-
   List<Widget> _optionScreen = [
     DashboardScreen(),
-    ActivitiesScreen(),
-    MedicalScreen(),
+    ActivityScreen(),
+    MedicineScreen(),
     BrainFitnessScreen()
   ];
-
-
 
   //TODO EXTRAIR mudar para arquitetura BLoC
   void _onItemTap(int index) {
@@ -54,19 +51,39 @@ class _NavState extends State<Nav> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+      extendBodyBehindAppBar: true,
+
       appBar: AppBar(
-        title: Text("Memento"),
+        title: Row(
+          children: [
+            Icon(
+              MementoIcons.bxbrain,
+              color: _itemSelected == 0 ? GeneralAppColor.softBlack : Colors.white,
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Text("MEMENTO",
+                style: TextStyle(
+                    color: _itemSelected == 0 ? GeneralAppColor.softBlack : Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Poppins",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 18.0),
+                textAlign: TextAlign.left),
+          ],
+        ),
         centerTitle: true,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
           IconButton(
-            icon: Icon(Icons.calendar_today_sharp),
+            icon: Icon(FontAwesomeIcons.calendarAlt),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.account_circle),
+            icon: Icon(FontAwesomeIcons.user),
             onPressed: () {
               Navigator.push(
                   context,

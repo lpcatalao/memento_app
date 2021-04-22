@@ -12,7 +12,7 @@ class BrainFitnessCardModel extends NavOptionCardBase {
       end: Alignment(1, 0.5),
       colors: [GeneralAppColor.brainBar1, GeneralAppColor.brainBar2]);
   static const Color _CIRCLE_COLOR = GeneralAppColor.brainCircle;
-  static const Color _CHECK_BOX_COLOR = Colors.yellow;
+  static const Color _CHECK_BOX_COLOR = Color(0xFFCBB700);
 
   BrainFitnessCardModel({TaskStatus taskStatus})
       : super.name(_TITLE, _ICON, _GRADIENT, _CIRCLE_COLOR, _CHECK_BOX_COLOR,

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 class GeneralAppColor {
   GeneralAppColor._();
 
-  //background color from the whole app
+  //Background color from the whole app
   static const Color appBackgroundGray = Color(0xffd5dce6);
 
   //Nav Selected Color
   static const Color black = Color(0xff000000);
+  static const Color softBlack = Color(0xff292929);
 
   //Custom App
   static const Color customAppBar1 = Color(0xff1791be);
@@ -31,6 +32,9 @@ class GeneralAppColor {
   static const brainBar1 = Color(0xffffba00);
   static const brainBar2 = Color(0xffffd93b);
   static const brainCircle = Color(0xfffdeebb);
+
+  //Dashboard Title Font Color
+  static const dashboardTitleBrown = Color(0xff482700);
 }
 
 class GeneralWidgetSize {

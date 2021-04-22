@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
-class ScreenSize {
+class ScreenSizeUtil {
   Size _mediaQuery;
 
   double get height => _mediaQuery.height;
 
   double get width => _mediaQuery.width;
 
-  ScreenSize(BuildContext context) {
+  ScreenSizeUtil(BuildContext context) {
     this._mediaQuery = MediaQuery.of(context).size;
   }
 }

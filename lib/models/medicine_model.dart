@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/src/painting/gradient.dart';
-import 'package:flutter/src/widgets/icon.dart';
 import 'package:memento_app/constants%20/general_app_constants.dart';
 import 'package:memento_app/models/nav_option_card_base.dart';
 import 'package:flutter/material.dart';

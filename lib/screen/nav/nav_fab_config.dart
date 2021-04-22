@@ -3,9 +3,7 @@ import 'package:memento_app/constants%20/general_app_constants.dart';
 import 'package:memento_app/screen/nav/activity/add_activity_screen.dart';
 
 class MementoFab extends StatelessWidget {
-
   final bool visible;
-
 
   MementoFab({this.visible});
 
