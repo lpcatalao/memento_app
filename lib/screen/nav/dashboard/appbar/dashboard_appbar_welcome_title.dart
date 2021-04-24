@@ -21,7 +21,7 @@ class DashboardAppBarWelcomeTitle extends StatelessWidget {
                   text: "Olá José, \n"),
               TextSpan(
                   style: configTitleFont(FontWeight.w400),
-                  text: "Não esqueça: ")
+                  text: "Afazeres do dia: ")
             ]))),
       ),
     );
