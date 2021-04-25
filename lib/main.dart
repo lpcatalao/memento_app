@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memento_app/blocs/onboarding_bloc.dart';
-import 'package:memento_app/screen/onboard/onboarding_screen.dart';
+import 'package:memento_app/screen/nav/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -32,7 +32,7 @@ class Memento extends StatelessWidget {
         return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Memento App Demo',
-            home: OnboardingScreen());
+            home: ProfileScreen());
       }),
     );
   }

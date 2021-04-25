@@ -24,17 +24,17 @@ class OnboardingBottomButton extends StatelessWidget {
             stream: _bloc.stateStream,
             builder: (context, snapshot) {
               return snapshot.data != _numPages - 1
-                  ? buildBottomButtom(
+                  ? _buildBottomButtom(
                       () {
                         return _pageController.nextPage(
                           duration: Duration(milliseconds: 500),
                           curve: Curves.ease,
                         );
                       },
-                      'Próximo',
+                      'Avançar',
                       Colors.transparent,
                     )
-                  : buildBottomButtom(
+                  : _buildBottomButtom(
                       () {
                         return Navigator.pushReplacement(
                             context,
@@ -49,15 +49,15 @@ class OnboardingBottomButton extends StatelessWidget {
     );
   }
 
-  Widget buildBottomButtom(
+  Widget _buildBottomButtom(
       Future<void> Function() buttonAction, String text, Color color) {
     return GestureDetector(
       onTap: buttonAction,
       child: Container(
-        color: color,
+        decoration: BoxDecoration(color: color),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
+            padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
               text,
               style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),

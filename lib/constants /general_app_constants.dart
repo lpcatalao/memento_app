@@ -35,6 +35,12 @@ class GeneralAppColor {
 
   //Dashboard Title Font Color
   static const dashboardTitleBrown = Color(0xff482700);
+
+  //Profile Screen
+  static const backgroundProfile = Color(0xff15c8a4);
+  static const bottomProfileColor1 = Color(0xff15c8a4);
+
+  static const bottomProfileColor2 = Color(0xff54e8c8);
 }
 
 class GeneralWidgetSize {

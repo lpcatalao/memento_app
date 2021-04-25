@@ -5,7 +5,7 @@ import 'package:memento_app/constants%20/general_app_constants.dart';
 import 'package:memento_app/constants%20/memento_icons.dart';
 import 'package:memento_app/screen/nav/dashboard/dashboard_screen.dart';
 import 'package:memento_app/screen/nav/nav_fab_config.dart';
-import 'package:memento_app/screen/profile_screen.dart';
+import 'package:memento_app/screen/nav/profile/profile_screen.dart';
 
 import 'activity/activities_screen.dart';
 import 'brain_fitness/brain_fitness_screen.dart';
@@ -53,7 +53,6 @@ class _NavState extends State<Nav> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-
       appBar: AppBar(
         title: Row(
           children: [
