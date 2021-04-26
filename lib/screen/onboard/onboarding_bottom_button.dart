@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:memento_app/blocs/onboarding_bloc.dart';
-import 'package:memento_app/screen/register_screen.dart';
+import 'package:memento_app/screen/profile/add_user/add_user_profile.dart';
 import 'package:provider/provider.dart';
 
 class OnboardingBottomButton extends StatelessWidget {
@@ -39,7 +39,7 @@ class OnboardingBottomButton extends StatelessWidget {
                         return Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RegisterScreen()));
+                                builder: (context) => AddUserProfile()));
                       },
                       'Criar Perfil',
                       Colors.teal,

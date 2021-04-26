@@ -7,13 +7,13 @@ class ActivityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
-    List<TaskStatus> status = [];
 
     return Container(
       width: _size.width,
       height: _size.height,
       decoration: BoxDecoration(color: Color(0xffd5dce6)),
-      child: NavContentLayout(model: ActivityCardModel(taskStatus: TaskStatus(3, 100))),
+      child: NavContentLayout(
+          model: ActivityCardModel(taskStatus: TaskStatus(3, 100))),
     );
   }
 }

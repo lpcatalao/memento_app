@@ -5,7 +5,7 @@ import 'package:memento_app/constants%20/general_app_constants.dart';
 import 'package:memento_app/constants%20/memento_icons.dart';
 import 'package:memento_app/screen/nav/dashboard/dashboard_screen.dart';
 import 'package:memento_app/screen/nav/nav_fab_config.dart';
-import 'package:memento_app/screen/nav/profile/profile_screen.dart';
+import 'package:memento_app/screen/profile/user/profile_screen.dart';
 
 import 'activity/activities_screen.dart';
 import 'brain_fitness/brain_fitness_screen.dart';
@@ -58,14 +58,17 @@ class _NavState extends State<Nav> {
           children: [
             Icon(
               MementoIcons.bxbrain,
-              color: _itemSelected == 0 ? GeneralAppColor.softBlack : Colors.white,
+              color:
+                  _itemSelected == 0 ? GeneralAppColor.softBlack : Colors.white,
             ),
             SizedBox(
               width: 15,
             ),
             Text("MEMENTO",
                 style: TextStyle(
-                    color: _itemSelected == 0 ? GeneralAppColor.softBlack : Colors.white,
+                    color: _itemSelected == 0
+                        ? GeneralAppColor.softBlack
+                        : Colors.white,
                     fontWeight: FontWeight.w700,
                     fontFamily: "Poppins",
                     fontStyle: FontStyle.normal,

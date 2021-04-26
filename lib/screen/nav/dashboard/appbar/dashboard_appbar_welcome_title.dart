@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memento_app/constants%20/general_app_constants.dart';
 
 class DashboardAppBarWelcomeTitle extends StatelessWidget {
   final double width;
@@ -29,7 +30,7 @@ class DashboardAppBarWelcomeTitle extends StatelessWidget {
 
   TextStyle configTitleFont(FontWeight fontWeight) {
     return TextStyle(
-        color: Color(0xffffffff),
+        color: GeneralAppColor.softBlack,
         fontWeight: fontWeight,
         fontFamily: "Montserrat",
         fontStyle: FontStyle.normal,

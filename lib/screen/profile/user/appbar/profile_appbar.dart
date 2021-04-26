@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/constants%20/general_app_constants.dart';
-import 'package:memento_app/screen/nav/profile/appbar/profile_appbar_bottom.dart';
-import 'package:memento_app/screen/nav/profile/appbar/profile_appbar_photo.dart';
-import 'package:memento_app/screen/nav/profile/appbar/profile_appbar_welcome_title.dart';
+import 'package:memento_app/screen/profile/user/appbar/profile_appbar_bottom.dart';
+import 'package:memento_app/screen/profile/user/appbar/profile_appbar_photo.dart';
+import 'package:memento_app/screen/profile/user/appbar/profile_appbar_welcome_title.dart';
 
 class ProfileAppBar extends StatelessWidget {
   final double width;

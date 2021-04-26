@@ -13,8 +13,37 @@ class ProfileAppbarPhoto extends StatelessWidget {
     // os dois são hight multiplicados por 20% do tamanho total da screen
     // para poder fazer um quadro de lados iguais.
     return Container(
-      width: height * .35,
-      height: height * .35,
+      width: height * .4,
+      height: height * .4,
+      child: Stack(
+        children: [_buildPhoto(), _buildAddPhotoIcon()],
+      ),
+    );
+  }
+
+  Align _buildAddPhotoIcon() {
+    return Align(
+        alignment: Alignment.bottomRight,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.all(Radius.circular(36)),
+            ),
+            width: 50,
+            height: 50,
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.add_a_photo),
+              color: Colors.white,
+            ),
+          ),
+        ));
+  }
+
+  Widget _buildPhoto() {
+    return Container(
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -32,7 +61,9 @@ class ProfileAppbarPhoto extends StatelessWidget {
                 GeneralAppColor.customAppBar2
               ]),
           borderRadius: BorderRadius.all(Radius.circular(500)),
-          color: Colors.white54),
+          color: Colors.white54,
+        image: DecorationImage(image: AssetImage('images/profile_sample.png'))
+      ),
     );
   }
 }

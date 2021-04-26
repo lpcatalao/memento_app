@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memento_app/constants%20/general_app_constants.dart';
-import 'package:memento_app/screen/nav/profile/appbar/profile_appbar.dart';
-import 'package:memento_app/screen/nav/profile/appbar/profile_appbar_config.dart';
-import 'package:memento_app/screen/nav/profile/profile_body.dart';
-import 'package:memento_app/screen/nav/profile/profile_bottom.dart';
-import 'package:memento_app/screen/register_screen.dart';
+import 'package:memento_app/screen/profile/add_user/add_user_profile.dart';
+import 'package:memento_app/screen/profile/add_user/add_user_profile_body_form.dart';
+import 'package:memento_app/screen/profile/user/profile_fab.dart';
+import 'package:memento_app/screen/profile/user/appbar/profile_appbar.dart';
+import 'package:memento_app/screen/profile/user/appbar/profile_appbar_config.dart';
+import 'package:memento_app/screen/profile/user/body/profile_body.dart';
+import 'package:memento_app/screen/profile/user/bottom/profile_bottom.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -37,6 +39,7 @@ class ProfileScreen extends StatelessWidget {
           );
         }),
       ),
+      floatingActionButton: ProfileFab(),
     );
   }
 
@@ -51,7 +54,7 @@ class ProfileScreen extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => RegisterScreen()));
+                  builder: (BuildContext context) => AddUserProfile()));
         },
         child: Padding(
           padding: const EdgeInsets.only(bottom: 15.0),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/constants%20/general_app_constants.dart';
 import 'package:memento_app/screen/nav/activity/add_activity_screen.dart';
+import 'package:memento_app/screen/nav/model_components/add_reminder/nav_add_item_list_model.dart';
 
 class MementoFab extends StatelessWidget {
   final bool visible;
@@ -22,7 +23,7 @@ class MementoFab extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (BuildContext context) => AddActivityScreen()));
+                builder: (BuildContext context) => NavAddItemList()));
       },
     );
   }
