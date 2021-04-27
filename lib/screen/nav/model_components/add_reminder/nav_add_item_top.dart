@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
-import 'package:memento_app/constants%20/memento_icons.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
+import 'package:memento_app/constants/memento_icons.dart';
 
 class NavAddItemTop extends StatelessWidget {
   final double width;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
-import 'package:memento_app/screen/nav/activity/add_activity_screen.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/screen/nav/model_components/add_reminder/nav_add_item_list_model.dart';
 
 class MementoFab extends StatelessWidget {
@@ -35,7 +34,7 @@ class MementoFab extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(32)),
           gradient: LinearGradient(
-              begin: Alignment(0.5, 0),
+              begin: Alignment(0.5, 0),/**/
               end: Alignment(0.5, 1),
               colors: [
                 GeneralAppColor.fabGradient1,

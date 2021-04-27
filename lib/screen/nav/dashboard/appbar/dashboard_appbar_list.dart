@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/screen/nav/dashboard/appbar/dashboard_appbar_list_item.dart';
 
 
@@ -20,10 +20,10 @@ class DashboardAppBarList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           emptySpace(),
-          DashBoardAppBarItem(height, "Pagar conta da baby sugar"),
-          DashBoardAppBarItem(height, "Jogar dominó"),
-          DashBoardAppBarItem(height, "Dar um mortal"),
-          DashBoardAppBarItem(height, "Brincar de roleta russa"),
+          DashBoardAppBarItem(height, "Lista 1"),
+          DashBoardAppBarItem(height, "Lista 2"),
+          DashBoardAppBarItem(height, "Lista 3"),
+          DashBoardAppBarItem(height, "Lista 4"),
         ],
       ),
     );

@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
 
 class AddUserProfileMid extends StatelessWidget {
   final double width;

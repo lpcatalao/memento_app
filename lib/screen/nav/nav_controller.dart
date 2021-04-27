@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:memento_app/blocs/nav_bloc.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
-import 'package:memento_app/constants%20/memento_icons.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
+import 'package:memento_app/constants/memento_icons.dart';
 import 'package:memento_app/screen/nav/dashboard/dashboard_screen.dart';
 import 'package:memento_app/screen/nav/nav_fab_config.dart';
 import 'package:memento_app/screen/profile/user/profile_screen.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/models/Item.dart';
 import 'package:memento_app/models/nav_option_card_base.dart';
 
@@ -28,7 +28,6 @@ class NavContentCardItem extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 
   Stack buildIcon(NavOptionCardBase model) {

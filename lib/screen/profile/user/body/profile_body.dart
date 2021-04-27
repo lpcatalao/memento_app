@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
 
 class ProfileBody extends StatelessWidget {
   final double width;

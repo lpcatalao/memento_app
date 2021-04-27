@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/memento_icons.dart';
+import 'package:memento_app/constants/memento_icons.dart';
 import 'package:memento_app/screen/nav/model_components/add_reminder/body/nav_add_item_calendar.dart';
 import 'package:memento_app/screen/nav/model_components/add_reminder/body/nav_add_item_time.dart';
 

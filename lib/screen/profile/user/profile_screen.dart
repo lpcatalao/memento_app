@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/screen/profile/add_user/add_user_profile.dart';
-import 'package:memento_app/screen/profile/add_user/add_user_profile_body_form.dart';
 import 'package:memento_app/screen/profile/user/profile_fab.dart';
 import 'package:memento_app/screen/profile/user/appbar/profile_appbar.dart';
 import 'package:memento_app/screen/profile/user/appbar/profile_appbar_config.dart';

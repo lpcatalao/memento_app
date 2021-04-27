@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
-import 'package:memento_app/constants%20/memento_icons.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
+import 'package:memento_app/constants/memento_icons.dart';
 
 class ProfileAppBarTitleConfig extends StatelessWidget {
   @override

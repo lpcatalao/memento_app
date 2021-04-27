@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/screen/nav/dashboard/appbar/dashboard_appbar.dart';
 import 'package:memento_app/screen/nav/dashboard/body/dashboard_body.dart';
 import 'package:memento_app/utilities/screen_util.dart';

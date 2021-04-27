@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:memento_app/constants%20/general_app_constants.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
+import 'package:memento_app/constants/memento_icons.dart';
 import 'package:memento_app/models/nav_option_card_base.dart';
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/memento_icons.dart';
 import 'package:memento_app/models/task_status.dart';
 
 class MedicineCardModel extends NavOptionCardBase {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/constants%20/general_app_constants.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/models/nav_option_card_base.dart';
 import 'package:memento_app/screen/nav/model_components/add_reminder/body/nav_add_item_body_form.dart';
 import 'package:memento_app/screen/nav/model_components/add_reminder/nav_add_item_fab.dart';
