@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memento_app/blocs/onboarding_bloc.dart';
-import 'package:memento_app/screen/nav/model_components/add_reminder/nav_add_item_list_model.dart';
 import 'package:memento_app/screen/onboard/onboarding_screen.dart';
 import 'package:provider/provider.dart';
 

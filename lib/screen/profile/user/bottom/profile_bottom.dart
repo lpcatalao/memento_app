@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
+import 'package:memento_app/screen/profile/caretaker/caretaker_screen.dart';
 
 class ProfileBottom extends StatelessWidget {
   final double width;
@@ -10,20 +11,30 @@ class ProfileBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height * .15,
-      decoration:
-          configBoxDecoration(color: GeneralAppColor.bottomProfileColor2),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 36.0),
-        child: Column(
-          children: [
-            SizedBox(height: height * .026),
-            buildTitle('Cuidador'),
-            buildTitleContent(Icon(FontAwesomeIcons.userNurse,), 'Luis Miguel',
-                bigger: false)
-          ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context,MaterialPageRoute(
+            builder: (BuildContext context) => CaretakerScreen()));
+      },
+      child: Container(
+        width: width,
+        height: height * .15,
+        decoration:
+            configBoxDecoration(color: GeneralAppColor.bottomProfileColor2),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 36.0),
+          child: Column(
+            children: [
+              SizedBox(height: height * .026),
+              buildTitle('Cuidador'),
+              buildTitleContent(
+                  Icon(
+                    FontAwesomeIcons.userNurse,
+                  ),
+                  'Luis Miguel',
+                  bigger: false)
+            ],
+          ),
         ),
       ),
     );

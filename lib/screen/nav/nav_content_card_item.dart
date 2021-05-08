@@ -60,7 +60,10 @@ class NavContentCardItem extends StatelessWidget {
   Row buildSubtitle(Item item) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [Text('12/03'), Text('15:00')],
+      children: [
+        Text('12/03'),
+        Text('15:00'),
+      ],
     );
   }
 }

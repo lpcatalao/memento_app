@@ -8,6 +8,7 @@ class NavAddItemBodyForm extends StatelessWidget {
   final double height;
 
   NavAddItemBodyForm(this.width, this.height);
+
   @override
   Widget build(BuildContext context) {
     final maxWidth = width * .85;
@@ -21,7 +22,9 @@ class NavAddItemBodyForm extends StatelessWidget {
             children: [
               _buildTitle('Título'),
               SizedBox(height: height * .01),
-              _buildTitleContent(),
+              // _buildTitleContent(),
+              //TODO alterar para que se for medicine screen utilizar o autocomplete, se nao utilizar o buil titleContet
+              MedicineAutoComplete(),
               SizedBox(height: height * .01),
               _buildLimitText(0, 200),
               SizedBox(height: height * .03),
@@ -92,6 +95,35 @@ class NavAddItemBodyForm extends StatelessWidget {
           borderSide: BorderSide(color: Colors.blue),
         ),
       ),
+    );
+  }
+}
+
+class MedicineAutoComplete extends StatelessWidget {
+  const MedicineAutoComplete({Key key}) : super(key: key);
+
+  static const List<String> _kOptions = <String>[
+    'anticolinesterásicos',
+    'memantina',
+    'antipsicótico',
+    'ansiolítico',
+    'antidepressivos',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Autocomplete<String>(
+      optionsBuilder: (TextEditingValue textEditingValue) {
+        if (textEditingValue.text == '') {
+          return const Iterable<String>.empty();
+        }
+        return _kOptions.where((String option) {
+          return option.contains(textEditingValue.text.toLowerCase());
+        });
+      },
+      onSelected: (String selection) {
+        print('You just selected $selection');
+      },
     );
   }
 }
