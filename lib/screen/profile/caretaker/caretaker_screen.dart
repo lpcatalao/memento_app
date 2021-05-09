@@ -28,7 +28,7 @@ class CaretakerScreen extends StatelessWidget {
               MaterialPageRoute(
                   builder: (BuildContext context) => AddCaretaker()));
         },
-        label: Text("Adicionar"),
+        label: Text("Novo Cuidador"),
         icon: Icon(Icons.add),
         backgroundColor: Colors.teal,
       ),

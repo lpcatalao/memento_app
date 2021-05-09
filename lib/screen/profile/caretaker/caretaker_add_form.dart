@@ -13,51 +13,53 @@ class AddCaretakerBodyForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final maxHeight = height * .6;
     return Expanded(
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 15.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: width * .8,
-                  child: Column(
-                    children: [
-                      _buildTitle('Nome Completo'),
-                      SizedBox(
-                        height: maxHeight * .01,
-                      ),
-                      _buildTextField(context),
-                      SizedBox(
-                        height: maxHeight * .04,
-                      ),
-                      _buildTitle('Morada'),
-                      SizedBox(
-                        height: maxHeight * .01,
-                      ),
-                      _buildTextField(context),
-                      SizedBox(
-                        height: maxHeight * .04,
-                      ),
-                      _buildTitle('Cidade'),
-                      SizedBox(
-                        height: maxHeight * .01,
-                      ),
-                      _buildTextField(context),
-                      SizedBox(
-                        height: maxHeight * .04,
-                      ),
-                      _buildTitle('Telefone'),
-                      SizedBox(
-                        height: maxHeight * .04,
-                      ),
-                      _buildTextField(context),
-                    ],
+      child: SingleChildScrollView(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: width * .8,
+                    child: Column(
+                      children: [
+                        _buildTitle('Nome Completo'),
+                        SizedBox(
+                          height: maxHeight * .01,
+                        ),
+                        _buildTextField(context),
+                        SizedBox(
+                          height: maxHeight * .04,
+                        ),
+                        _buildTitle('Morada'),
+                        SizedBox(
+                          height: maxHeight * .01,
+                        ),
+                        _buildTextField(context),
+                        SizedBox(
+                          height: maxHeight * .04,
+                        ),
+                        _buildTitle('Cidade'),
+                        SizedBox(
+                          height: maxHeight * .01,
+                        ),
+                        _buildTextField(context),
+                        SizedBox(
+                          height: maxHeight * .04,
+                        ),
+                        _buildTitle('Telefone'),
+                        SizedBox(
+                          height: maxHeight * .04,
+                        ),
+                        _buildTextField(context),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

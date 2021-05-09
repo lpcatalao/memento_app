@@ -22,7 +22,9 @@ class AddCaretaker extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         label: Text("Adicionar"),
         icon: Icon(Icons.add),
         backgroundColor: Colors.teal,
