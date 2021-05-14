@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/home/page/nav_controller.dart';
 import 'package:memento_app/repository/onboard_repository.dart';
-import 'package:memento_app/screen/nav/nav_controller.dart';
 import 'package:memento_app/screen/onboard/onboarding_screen.dart';
 
 class FutureController extends StatelessWidget {
@@ -33,7 +33,7 @@ class FutureController extends StatelessWidget {
 Widget buildingDoneScreen(AsyncSnapshot<bool> snapshot) {
   if (snapshot.data) {
     setSharedPref(false);
-    return Nav();
+    return Home();
   }
 
   return OnboardingScreen();

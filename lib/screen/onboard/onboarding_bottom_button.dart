@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/profile/page/add_user/add_user_profile.dart';
 import 'package:memento_app/blocs/onboarding_bloc.dart';
-import 'package:memento_app/screen/profile/add_user/add_user_profile.dart';
 import 'package:provider/provider.dart';
 
 class OnboardingBottomButton extends StatelessWidget {
