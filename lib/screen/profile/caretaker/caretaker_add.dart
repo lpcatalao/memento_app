@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:memento_app/screen/profile/caretaker/caretaker_add_appbar.dart';
 import 'package:memento_app/screen/profile/caretaker/caretaker_add_form.dart';
 
-import 'caretaker_appbar.dart';
-
 class AddCaretaker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
