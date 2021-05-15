@@ -4,12 +4,12 @@ import 'package:memento_app/screen/onboard/onboarding_animated_dot.dart';
 import 'package:memento_app/screen/onboard/onboarding_bottom_button.dart';
 import 'package:memento_app/screen/onboard/onboarding_pageview.dart';
 import 'package:memento_app/screen/onboard/onboarding_skip.dart';
-import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _onboardingBloc = Provider.of<OnboardingBloc>(context);
+    //TODO remove aqui
+    final _onboardingBloc = OnboardingBloc();
     return Scaffold(
       body: Container(
         decoration: _backgroundConfig(),

@@ -23,4 +23,20 @@ class User {
   String get name => _name;
 
   int get id => _id;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': _id,
+      'name': _name,
+      'address': _address,
+      'city': _city,
+      'phone': _phone,
+      'birth_date': _birthDate
+    };
+  }
+
+  @override
+  String toString() {
+    return "Nome: ${_name}, Endereco: ${_address}, Cidade: ${_city}, Telefone: ${_phone}, Nascimento: ${_birthDate}";
+  }
 }

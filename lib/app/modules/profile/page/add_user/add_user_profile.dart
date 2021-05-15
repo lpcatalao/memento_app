@@ -14,7 +14,10 @@ class AddUserProfile extends StatelessWidget {
     final height = _size.height;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0,),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Container(
         color: GeneralAppColor.appBackgroundGray,
         child: Column(
