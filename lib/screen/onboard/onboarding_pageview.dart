@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/blocs/onboarding_bloc.dart';
 import 'package:memento_app/screen/onboard/page_view_item.dart';
-import 'package:provider/provider.dart';
 
 class OnboardingPageView extends StatelessWidget {
   final PageController _pageController;
@@ -10,7 +9,8 @@ class OnboardingPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _bloc = Provider.of<OnboardingBloc>(context);
+    //TODO remove aqui
+    var _bloc = OnboardingBloc();
     _bloc.stateSink.add(_pageController.initialPage);
     return Container(
       color: Colors.transparent,

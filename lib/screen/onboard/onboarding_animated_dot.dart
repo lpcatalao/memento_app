@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/blocs/onboarding_bloc.dart';
-import 'package:provider/provider.dart';
 
 class OnboardingAnimatedDot extends StatelessWidget {
   final int _numPages = 3;
 
   @override
   Widget build(BuildContext context) {
-    final OnboardingBloc _bloc = Provider.of<OnboardingBloc>(context);
+
+    //todo remove aqui
+    final OnboardingBloc _bloc =OnboardingBloc();
 
     return StreamBuilder(
         stream: _bloc.stateStream,
