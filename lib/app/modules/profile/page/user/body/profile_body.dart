@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
+import 'package:memento_app/shared/model/user_model.dart';
 
 class ProfileBody extends StatelessWidget {
   final double width;
@@ -10,6 +14,8 @@ class ProfileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _profile = Modular.get<ProfileStore>();
+
     return Expanded(
       child: Container(
         decoration: configBoxDecoration(gradientStatus: true),
@@ -23,12 +29,32 @@ class ProfileBody extends StatelessWidget {
                 children: [
                   SizedBox(height: height * .03),
                   buildTitle("Telefone"),
-                  buildTitleContent(
-                      Icon(Icons.phone), '+351 991 900 000', bigger: false),
+                  Observer(
+                    builder: (BuildContext context) {
+                      List<User> users = _profile.users.value;
+                      if (users != null) {
+                        return buildTitleContent(
+                            Icon(Icons.phone), '${users[0].phone}',
+                            bigger: false);
+                      }
+                      return buildTitleContent(Icon(Icons.phone), 'Error',
+                          bigger: false);
+                    },
+                  ),
                   Spacer(),
                   buildTitle("E-mail"),
-                  buildTitleContent(
-                      Icon(Icons.mail), 'josealmeida@umemail.com', bigger: true),
+                  Observer(
+                    builder: (BuildContext context) {
+                      List<User> users = _profile.users.value;
+                      if (users != null) {
+                        return buildTitleContent(
+                            Icon(Icons.mail), '${users[0].name}@gmail.com',
+                            bigger: true);
+                      }
+                      return buildTitleContent(Icon(Icons.mail), 'Error',
+                          bigger: true);
+                    },
+                  ),
                   SizedBox(height: height * .04),
                 ],
               ),

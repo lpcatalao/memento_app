@@ -9,18 +9,18 @@ part of 'profile_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ProfileStore on _ProfileStoreBase, Store {
-  final _$textAtom = Atom(name: '_ProfileStoreBase.text');
+  final _$usersAtom = Atom(name: '_ProfileStoreBase.users');
 
   @override
-  String get text {
-    _$textAtom.reportRead();
-    return super.text;
+  ObservableFuture<List<User>> get users {
+    _$usersAtom.reportRead();
+    return super.users;
   }
 
   @override
-  set text(String value) {
-    _$textAtom.reportWrite(value, super.text, () {
-      super.text = value;
+  set users(ObservableFuture<List<User>> value) {
+    _$usersAtom.reportWrite(value, super.users, () {
+      super.users = value;
     });
   }
 
@@ -28,11 +28,11 @@ mixin _$ProfileStore on _ProfileStoreBase, Store {
       ActionController(name: '_ProfileStoreBase');
 
   @override
-  dynamic setText(String text) {
+  dynamic fetchUser() {
     final _$actionInfo = _$_ProfileStoreBaseActionController.startAction(
-        name: '_ProfileStoreBase.setText');
+        name: '_ProfileStoreBase.findUser');
     try {
-      return super.setText(text);
+      return super.fetchUser();
     } finally {
       _$_ProfileStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +41,7 @@ mixin _$ProfileStore on _ProfileStoreBase, Store {
   @override
   String toString() {
     return '''
-text: ${text}
+users: ${users}
     ''';
   }
 }
