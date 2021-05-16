@@ -24,13 +24,58 @@ mixin _$ProfileStore on _ProfileStoreBase, Store {
     });
   }
 
+  final _$caretakersAtom = Atom(name: '_ProfileStoreBase.caretakers');
+
+  @override
+  ObservableFuture<List<Caretaker>> get caretakers {
+    _$caretakersAtom.reportRead();
+    return super.caretakers;
+  }
+
+  @override
+  set caretakers(ObservableFuture<List<Caretaker>> value) {
+    _$caretakersAtom.reportWrite(value, super.caretakers, () {
+      super.caretakers = value;
+    });
+  }
+
+  final _$userIDAtom = Atom(name: '_ProfileStoreBase.userID');
+
+  @override
+  ObservableFuture<int> get userID {
+    _$userIDAtom.reportRead();
+    return super.userID;
+  }
+
+  @override
+  set userID(ObservableFuture<int> value) {
+    _$userIDAtom.reportWrite(value, super.userID, () {
+      super.userID = value;
+    });
+  }
+
+  final _$caretakerIDAtom = Atom(name: '_ProfileStoreBase.caretakerID');
+
+  @override
+  ObservableFuture<int> get caretakerID {
+    _$caretakerIDAtom.reportRead();
+    return super.caretakerID;
+  }
+
+  @override
+  set caretakerID(ObservableFuture<int> value) {
+    _$caretakerIDAtom.reportWrite(value, super.caretakerID, () {
+      super.caretakerID = value;
+    });
+  }
+
   final _$_ProfileStoreBaseActionController =
       ActionController(name: '_ProfileStoreBase');
 
   @override
   dynamic fetchUser() {
     final _$actionInfo = _$_ProfileStoreBaseActionController.startAction(
-        name: '_ProfileStoreBase.findUser');
+        name: '_ProfileStoreBase.fetchUser');
     try {
       return super.fetchUser();
     } finally {
@@ -39,9 +84,45 @@ mixin _$ProfileStore on _ProfileStoreBase, Store {
   }
 
   @override
+  dynamic fetchCaretakers() {
+    final _$actionInfo = _$_ProfileStoreBaseActionController.startAction(
+        name: '_ProfileStoreBase.fetchCaretakers');
+    try {
+      return super.fetchCaretakers();
+    } finally {
+      _$_ProfileStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic insertUser(User user) {
+    final _$actionInfo = _$_ProfileStoreBaseActionController.startAction(
+        name: '_ProfileStoreBase.insertUser');
+    try {
+      return super.insertUser(user);
+    } finally {
+      _$_ProfileStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic insertCaretaker(Caretaker caretaker) {
+    final _$actionInfo = _$_ProfileStoreBaseActionController.startAction(
+        name: '_ProfileStoreBase.insertCaretaker');
+    try {
+      return super.insertCaretaker(caretaker);
+    } finally {
+      _$_ProfileStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-users: ${users}
+users: ${users},
+caretakers: ${caretakers},
+userID: ${userID},
+caretakerID: ${caretakerID}
     ''';
   }
 }

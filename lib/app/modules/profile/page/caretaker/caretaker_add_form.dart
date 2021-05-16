@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:memento_app/app/modules/profile/profile_store.dart';
 
 class AddCaretakerBodyForm extends StatelessWidget {
   final double width;
@@ -11,6 +13,8 @@ class AddCaretakerBodyForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _profile = Modular.get<ProfileStore>();
+
     final maxHeight = height * .6;
     return Expanded(
       child: SingleChildScrollView(
@@ -30,7 +34,9 @@ class AddCaretakerBodyForm extends StatelessWidget {
                         SizedBox(
                           height: maxHeight * .01,
                         ),
-                        _buildTextField(context),
+                        _buildTextField(
+                            context: context,
+                            onChanged: _profile.caretaker.setName),
                         SizedBox(
                           height: maxHeight * .04,
                         ),
@@ -38,7 +44,9 @@ class AddCaretakerBodyForm extends StatelessWidget {
                         SizedBox(
                           height: maxHeight * .01,
                         ),
-                        _buildTextField(context),
+                        _buildTextField(
+                            context: context,
+                            onChanged: _profile.caretaker.setAddress),
                         SizedBox(
                           height: maxHeight * .04,
                         ),
@@ -46,7 +54,9 @@ class AddCaretakerBodyForm extends StatelessWidget {
                         SizedBox(
                           height: maxHeight * .01,
                         ),
-                        _buildTextField(context),
+                        _buildTextField(
+                            context: context,
+                            onChanged: _profile.caretaker.setCity),
                         SizedBox(
                           height: maxHeight * .04,
                         ),
@@ -54,7 +64,9 @@ class AddCaretakerBodyForm extends StatelessWidget {
                         SizedBox(
                           height: maxHeight * .04,
                         ),
-                        _buildTextField(context),
+                        _buildTextField(
+                            context: context,
+                            onChanged: _profile.caretaker.setPhone),
                       ],
                     ),
                   ),
@@ -84,10 +96,11 @@ class AddCaretakerBodyForm extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(BuildContext context) {
+  Widget _buildTextField({BuildContext context, onChanged}) {
     return Theme(
       data: Theme.of(context).copyWith(splashColor: Colors.transparent),
       child: TextField(
+        onChanged: onChanged,
         autofocus: false,
         style: TextStyle(fontSize: 16.0, color: Colors.black),
         decoration: InputDecoration(
