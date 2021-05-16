@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/app/modules/profile/profile_store.dart';
-import 'package:memento_app/database/dao/user_dao.dart';
 import 'package:memento_app/shared/model/user_model.dart';
 
 class AddUserProfileFab extends StatelessWidget {
@@ -19,7 +18,6 @@ class AddUserProfileFab extends StatelessWidget {
 
         final user = User(name, address, city, phone, birthDate);
         user.id = 1;
-
 
         _profile.insertUser(user);
         _profile.fetchUser();

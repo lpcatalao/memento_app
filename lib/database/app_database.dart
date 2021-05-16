@@ -1,21 +1,28 @@
+import 'package:memento_app/constants/db_constants.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AppDatabase {
-  static const _DB_VERSION = 1;
-  static const _DB_NAME = 'memento.db';
-
   Future<Database> createDatabase() async {
-    final String dbPath = await getDatabasesPath();
-    final String path = join(dbPath, _DB_NAME);
-    return openDatabase(path, onCreate: (db, version) {
-      return db.execute("CREATE TABLE user ("
-          "id INTEGER PRIMARY KEY,"
-          "name TEXT,"
-          "address TEXT,"
-          "city TEXT,"
-          "phone INTEGER,"
-          "birth_date TEXT)");
-    }, version: _DB_VERSION);
+    final String path = join(await getDatabasesPath(), DBConstant.DB_NAME);
+    return openDatabase(path,
+        onCreate: (db, version) => _createDB(db), version: 1);
+  }
+
+  void _createDB(Database db) {
+    db.execute("CREATE TABLE ${DBConstant.USER_TABLE} ("
+        "id INTEGER PRIMARY KEY,"
+        "name TEXT,"
+        "address TEXT,"
+        "city TEXT,"
+        "phone INTEGER,"
+        "birth_date TEXT)");
+
+    db.execute("CREATE TABLE ${DBConstant.CARETAKER_TABLE} ("
+        "id INTEGER PRIMARY KEY,"
+        "name TEXT,"
+        "address TEXT,"
+        "city TEXT,"
+        "phone INTEGER)");
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:memento_app/app/modules/home/page/dashboard/dashboard_screen.dart';
 import 'package:memento_app/app/modules/home/page/nav_fab_config.dart';
-import 'package:memento_app/app/modules/profile/page/user/profile_screen.dart';
 import 'package:memento_app/blocs/nav_bloc.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/constants/memento_icons.dart';

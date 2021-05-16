@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  #Float action button
+  flutter_speed_dial: ^3.0.5
+
   #Ajuda com o uso de SVG
   #  flutter_svg: ^0.17.4
   cupertino_icons: ^1.0.2
@@ -117,4 +120,8 @@ flutter:
 #    build: flutter pub run build_runner build
 #    delete-conflict: flutter packages pub run build_runner build --delete-conflicting-outputs
 
+
+
+#  killall "Simulator" 2> /dev/null; xcrun simctl erase all
+#  xcrun simctl shutdown all && xcrun simctl erase all
 

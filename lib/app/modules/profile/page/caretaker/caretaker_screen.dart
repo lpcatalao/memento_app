@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/app/modules/profile/page/caretaker/caretaker_list.dart';
+import 'package:memento_app/constants/general_app_constants.dart';
 
 import 'caretaker_appbar.dart';
 
@@ -15,11 +16,14 @@ class CaretakerScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          CaretakerScreenAppBar(_size.width, _size.height),
-          CaretakerList(_size.width, _size.height)
-        ],
+      body: Container(
+        color: GeneralAppColor.appBackgroundGray,
+        child: Column(
+          children: [
+            CaretakerScreenAppBar(_size.width, _size.height),
+            CaretakerList(_size.width, _size.height)
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
