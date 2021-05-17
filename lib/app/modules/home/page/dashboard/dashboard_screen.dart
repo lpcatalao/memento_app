@@ -22,7 +22,7 @@ class DashboardScreen extends StatelessWidget {
         return Column(
           children: [
             DashboardAppBar(width: width, height: fortyPercentHight),
-            DashboardBody(
+            DashboardBodyWidget(
               width: width,
               height: sixtyPercentHight,
               constraints: constraints,
