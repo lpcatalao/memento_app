@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memento_app/models/nav_option_card_base.dart';
 import 'package:memento_app/models/task_status.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 //TODO Arrumar uma maneira de remover esse constrainsts 
-class DashboardBodyCardItem extends StatelessWidget {
+class DashboardBodyCardItemWidget extends StatelessWidget {
   final NavOptionCardBase _model;
   final BoxConstraints _constraints;
 
-  DashboardBodyCardItem(
+  DashboardBodyCardItemWidget(
     this._model,
     this._constraints,
   );
