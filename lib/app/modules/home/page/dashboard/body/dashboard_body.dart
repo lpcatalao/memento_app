@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/app/modules/home/page/dashboard/body/dashboard_body_title.dart';
 import 'package:memento_app/app/modules/home/page/dashboard/body/dashboard_pageview_widget.dart';
-import 'package:memento_app/models/task_status.dart';
 import 'package:memento_app/shared/model/dashboard_pageview_item.dart';
+import 'package:memento_app/shared/model/task_status.dart';
 
 class DashboardBodyWidget extends StatelessWidget {
   final double width;

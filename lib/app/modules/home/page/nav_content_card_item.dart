@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
-import 'package:memento_app/models/Item.dart';
-import 'package:memento_app/models/nav_option_card_base.dart';
+import 'package:memento_app/shared/model/item.dart';
 
 class NavContentCardItem extends StatelessWidget {
-  final NavOptionCardBase model;
+  final NavOptionListWidget model;
   final Item item;
 
   NavContentCardItem(this.model, this.item);
@@ -30,7 +30,7 @@ class NavContentCardItem extends StatelessWidget {
     );
   }
 
-  Stack buildIcon(NavOptionCardBase model) {
+  Stack buildIcon(NavOptionListWidget model) {
     return Stack(
       alignment: Alignment.center,
       children: [

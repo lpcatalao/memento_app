@@ -1,12 +1,12 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/constants/memento_icons.dart';
-import 'package:memento_app/models/nav_option_card_base.dart';
-import 'package:flutter/material.dart';
-import 'package:memento_app/models/task_status.dart';
+import 'package:memento_app/shared/model/task_status.dart';
 
-class MedicineCardModel extends NavOptionCardBase {
+class MedicineListWidget extends NavOptionListWidget {
   static const String _TITLE = 'Medicamento';
   static const Icon _ICON = Icon(MementoIcons.iconmapdoctor);
   static const LinearGradient _GRADIENT = const LinearGradient(
@@ -16,7 +16,7 @@ class MedicineCardModel extends NavOptionCardBase {
   static const Color _CIRCLE_COLOR = GeneralAppColor.medicineCircle;
   static const Color _CHECK_BOX_COLOR = Colors.lightGreen;
 
-  MedicineCardModel(
+  MedicineListWidget(
       {double porcentage = 0,
       int total = 0,
       int completed = 0,

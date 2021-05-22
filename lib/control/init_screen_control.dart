@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/app/modules/home/page/nav_controller.dart';
-import 'package:memento_app/repository/onboard_repository.dart';
-import 'package:memento_app/screen/onboard/onboarding_screen.dart';
+import 'package:memento_app/app/modules/onboard/onboarding_screen.dart';
+import 'package:memento_app/shared/repository/onboard_repository.dart';
 
 class FutureController extends StatelessWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/onboard/page_view_item.dart';
 import 'package:memento_app/blocs/onboarding_bloc.dart';
-import 'package:memento_app/screen/onboard/page_view_item.dart';
 
 class OnboardingPageView extends StatelessWidget {
   final PageController _pageController;

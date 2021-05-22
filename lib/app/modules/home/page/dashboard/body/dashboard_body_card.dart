@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:memento_app/models/nav_option_card_base.dart';
-import 'package:memento_app/models/task_status.dart';
+import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
+import 'package:memento_app/shared/model/task_status.dart';
 
-
-//TODO Arrumar uma maneira de remover esse constrainsts 
+//TODO Arrumar uma maneira de remover esse constrainsts
 class DashboardBodyCardItemWidget extends StatelessWidget {
-  final NavOptionCardBase _model;
+  final NavOptionListWidget _model;
   final BoxConstraints _constraints;
 
   DashboardBodyCardItemWidget(
@@ -56,7 +55,7 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
         fontSize: 17.sp);
   }
 
-  Stack buildIcon(NavOptionCardBase model) {
+  Stack buildIcon(NavOptionListWidget model) {
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -71,7 +70,7 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
     );
   }
 
-  Widget buildProgressBar(NavOptionCardBase model, double width) {
+  Widget buildProgressBar(NavOptionListWidget model, double width) {
     var status = model.taskStatus;
     var percentToDivide = checkDivision(status.completed, status.total);
     var maxWidth = (width * .7) / percentToDivide;
@@ -95,7 +94,7 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
   }
 
   BoxDecoration configProgressBar(
-      {NavOptionCardBase model, bool gradientStatus}) {
+      {NavOptionListWidget model, bool gradientStatus}) {
     return BoxDecoration(
         gradient: gradientStatus == false ? null : model.gradient,
         borderRadius: BorderRadius.all(Radius.circular(18)),

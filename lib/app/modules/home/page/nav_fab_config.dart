@@ -27,10 +27,6 @@ class MementoFab extends StatelessWidget {
         } else if (page == 3) {
           Modular.to.navigate("/add_brain_fitness");
         }
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (BuildContext context) => BrainFitnessAddItemScreen()));
       },
     );
   }
@@ -43,7 +39,6 @@ class MementoFab extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(32)),
           gradient: LinearGradient(
               begin: Alignment(0.5, 0),
-              /**/
               end: Alignment(0.5, 1),
               colors: [
                 GeneralAppColor.fabGradient1,

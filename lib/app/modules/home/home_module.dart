@@ -12,11 +12,11 @@ class HomeModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/start', child: (_, args) => Home()),
-    ChildRoute('/add_activity', child: (_, args) => ActivityAddItemScreen()),
-    ChildRoute('/add_medicine', child: (_, args) => MedicineAddItemScreen()),
+    ChildRoute('/start', child: (_, __) => Home()),
+    ChildRoute('/add_activity', child: (_, __) => ActivityAddItemScreen()),
+    ChildRoute('/add_medicine', child: (_, __) => MedicineAddItemScreen()),
     ChildRoute('/add_brain_fitness',
-        child: (_, args) => BrainFitnessAddItemScreen()),
+        child: (_, __) => BrainFitnessAddItemScreen()),
     ModuleRoute('/profile', module: ProfileModule())
   ];
 }
