@@ -1,28 +1,32 @@
-import 'package:memento_app/constants/db_constants.dart';
+import 'package:memento_app/shared/model/caretaker_model.dart';
+import 'package:memento_app/shared/model/user_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AppDatabase {
   Future<Database> createDatabase() async {
-    final String path = join(await getDatabasesPath(), DBConstant.DB_NAME);
-    return openDatabase(path,
-        onCreate: (db, version) => _createDB(db), version: 1);
+    final path = join(await getDatabasesPath(), 'memento.db');
+    return openDatabase(path, onCreate: (db, version) async {
+      await db.execute('CREATE TABLE user('
+          '${USER_ID} INTEGER PRIMARY KEY,'
+          '${USER_NAME} TEXT,'
+          '${USER_ADDRESS} TEXT,'
+          '${USER_CITY} TEXT,'
+          '${USER_PHONE} INTEGER,'
+          '${USER_BIRTH_DATE} TEXT,'
+          '${FK_CARETAKER_ID} INTEGER,'
+          'FOREIGN KEY(${FK_CARETAKER_ID}) REFERENCES caretaker(${CARETAKER_ID}))');
+
+      await db.execute("CREATE TABLE caretaker("
+          "${CARETAKER_ID} INTEGER PRIMARY KEY,"
+          "${CARETAKER_NAME} TEXT,"
+          "${CARETAKER_ADDRESS} TEXT,"
+          "${CARETAKER_CITY} TEXT,"
+          "${CARETAKER_PHONE} INTEGER)");
+    }, version: 1, onConfigure: _onConfigure);
   }
 
-  void _createDB(Database db) {
-    db.execute("CREATE TABLE ${DBConstant.USER_TABLE} ("
-        "id INTEGER PRIMARY KEY,"
-        "name TEXT,"
-        "address TEXT,"
-        "city TEXT,"
-        "phone INTEGER,"
-        "birth_date TEXT)");
-
-    db.execute("CREATE TABLE ${DBConstant.CARETAKER_TABLE} ("
-        "id INTEGER PRIMARY KEY,"
-        "name TEXT,"
-        "address TEXT,"
-        "city TEXT,"
-        "phone INTEGER)");
+  Future _onConfigure(Database db) async {
+    await db.execute("PRAGMA foreign_keys = ON");
   }
 }

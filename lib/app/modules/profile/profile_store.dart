@@ -45,4 +45,8 @@ abstract class _ProfileStoreBase with Store {
   @action
   insertCaretaker(Caretaker caretaker) =>
       caretakerID = repository.insertCaretaker(caretaker).asObservable();
+
+  updateUserCaretaker(int userCaretakerId) {
+    repository.updateUserCaretaker(userCaretakerId);
+  }
 }

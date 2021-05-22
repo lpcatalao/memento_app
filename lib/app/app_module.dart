@@ -10,5 +10,4 @@ class AppModule extends Module {
   final List<ModuleRoute> routes = [
     ModuleRoute(Modular.initialRoute, module: HomeModule())
   ];
-
 }

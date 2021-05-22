@@ -24,4 +24,8 @@ class ProfileRepository {
   Future<int> insertCaretaker(Caretaker caretaker) {
     return _caretakerDao.insert(caretaker);
   }
+
+  void updateUserCaretaker(int userCaretakerId) {
+    _userDao.updateUserCaretaker(userCaretakerId);
+  }
 }

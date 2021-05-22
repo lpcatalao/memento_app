@@ -10,8 +10,15 @@ class CaretakerDao {
 
   Future<int> insert(Caretaker caretaker) async {
     Database db = await this.db.createDatabase();
-    return db.insert(DBConstant.CARETAKER_TABLE, caretaker.toMap(),
+
+    Future<int> insert = db.insert(
+        DBConstant.CARETAKER_TABLE, caretaker.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
+
+    findAll().then((value) {
+      print(value);
+    });
+    return insert;
   }
 
   Future<List<Caretaker>> findAll() async {
@@ -21,13 +28,13 @@ class CaretakerDao {
     final List<Caretaker> caretakers = [];
     for (Map<String, dynamic> map in result) {
       final Caretaker caretaker = Caretaker(
-        map['name'],
-        map['address'],
-        map['city'],
-        map['phone'],
+        map[CARETAKER_NAME],
+        map[CARETAKER_ADDRESS],
+        map[CARETAKER_CITY],
+        map[CARETAKER_PHONE],
       );
 
-      caretaker.id = map['id'];
+      caretaker.id = map[CARETAKER_ID];
 
       caretakers.add(caretaker);
     }

@@ -1,3 +1,11 @@
+const USER_ID = 'userId';
+const USER_NAME = 'userName';
+const USER_ADDRESS = 'userAddress';
+const USER_CITY = 'userCity';
+const USER_PHONE = 'userPhone';
+const USER_BIRTH_DATE = 'userBirthDate';
+const FK_CARETAKER_ID = 'caretakerId';
+
 class User {
   int _id;
   String _name;
@@ -5,6 +13,7 @@ class User {
   String _city;
   int _phone;
   String _birthDate;
+  int _caretakerId;
 
   User(this._name, this._address, this._city, this._phone, this._birthDate);
 
@@ -24,19 +33,26 @@ class User {
 
   int get id => _id;
 
+  int get caretakerId => _caretakerId;
+
+  set caretakerId(int value) {
+    _caretakerId = value;
+  }
+
   Map<String, dynamic> toMap() {
     return {
-      'id': _id,
-      'name': _name,
-      'address': _address,
-      'city': _city,
-      'phone': _phone,
-      'birth_date': _birthDate
+      USER_ID: _id,
+      USER_NAME: _name,
+      USER_ADDRESS: _address,
+      USER_CITY: _city,
+      USER_PHONE: _phone,
+      USER_BIRTH_DATE: _birthDate,
+      FK_CARETAKER_ID: _caretakerId
     };
   }
 
   @override
   String toString() {
-    return "Nome: ${_name}, Endereco: ${_address}, Cidade: ${_city}, Telefone: ${_phone}, Nascimento: ${_birthDate}";
+    return 'User{_id: $_id, _name: $_name, _address: $_address, _city: $_city, _phone: $_phone, _birthDate: $_birthDate, _caretakerId: $_caretakerId}';
   }
 }

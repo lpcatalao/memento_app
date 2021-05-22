@@ -1,3 +1,9 @@
+const CARETAKER_ID = 'caretakerId';
+const CARETAKER_NAME = 'caretakerName';
+const CARETAKER_ADDRESS = 'caretakerAddress';
+const CARETAKER_CITY = 'caretakerCity';
+const CARETAKER_PHONE = 'caretakerPhone';
+
 class Caretaker {
   int _id;
   String _name;
@@ -23,16 +29,16 @@ class Caretaker {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': _id,
-      'name': _name,
-      'address': _address,
-      'city': _city,
-      'phone': _phone,
+      CARETAKER_ID: _id,
+      CARETAKER_NAME: _name,
+      CARETAKER_ADDRESS: _address,
+      CARETAKER_CITY: _city,
+      CARETAKER_PHONE: _phone,
     };
   }
 
   @override
   String toString() {
-    return "Nome: ${_name}, Endereco: ${_address}, Cidade: ${_city}, Telefone: ${_phone}";
+    return 'Caretaker{_id: $_id, _name: $_name, _address: $_address, _city: $_city, _phone: $_phone}';
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memento_app/app/modules/profile/page/add_user/add_user_profile.dart';
 import 'package:memento_app/app/modules/profile/page/user/appbar/profile_appbar.dart';
@@ -7,11 +8,21 @@ import 'package:memento_app/app/modules/profile/page/user/appbar/profile_appbar_
 import 'package:memento_app/app/modules/profile/page/user/body/profile_body.dart';
 import 'package:memento_app/app/modules/profile/page/user/bottom/profile_bottom.dart';
 import 'package:memento_app/app/modules/profile/page/user/profile_fab.dart';
+import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
+import 'package:memento_app/shared/model/user_model.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = User("Utilizador", "Insira seu endereço", "Insira Sua Cidade",
+        0000000000, "");
+    user.id = 1;
+
+    final _profile = Modular.get<ProfileStore>();
+    _profile.insertUser(user);
+    _profile.updateUserCaretaker(1);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
