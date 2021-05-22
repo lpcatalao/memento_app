@@ -113,13 +113,16 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-#
-#  script:
-#    clean: flutter clean
-#    get: flutter pub get
-#    build: flutter pub run build_runner build
-#    delete-conflict: flutter packages pub run build_runner build --delete-conflicting-outputs
 
+  #slidy shortcut
+  # - slidy run build
+vars:
+  clean: flutter clean
+  get: flutter pub get
+  runner: flutter pub run build_runner
+
+scripts:
+  build: $clean & $get & $runner build --delete-conflicting-outputs
 
 
 #  killall "Simulator" 2> /dev/null; xcrun simctl erase all

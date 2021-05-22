@@ -87,7 +87,7 @@ class _HomeState extends State<Home> {
           IconButton(
             icon: Icon(FontAwesomeIcons.user),
             onPressed: () {
-             Modular.to.pushNamed('/profile/user');
+              Modular.to.pushNamed('/profile/user');
             },
           ),
         ],

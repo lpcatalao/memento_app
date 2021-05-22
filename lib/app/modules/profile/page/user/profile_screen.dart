@@ -12,6 +12,7 @@ import 'package:memento_app/constants/general_app_constants.dart';
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
