@@ -17,7 +17,6 @@ class CaretakerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _profile = Modular.get<ProfileStore>();
-    // _profile.caretakers
     final double maxWidth = width * .85;
     return Expanded(
       child: Container(

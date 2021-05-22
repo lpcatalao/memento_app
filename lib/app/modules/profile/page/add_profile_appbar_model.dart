@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 
 abstract class ProfileAppbarModel extends StatelessWidget {
@@ -10,15 +9,17 @@ abstract class ProfileAppbarModel extends StatelessWidget {
   final double height;
   final String title;
   final IconData icon;
+  final Color bgColor;
 
-  ProfileAppbarModel(this.width, this.height, this.title, this.icon);
+  ProfileAppbarModel(
+      this.width, this.height, this.title, this.icon, this.bgColor);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
       height: height * .2,
-      color: Colors.white,
+      color: bgColor,
       child: Container(
         decoration: configBoxDecoration(gradientStatus: true),
         child: Row(

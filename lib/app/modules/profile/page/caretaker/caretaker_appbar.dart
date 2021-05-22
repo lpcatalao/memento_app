@@ -5,5 +5,6 @@ import '../add_profile_appbar_model.dart';
 
 class CaretakerScreenAppBar extends ProfileAppbarModel {
   CaretakerScreenAppBar(double width, double height)
-      : super(width, height, "CUIDADOR", FontAwesomeIcons.userNurse);
+      : super(width, height, "CUIDADOR", FontAwesomeIcons.userNurse,
+            Colors.transparent);
 }
