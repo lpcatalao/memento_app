@@ -4,12 +4,14 @@ import 'package:memento_app/app/modules/home/page/model_components/add_reminder/
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_add_item_top.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_item_lis_mid.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
-import 'package:memento_app/models/nav_option_card_base.dart';
 
-class HomeAddItemList extends StatelessWidget {
-  final NavOptionCardBase model;
+abstract class AddItemModel extends StatelessWidget {
+  final String title;
+  final String image;
+  final IconData icon;
+  final Color appBarColor;
 
-  const HomeAddItemList({Key key, this.model}) : super(key: key);
+  AddItemModel(this.title, this.image, this.icon, this.appBarColor);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +29,13 @@ class HomeAddItemList extends StatelessWidget {
         color: GeneralAppColor.appBackgroundGray,
         child: Column(
           children: [
-            NavAddItemTop(width, height),
-            NavAddItemMid(width, height),
-            NavAddItemBodyForm(width, height)
+            AddItemAppBarWidget(width, height, title, appBarColor, icon),
+            AddItemImageWidget(width, height, image),
+            AddItemBodyFormWidget(width, height)
           ],
         ),
       ),
-      floatingActionButton: NavAddItemFab(),
+      floatingActionButton: AddItemFabWidget(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

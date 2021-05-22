@@ -3,11 +3,11 @@ import 'package:memento_app/app/modules/home/page/model_components/add_reminder/
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/body/nav_add_item_time.dart';
 import 'package:memento_app/constants/memento_icons.dart';
 
-class NavAddItemBodyForm extends StatelessWidget {
+class AddItemBodyFormWidget extends StatelessWidget {
   final double width;
   final double height;
 
-  NavAddItemBodyForm(this.width, this.height);
+  AddItemBodyFormWidget(this.width, this.height);
 
   @override
   Widget build(BuildContext context) {

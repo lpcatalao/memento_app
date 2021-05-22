@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:memento_app/constants/general_app_constants.dart';
-import 'package:memento_app/constants/memento_icons.dart';
 
-class NavAddItemTop extends StatelessWidget {
+class AddItemAppBarWidget extends StatelessWidget {
   final double width;
   final double height;
+  final String title;
+  final Color appBarColor;
+  final IconData icon;
 
-  NavAddItemTop(this.width, this.height);
+  AddItemAppBarWidget(
+      this.width, this.height, this.title, this.appBarColor, this.icon);
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +18,14 @@ class NavAddItemTop extends StatelessWidget {
       width: width,
       height: height * .2,
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-            GeneralAppColor.customAppBar1,
-            GeneralAppColor.customAppBar2
-          ])),
+        color: appBarColor,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             width: width * .4,
-            child: Text("NOVO\nMEDICAMENTO",
+            child: Text(title,
                 style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
@@ -40,14 +37,17 @@ class NavAddItemTop extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              Container(
-                width: height * 0.07,
-                height: height * 0.07,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(32)),
-                    color: const Color(0xffd5ffe0)),
+              Opacity(
+                opacity: 0.5,
+                child: Container(
+                  width: height * 0.07,
+                  height: height * 0.07,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(32)),
+                      color: const Color(0xffd5ffe0)),
+                ),
               ),
-              Icon(MementoIcons.iconmapdoctor)
+              Icon(icon)
             ],
           )
         ],
