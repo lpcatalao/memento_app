@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class NavAddItemMid extends StatelessWidget {
+class AddItemImageWidget extends StatelessWidget {
   final double width;
   final double height;
+  final String image;
 
-  NavAddItemMid(this.width, this.height);
+  AddItemImageWidget(this.width, this.height, this.image);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,8 @@ class NavAddItemMid extends StatelessWidget {
           Container(
             width: width * .8,
             height: maxHeight * .8,
-            decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage('images/add_medicine.png'))),
+            decoration:
+                BoxDecoration(image: DecorationImage(image: AssetImage(image))),
           )
         ]),
       ),

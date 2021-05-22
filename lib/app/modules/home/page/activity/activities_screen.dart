@@ -1,19 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/home/page/activity/activity_list_widget.dart';
 import 'package:memento_app/app/modules/home/page/nav_content_layout.dart';
-import 'package:memento_app/models/activity_model.dart';
-import 'package:memento_app/models/task_status.dart';
+import 'package:memento_app/shared/model/item.dart';
+import 'package:memento_app/shared/model/task_status.dart';
 
-class ActivityScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
-
-    return Container(
-      width: _size.width,
-      height: _size.height,
-      decoration: BoxDecoration(color: Color(0xffd5dce6)),
-      child: NavContentLayout(
-          model: ActivityCardModel(taskStatus: TaskStatus(3, 100))),
-    );
-  }
+class ActivityScreen extends NavContentLayout {
+  ActivityScreen()
+      : super(
+            model: ActivityListWidget(taskStatus: TaskStatus(3, 100)),
+            items: [
+              Item(text: 'Andar com José', state: false),
+              Item(text: 'Ler um Livro', state: false),
+              Item(text: 'Fazer um exercício', state: true),
+            ]);
 }

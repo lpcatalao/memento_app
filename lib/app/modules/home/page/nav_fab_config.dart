@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_add_item_list_model.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 
 class MementoFab extends StatelessWidget {
   final bool visible;
+  final int page;
 
-  MementoFab({this.visible});
+  MementoFab({this.visible, this.page});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,13 @@ class MementoFab extends StatelessWidget {
     return FloatingActionButton(
       child: buildCustomFab(),
       onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => HomeAddItemList()));
+        if (page == 1) {
+          Modular.to.navigate("/add_activity");
+        } else if (page == 2) {
+          Modular.to.navigate("/add_medicine");
+        } else if (page == 3) {
+          Modular.to.navigate("/add_brain_fitness");
+        }
       },
     );
   }
@@ -34,7 +38,7 @@ class MementoFab extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(32)),
           gradient: LinearGradient(
-              begin: Alignment(0.5, 0),/**/
+              begin: Alignment(0.5, 0),
               end: Alignment(0.5, 1),
               colors: [
                 GeneralAppColor.fabGradient1,

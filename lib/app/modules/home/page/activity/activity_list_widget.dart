@@ -1,12 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/constants/memento_icons.dart';
-import 'package:memento_app/models/nav_option_card_base.dart';
-import 'package:memento_app/models/task_status.dart';
+import 'package:memento_app/shared/model/task_status.dart';
 
-class ActivityCardModel extends NavOptionCardBase {
+class ActivityListWidget extends NavOptionListWidget {
   static const _TITLE = 'Atividade e Lazer';
   static const Icon _ICON = Icon(MementoIcons.iconawesomewalking);
   static const LinearGradient _GRADIENT = LinearGradient(
@@ -16,7 +16,7 @@ class ActivityCardModel extends NavOptionCardBase {
   static const Color _CIRCLE_COLOR = GeneralAppColor.activityCircle;
   static const Color _CHECK_BOX_COLOR = Colors.red;
 
-  ActivityCardModel({TaskStatus taskStatus})
+  ActivityListWidget({TaskStatus taskStatus})
       : super.name(_TITLE, _ICON, _GRADIENT, _CIRCLE_COLOR, _CHECK_BOX_COLOR,
             taskStatus);
 }

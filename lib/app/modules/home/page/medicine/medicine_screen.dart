@@ -1,17 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/home/page/medicine/medicine_list.dart';
 import 'package:memento_app/app/modules/home/page/nav_content_layout.dart';
-import 'package:memento_app/models/medicine_model.dart';
-import 'package:memento_app/models/task_status.dart';
+import 'package:memento_app/shared/model/item.dart';
+import 'package:memento_app/shared/model/task_status.dart';
 
-class MedicineScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(color: Color(0xffd5dce6)),
-        child: Center(
-          child: NavContentLayout(
-            model: MedicineCardModel(taskStatus: TaskStatus(2, 5)),
-          ),
-        ));
-  }
+class MedicineScreen extends NavContentLayout {
+  MedicineScreen()
+      : super(
+            model: MedicineListWidget(taskStatus: TaskStatus(3, 100)),
+            items: [
+              Item(text: 'Toma Remédio 1', state: false),
+              Item(text: 'Remédio 2', state: false),
+              Item(text: '3', state: true),
+            ]);
 }

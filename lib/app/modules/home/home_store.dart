@@ -6,9 +6,17 @@ class HomeStore = HomeStoreBase with _$HomeStore;
 
 abstract class HomeStoreBase with Store {
   @observable
-  int counter = 0;
+  int itemSelected = 0;
 
-  Future<void> increment() async {
-    counter = counter + 1;
+  @action
+  void setItemSelected(int index) {
+    itemSelected = index;
+  }
+
+  bool isVisible() {
+    if (itemSelected > 0) {
+      return true;
+    }
+    return false;
   }
 }

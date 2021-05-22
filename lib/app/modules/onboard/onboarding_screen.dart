@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/onboard/onboarding_animated_dot.dart';
+import 'package:memento_app/app/modules/onboard/onboarding_bottom_button.dart';
+import 'package:memento_app/app/modules/onboard/onboarding_pageview.dart';
+import 'package:memento_app/app/modules/onboard/onboarding_skip.dart';
 import 'package:memento_app/blocs/onboarding_bloc.dart';
-import 'package:memento_app/screen/onboard/onboarding_animated_dot.dart';
-import 'package:memento_app/screen/onboard/onboarding_bottom_button.dart';
-import 'package:memento_app/screen/onboard/onboarding_pageview.dart';
-import 'package:memento_app/screen/onboard/onboarding_skip.dart';
 
 class OnboardingScreen extends StatelessWidget {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:memento_app/models/task_status.dart';
+import 'package:memento_app/shared/model/task_status.dart';
 
 class DashboardPageViewItem {
   final double _width;

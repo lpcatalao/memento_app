@@ -3,62 +3,54 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/app/modules/home/page/nav_content_card_item.dart';
-import 'package:memento_app/models/Item.dart';
-import 'package:memento_app/models/nav_option_card_base.dart';
+import 'package:memento_app/shared/model/item.dart';
 
 class NavContentLayout extends StatefulWidget {
-  final NavOptionCardBase model;
+  final NavOptionListWidget model;
+  final List<Item> items;
 
-  NavContentLayout({this.model});
+  NavContentLayout({this.model, this.items});
 
   @override
   _NavContentLayoutState createState() => _NavContentLayoutState();
 }
 
 class _NavContentLayoutState extends State<NavContentLayout> {
-  final List<Item> items = [
-    Item(text: 'Correr com o João', state: false),
-    Item(text: 'Ler um livro', state: false),
-    Item(text: 'Ligar para Filha', state: true),
-    Item(text: 'Ligar para Filha', state: true),
-    Item(text: 'Ligar para Filha', state: true),
-    Item(text: 'Ligar para Filha', state: true),
-    Item(text: 'Ligar para Filha', state: true),
-    Item(text: 'Ligar para Filha', state: true),
-    Item(text: 'Ligar para Filha', state: true),
-    Item(text: 'Jogar Minecraft', state: true)
-  ];
-
   @override
   Widget build(BuildContext context) {
-    final NavOptionCardBase model = widget.model;
+    final NavOptionListWidget model = widget.model;
+    final _size = MediaQuery.of(context).size;
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return Column(
+    return Container(
+      width: _size.width,
+      height: _size.height,
+      decoration: BoxDecoration(color: Color(0xffd5dce6)),
+      child: Column(
         children: [
           Container(
-            height: constraints.maxHeight * .15,
+            height: _size.width * .25,
             decoration: BoxDecoration(gradient: model.gradient),
           ),
-          top(constraints, model),
-          body(constraints, model)
+          top(_size, model),
+          body(_size, model)
         ],
-      );
-    });
+      ),
+    );
   }
 
-  Expanded body(BoxConstraints constraints, NavOptionCardBase model) {
+  Expanded body(Size size, NavOptionListWidget model) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0),
         child: Container(
           decoration: BoxDecoration(color: Colors.transparent),
-          width: constraints.maxWidth * .9,
+          width: size.width * .9,
           child: ListView.builder(
-            itemCount: items.length,
+            itemCount: widget.items.length,
             itemBuilder: (BuildContext context, int index) {
-              final item = items[index];
+              final item = widget.items[index];
               return NavContentCardItem(model, item);
             },
           ),
@@ -67,20 +59,20 @@ class _NavContentLayoutState extends State<NavContentLayout> {
     );
   }
 
-  Container top(BoxConstraints constraints, NavOptionCardBase model) {
+  Container top(Size size, NavOptionListWidget model) {
     return Container(
       decoration: BoxDecoration(
           color: Color(0xffffffff),
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(25),
               bottomRight: Radius.circular(25))),
-      width: constraints.maxWidth,
-      height: constraints.maxHeight * .2,
+      width: size.width,
+      height: size.height * .2,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
-            width: constraints.maxWidth * .8,
+            width: size.width * .8,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -108,18 +100,17 @@ class _NavContentLayoutState extends State<NavContentLayout> {
           ),
           Container(
             decoration: BoxDecoration(color: Colors.transparent),
-            width: constraints.maxWidth * .8,
-            height: (constraints.maxHeight * .13) * .2,
-            child: buildProgressBar(constraints, model),
+            width: size.width * .8,
+            height: (size.height * .13) * .2,
+            child: buildProgressBar(size, model),
           )
         ],
       ),
     );
   }
 
-  Container buildProgressBar(
-      BoxConstraints constraints, NavOptionCardBase model) {
-    var maxProgressBarWidth = constraints.maxWidth - 85;
+  Container buildProgressBar(Size size, NavOptionListWidget model) {
+    var maxProgressBarWidth = size.width - 85;
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(18)),
@@ -137,7 +128,7 @@ class _NavContentLayoutState extends State<NavContentLayout> {
               decoration: BoxDecoration(
                   gradient: model.gradient,
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              height: constraints.maxHeight,
+              height: size.height,
               width: maxProgressBarWidth / model.taskStatus.percent)
         ],
       ),

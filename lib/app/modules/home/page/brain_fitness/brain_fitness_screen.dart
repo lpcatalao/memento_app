@@ -1,18 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:memento_app/app/modules/home/page/brain_fitness/brain_fitness_widget.dart';
 import 'package:memento_app/app/modules/home/page/nav_content_layout.dart';
-import 'package:memento_app/models/brain_fitness_model.dart';
-import 'package:memento_app/models/task_status.dart';
+import 'package:memento_app/shared/model/item.dart';
+import 'package:memento_app/shared/model/task_status.dart';
 
-class BrainFitnessScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Color(0xffd5dce6)),
-      child: Center(
-        child: NavContentLayout(
-          model: BrainFitnessCardModel(taskStatus: TaskStatus(8, 10)),
-        ),
-      ),
-    );
-  }
+class BrainFitnessScreen extends NavContentLayout {
+  BrainFitnessScreen()
+      : super(
+            model: BrainFitnessListWidget(taskStatus: TaskStatus(3, 100)),
+            items: [
+              Item(text: 'Montar um Quebra Cabeça', state: false),
+              Item(text: 'Exercicio mental', state: false),
+              Item(text: 'Ler um livro', state: true),
+            ]);
 }
