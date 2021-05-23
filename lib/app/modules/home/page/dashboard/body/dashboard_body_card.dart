@@ -5,7 +5,7 @@ import 'package:memento_app/shared/model/task_status.dart';
 
 //TODO Arrumar uma maneira de remover esse constrainsts
 class DashboardBodyCardItemWidget extends StatelessWidget {
-  final NavOptionListWidget _model;
+  final ListScreenModel _model;
   final BoxConstraints _constraints;
 
   DashboardBodyCardItemWidget(
@@ -55,7 +55,7 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
         fontSize: 17.sp);
   }
 
-  Stack buildIcon(NavOptionListWidget model) {
+  Stack buildIcon(ListScreenModel model) {
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -70,7 +70,7 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
     );
   }
 
-  Widget buildProgressBar(NavOptionListWidget model, double width) {
+  Widget buildProgressBar(ListScreenModel model, double width) {
     var status = model.taskStatus;
     var percentToDivide = checkDivision(status.completed, status.total);
     var maxWidth = (width * .7) / percentToDivide;
@@ -94,7 +94,7 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
   }
 
   BoxDecoration configProgressBar(
-      {NavOptionListWidget model, bool gradientStatus}) {
+      {ListScreenModel model, bool gradientStatus}) {
     return BoxDecoration(
         gradient: gradientStatus == false ? null : model.gradient,
         borderRadius: BorderRadius.all(Radius.circular(18)),

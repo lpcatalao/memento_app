@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/app/modules/home/page/nav_controller.dart';
+import 'package:memento_app/app/modules/home/page/start_screen.dart';
 import 'package:memento_app/shared/repository/onboard_repository.dart';
 
 class OnboardingSkipButton extends StatefulWidget {
@@ -17,7 +17,7 @@ class _OnboardingSkipButtonState extends State<OnboardingSkipButton> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => Home(),
+              builder: (context) => StartScreen(),
             ),
           );
 

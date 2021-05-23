@@ -5,5 +5,5 @@ import 'package:memento_app/constants/memento_icons.dart';
 class MedicineAddItemScreen extends AddItemModel {
   MedicineAddItemScreen()
       : super("NOVA\nMEDICAMENTO", "images/add_medicine.png",
-            MementoIcons.iconmapdoctor, Colors.teal);
+            MementoIcons.iconmapdoctor, Colors.teal, "Medicamento");
 }

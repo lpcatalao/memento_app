@@ -4,23 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
-import 'package:memento_app/app/modules/home/page/nav_content_card_item.dart';
+import 'package:memento_app/app/modules/home/page/model_components/start_item_list_screen_widget.dart';
 import 'package:memento_app/shared/model/item.dart';
 
-class NavContentLayout extends StatefulWidget {
-  final NavOptionListWidget model;
+abstract class ListScreenWidget extends StatefulWidget {
+  final ListScreenModel model;
   final List<Item> items;
 
-  NavContentLayout({this.model, this.items});
+  ListScreenWidget({this.model, this.items});
 
   @override
-  _NavContentLayoutState createState() => _NavContentLayoutState();
+  _ListScreenWidgetState createState() => _ListScreenWidgetState();
 }
 
-class _NavContentLayoutState extends State<NavContentLayout> {
+class _ListScreenWidgetState extends State<ListScreenWidget> {
   @override
   Widget build(BuildContext context) {
-    final NavOptionListWidget model = widget.model;
+    final ListScreenModel model = widget.model;
     final _size = MediaQuery.of(context).size;
 
     return Container(
@@ -40,7 +40,7 @@ class _NavContentLayoutState extends State<NavContentLayout> {
     );
   }
 
-  Expanded body(Size size, NavOptionListWidget model) {
+  Expanded body(Size size, ListScreenModel model) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0),
@@ -51,7 +51,7 @@ class _NavContentLayoutState extends State<NavContentLayout> {
             itemCount: widget.items.length,
             itemBuilder: (BuildContext context, int index) {
               final item = widget.items[index];
-              return NavContentCardItem(model, item);
+              return ItemListScreenWidget(model, item);
             },
           ),
         ),
@@ -59,7 +59,7 @@ class _NavContentLayoutState extends State<NavContentLayout> {
     );
   }
 
-  Container top(Size size, NavOptionListWidget model) {
+  Container top(Size size, ListScreenModel model) {
     return Container(
       decoration: BoxDecoration(
           color: Color(0xffffffff),
@@ -109,7 +109,7 @@ class _NavContentLayoutState extends State<NavContentLayout> {
     );
   }
 
-  Container buildProgressBar(Size size, NavOptionListWidget model) {
+  Container buildProgressBar(Size size, ListScreenModel model) {
     var maxProgressBarWidth = size.width - 85;
     return Container(
       decoration: BoxDecoration(

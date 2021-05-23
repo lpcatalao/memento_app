@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/shared/model/task_status.dart';
 
-abstract class NavOptionListWidget {
+abstract class ListScreenModel {
   final String title;
   final Icon icon;
   final LinearGradient gradient;
@@ -9,6 +9,6 @@ abstract class NavOptionListWidget {
   final Color checkBoxSelected;
   final TaskStatus taskStatus;
 
-  NavOptionListWidget.name(this.title, this.icon, this.gradient,
-      this.circleColor, this.checkBoxSelected, this.taskStatus);
+  ListScreenModel.name(this.title, this.icon, this.gradient, this.circleColor,
+      this.checkBoxSelected, this.taskStatus);
 }

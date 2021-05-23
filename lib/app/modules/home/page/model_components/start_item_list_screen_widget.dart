@@ -3,11 +3,11 @@ import 'package:memento_app/app/modules/home/page/model_components/add_reminder/
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/shared/model/item.dart';
 
-class NavContentCardItem extends StatelessWidget {
-  final NavOptionListWidget model;
+class ItemListScreenWidget extends StatelessWidget {
+  final ListScreenModel model;
   final Item item;
 
-  NavContentCardItem(this.model, this.item);
+  ItemListScreenWidget(this.model, this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class NavContentCardItem extends StatelessWidget {
     );
   }
 
-  Stack buildIcon(NavOptionListWidget model) {
+  Stack buildIcon(ListScreenModel model) {
     return Stack(
       alignment: Alignment.center,
       children: [

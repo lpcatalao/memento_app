@@ -5,5 +5,5 @@ import 'package:memento_app/constants/memento_icons.dart';
 class BrainFitnessAddItemScreen extends AddItemModel {
   BrainFitnessAddItemScreen()
       : super("NOVA\nBRAIN FITNESS", "images/add_bf.png", MementoIcons.bxbrain,
-            GeneralAppColor.brainBar1);
+            GeneralAppColor.brainBar1, "BrainFitness");
 }

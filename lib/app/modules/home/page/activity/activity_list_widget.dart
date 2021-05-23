@@ -6,7 +6,7 @@ import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/constants/memento_icons.dart';
 import 'package:memento_app/shared/model/task_status.dart';
 
-class ActivityListWidget extends NavOptionListWidget {
+class ActivityListWidget extends ListScreenModel {
   static const _TITLE = 'Atividade e Lazer';
   static const Icon _ICON = Icon(MementoIcons.iconawesomewalking);
   static const LinearGradient _GRADIENT = LinearGradient(
