@@ -1,9 +1,9 @@
 import 'package:memento_app/app/modules/home/page/brain_fitness/brain_fitness_widget.dart';
-import 'package:memento_app/app/modules/home/page/nav_content_layout.dart';
+import 'package:memento_app/app/modules/home/page/model_components/start_list_screen_widget.dart';
 import 'package:memento_app/shared/model/item.dart';
 import 'package:memento_app/shared/model/task_status.dart';
 
-class BrainFitnessScreen extends NavContentLayout {
+class BrainFitnessScreen extends ListScreenWidget {
   BrainFitnessScreen()
       : super(
             model: BrainFitnessListWidget(taskStatus: TaskStatus(3, 100)),

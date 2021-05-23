@@ -4,6 +4,10 @@ import 'package:memento_app/constants/memento_icons.dart';
 
 class ActivityAddItemScreen extends AddItemModel {
   ActivityAddItemScreen()
-      : super("NOVA\nATIVIDADE", "images/add_activity.png",
-            MementoIcons.iconawesomewalking, GeneralAppColor.activityBar1);
+      : super(
+            "NOVA\nATIVIDADE",
+            "images/add_activity.png",
+            MementoIcons.iconawesomewalking,
+            GeneralAppColor.activityBar1,
+            "Atividade");
 }

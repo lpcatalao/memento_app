@@ -18,12 +18,12 @@ class ProfileFab extends StatelessWidget {
             child: Icon(FontAwesomeIcons.userAlt),
             label: 'Editar Perfil',
             backgroundColor: Colors.white,
-            onTap: () => Modular.to.pushNamed('/profile/user/new_user')),
+            onTap: () => Modular.to.navigate('/profile/user/new_user')),
         SpeedDialChild(
             child: Icon(FontAwesomeIcons.userNurse),
             label: 'Editar Cuidador',
             backgroundColor: Colors.white,
-            onTap: () => Modular.to.pushNamed('/profile/user/caretaker')),
+            onTap: () => Modular.to.navigate('/profile/user/caretaker')),
       ],
     );
   }

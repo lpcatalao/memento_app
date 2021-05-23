@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 
-class MementoFab extends StatelessWidget {
+class StartFabWidget extends StatelessWidget {
   final bool visible;
   final int page;
+  final Color color;
 
-  MementoFab({this.visible, this.page});
+  StartFabWidget({this.visible, this.page, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +37,9 @@ class MementoFab extends StatelessWidget {
       width: GeneralWidgetSize.fabWidth,
       height: GeneralWidgetSize.fabHeight,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(32)),
-          gradient: LinearGradient(
-              begin: Alignment(0.5, 0),
-              end: Alignment(0.5, 1),
-              colors: [
-                GeneralAppColor.fabGradient1,
-                GeneralAppColor.fabGradient2
-              ])),
+        color: color,
+        borderRadius: BorderRadius.all(Radius.circular(32)),
+      ),
       child: Icon(Icons.add),
     );
   }

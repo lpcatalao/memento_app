@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/body/nav_add_day_time_model.dart';
 
-class NavAddItemTime extends NavAddDayTimeModel {
+class TimeOfDayWidget extends NavAddDayTimeModel {
   static final _TEXT = 'Definir Hora';
   static final _ICON = Icons.watch_later;
-  static final _SCHEDULE = "12:15";
+  TimeOfDay _timeOfDay =
+      TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
 
-  NavAddItemTime()
-      : super(_TEXT, _ICON);
+  TimeOfDayWidget() : super(_TEXT, _ICON, ReminderType.HOUR);
 
   @override
-  Future<DateTime> pickTime(BuildContext context) {
-    // TODO: implement pickTime
-    throw UnimplementedError();
+  Future pickTimeDay(BuildContext context) {
+    return showTimePicker(context: context, initialTime: _timeOfDay);
   }
 }

@@ -1,25 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:memento_app/blocs/time_bloc.dart';
-import 'package:memento_app/utilities/datetime_formatter.dart';
+import 'package:memento_app/app/modules/home/page/submodules/reminder_store.dart';
+
+enum ReminderType { DATE, HOUR }
 
 abstract class NavAddDayTimeModel extends StatelessWidget {
-  String _text;
-  IconData _icon;
+  final String _text;
+  final IconData _icon;
+  final ReminderType type;
+  final _reminder = Modular.get<ReminderStore>();
 
-  NavAddDayTimeModel(this._text, this._icon);
+  NavAddDayTimeModel(this._text, this._icon, this.type);
 
   @override
   Widget build(BuildContext context) {
-    TimeDateBloc _timeDateBloc = TimeDateBloc();
-
-
-
     return GestureDetector(
       onTap: () {
-        pickTime(context).then((date) {
-          _timeDateBloc.eventSink.add(date);
+        pickTimeDay(context).then((date) {
+          _reminder.setTime(date);
         });
       },
       child: Container(
@@ -30,7 +31,26 @@ abstract class NavAddDayTimeModel extends StatelessWidget {
         ),
         child: ListTile(
           leading: _buildIcon(),
-          title: _buildTitle(_timeDateBloc),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(_text,
+                  style: const TextStyle(
+                      color: const Color(0xff000000),
+                      fontWeight: FontWeight.w700,
+                      fontFamily: "Poppins",
+                      fontStyle: FontStyle.normal,
+                      fontSize: 16.0),
+                  textAlign: TextAlign.left),
+              Observer(
+                builder: (BuildContext context) {
+                  return type == ReminderType.HOUR
+                      ? schedule(_reminder.hour)
+                      : schedule(_reminder.date);
+                },
+              )
+            ],
+          ),
           trailing: Stack(
             alignment: Alignment.center,
             children: [
@@ -53,31 +73,6 @@ abstract class NavAddDayTimeModel extends StatelessWidget {
     );
   }
 
-  Widget _buildTitle(TimeDateBloc timeDateBloc) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(_text,
-            style: const TextStyle(
-                color: const Color(0xff000000),
-                fontWeight: FontWeight.w700,
-                fontFamily: "Poppins",
-                fontStyle: FontStyle.normal,
-                fontSize: 16.0),
-            textAlign: TextAlign.left),
-        StreamBuilder<String>(
-            stream: timeDateBloc.stateStream,
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return schedule(formatDate(DateTime.now()));
-              }
-
-              return schedule(snapshot.data);
-            }),
-      ],
-    );
-  }
-
   Text schedule(String schedule) {
     return Text(schedule,
         style: const TextStyle(
@@ -96,5 +91,5 @@ abstract class NavAddDayTimeModel extends StatelessWidget {
     );
   }
 
-  Future<DateTime> pickTime(BuildContext context);
+  Future<dynamic> pickTimeDay(BuildContext context);
 }

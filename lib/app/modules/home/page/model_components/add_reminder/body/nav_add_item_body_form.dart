@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/body/nav_add_item_calendar.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/body/nav_add_item_time.dart';
-import 'package:memento_app/constants/memento_icons.dart';
+import 'package:memento_app/app/modules/home/page/submodules/reminder_store.dart';
 
 class AddItemBodyFormWidget extends StatelessWidget {
   final double width;
   final double height;
+  final _reminder = Modular.get<ReminderStore>();
+  final IconData icon;
 
-  AddItemBodyFormWidget(this.width, this.height);
+  AddItemBodyFormWidget(this.width, this.height, this.icon);
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +27,17 @@ class AddItemBodyFormWidget extends StatelessWidget {
             children: [
               _buildTitle('Título'),
               SizedBox(height: height * .01),
-              // _buildTitleContent(),
-              //TODO alterar para que se for medicine screen utilizar o autocomplete, se nao utilizar o buil titleContet
-              MedicineAutoComplete(),
+              _buildTitleContent(),
               SizedBox(height: height * .01),
-              _buildLimitText(0, 200),
+              _buildLimitText(),
               SizedBox(height: height * .03),
               _buildTitle('Data'),
               SizedBox(height: height * .01),
-              NavAddItemCalendar(),
+              CalendarWidget(),
               SizedBox(height: height * .01),
               _buildTitle('Hora'),
               SizedBox(height: height * .01),
-              NavAddItemTime()
+              TimeOfDayWidget()
             ],
           ),
         ),
@@ -42,19 +45,23 @@ class AddItemBodyFormWidget extends StatelessWidget {
     ));
   }
 
-  Padding _buildLimitText(int completed, int total) {
+  Padding _buildLimitText() {
     return Padding(
       padding: const EdgeInsets.only(right: 10.0),
       child: Align(
         alignment: Alignment.centerRight,
-        child: Text('${completed}/${total}',
-            style: const TextStyle(
-                color: const Color(0xff000000),
-                fontWeight: FontWeight.w700,
-                fontFamily: "Montserrat",
-                fontStyle: FontStyle.normal,
-                fontSize: 16.0),
-            textAlign: TextAlign.left),
+        child: Observer(
+          builder: (BuildContext context) {
+            return Text('${_reminder.reminderTextLength}/${50}',
+                style: const TextStyle(
+                    color: const Color(0xff000000),
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Montserrat",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 16.0),
+                textAlign: TextAlign.left);
+          },
+        ),
       ),
     );
   }
@@ -76,14 +83,14 @@ class AddItemBodyFormWidget extends StatelessWidget {
     );
   }
 
-  TextField _buildTitleContent() {
+  Widget _buildTitleContent() {
     return TextField(
+      onChanged: _reminder.setText,
+      inputFormatters: [LengthLimitingTextInputFormatter(50)],
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        prefixIcon: Icon(MementoIcons.iconmapdoctor, color: Colors.black),
-        hintText: "Medicamento para a tensão alta",
-        labelText: "Medicamento",
+        prefixIcon: Icon(icon, color: Colors.black),
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           borderSide: const BorderSide(
@@ -112,12 +119,14 @@ class MedicineAutoComplete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _reminder = Modular.get<ReminderStore>();
     return Autocomplete<String>(
       optionsBuilder: (TextEditingValue textEditingValue) {
         if (textEditingValue.text == '') {
           return const Iterable<String>.empty();
         }
         return _kOptions.where((String option) {
+          _reminder.setText(textEditingValue.text.toLowerCase());
           return option.contains(textEditingValue.text.toLowerCase());
         });
       },

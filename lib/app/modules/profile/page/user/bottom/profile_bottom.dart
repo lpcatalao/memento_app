@@ -13,7 +13,7 @@ class ProfileBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Modular.to.pushNamed('/profile/user/caretaker');
+        Modular.to.navigate('/profile/user/caretaker');
       },
       child: Container(
         width: width,
