@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:memento_app/shared/model/task.dart';
+import 'package:memento_app/shared/repository/task_repository.dart';
 import 'package:memento_app/utilities/datetime_formatter.dart';
 import 'package:mobx/mobx.dart';
 
@@ -7,6 +9,8 @@ part 'reminder_store.g.dart';
 class ReminderStore = _ReminderStoreBase with _$ReminderStore;
 
 abstract class _ReminderStoreBase with Store {
+  final TaskRepository repository;
+
   @observable
   String type = "";
 
@@ -31,6 +35,23 @@ abstract class _ReminderStoreBase with Store {
   @observable
   int eventMin = DateTime.now().minute;
 
+  @observable
+  ObservableFuture<List<Task>> activitiesTasks;
+
+  @observable
+  ObservableFuture<List<Task>> medicinesTasks;
+
+  @observable
+  ObservableFuture<List<Task>> brainFitnessTasks;
+
+  @observable
+  ObservableFuture<int> taskId;
+
+  @observable
+  bool formStatus = false;
+
+  _ReminderStoreBase(this.repository);
+
   @action
   setTime(dynamic value) {
     if (value is DateTime) {
@@ -47,6 +68,12 @@ abstract class _ReminderStoreBase with Store {
   setText(String txt) {
     this.reminderText = txt;
     this.reminderTextLength = this.reminderText.length;
+
+    if (reminderTextLength > 0) {
+      formStatus = true;
+    } else {
+      formStatus = false;
+    }
   }
 
   @action
@@ -67,5 +94,33 @@ abstract class _ReminderStoreBase with Store {
   @action
   setDefaultTime(TimeOfDay time) {
     this.hour = formatHour(time);
+  }
+
+  @action
+  fetchActivityTask() =>
+      activitiesTasks = repository.findAllActivity().asObservable();
+
+  @action
+  fetchMedicineTask() =>
+      medicinesTasks = repository.findAllMedicine().asObservable();
+
+  @action
+  fetchBrainFitnessTask() =>
+      brainFitnessTasks = repository.findAllBrainFitness().asObservable();
+
+  @action
+  insertTask(Task task) {
+    taskId = repository.insertTask(task).asObservable();
+    fetchActivityTask();
+    fetchMedicineTask();
+    fetchBrainFitnessTask();
+  }
+
+  bool setFormStatus() {
+    if (reminderText.length > 0) {
+      return true;
+    }
+
+    return false;
   }
 }

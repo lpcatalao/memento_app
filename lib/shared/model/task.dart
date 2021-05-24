@@ -12,7 +12,7 @@ class Task {
   int _dateMilli;
   int _hour;
   int _min;
-  bool _status = false;
+  int _status = 0;
   String _type;
 
   Task(this._text, this._dateMilli, this._hour, this._min, this._type);
@@ -33,11 +33,11 @@ class Task {
     _id = value;
   }
 
-  set status(bool value) {
+  int get status => _status;
+
+  set status(int value) {
     _status = value;
   }
-
-  bool get status => _status;
 
   Map<String, dynamic> toMap() {
     return {

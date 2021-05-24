@@ -1,4 +1,5 @@
 import 'package:memento_app/shared/model/caretaker_model.dart';
+import 'package:memento_app/shared/model/task.dart';
 import 'package:memento_app/shared/model/user_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -23,6 +24,15 @@ class AppDatabase {
           "${CARETAKER_ADDRESS} TEXT,"
           "${CARETAKER_CITY} TEXT,"
           "${CARETAKER_PHONE} INTEGER)");
+
+      await db.execute("CREATE TABLE task("
+          "${TASK_ID} INTEGER PRIMARY KEY,"
+          "${TASK_TEXT} TEXT,"
+          "${TASK_DATEMILLIS} INTEGER,"
+          "${TASK_HOUR} INTEGER,"
+          "${TASK_MIN} INTEGER,"
+          "${TASK_STATUS} INTEGER,"
+          "${TASK_TYPE} TEXT)");
     }, version: 1, onConfigure: _onConfigure);
   }
 

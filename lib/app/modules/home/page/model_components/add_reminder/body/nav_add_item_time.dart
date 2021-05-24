@@ -11,6 +11,15 @@ class TimeOfDayWidget extends NavAddDayTimeModel {
 
   @override
   Future pickTimeDay(BuildContext context) {
-    return showTimePicker(context: context, initialTime: _timeOfDay);
+    return showTimePicker(
+      context: context,
+      initialTime: _timeOfDay,
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.dark(), // This will change to light theme.
+          child: child,
+        );
+      },
+    );
   }
 }

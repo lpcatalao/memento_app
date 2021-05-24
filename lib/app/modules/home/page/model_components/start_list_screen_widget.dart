@@ -2,19 +2,22 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
-import 'package:memento_app/app/modules/home/page/model_components/start_item_list_screen_widget.dart';
-import 'package:memento_app/shared/model/item.dart';
+import 'package:memento_app/app/modules/home/page/submodules/reminder_store.dart';
 
 abstract class ListScreenWidget extends StatefulWidget {
   final ListScreenModel model;
-  final List<Item> items;
 
-  ListScreenWidget({this.model, this.items});
+  final reminder = Modular.get<ReminderStore>();
+
+  ListScreenWidget({this.model});
 
   @override
   _ListScreenWidgetState createState() => _ListScreenWidgetState();
+
+  Widget taskList();
 }
 
 class _ListScreenWidgetState extends State<ListScreenWidget> {
@@ -47,13 +50,7 @@ class _ListScreenWidgetState extends State<ListScreenWidget> {
         child: Container(
           decoration: BoxDecoration(color: Colors.transparent),
           width: size.width * .9,
-          child: ListView.builder(
-            itemCount: widget.items.length,
-            itemBuilder: (BuildContext context, int index) {
-              final item = widget.items[index];
-              return ItemListScreenWidget(model, item);
-            },
-          ),
+          child: widget.taskList(),
         ),
       ),
     );

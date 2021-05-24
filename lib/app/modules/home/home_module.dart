@@ -4,13 +4,11 @@ import 'package:memento_app/app/modules/home/page/activity/activity_add_item_scr
 import 'package:memento_app/app/modules/home/page/brain_fitness/brainfitness_add_item_screen.dart';
 import 'package:memento_app/app/modules/home/page/medicine/medicine_add_item_screen.dart';
 import 'package:memento_app/app/modules/home/page/start_screen.dart';
-import 'package:memento_app/app/modules/home/page/submodules/reminder_store.dart';
 import 'package:memento_app/app/modules/profile/profile_module.dart';
 
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => ReminderStore()),
     Bind.lazySingleton((i) => HomeStore())
   ];
 
