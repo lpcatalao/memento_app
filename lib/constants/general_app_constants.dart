@@ -41,6 +41,12 @@ class GeneralAppColor {
   static const bottomProfileColor1 = Color(0xff15c8a4);
 
   static const bottomProfileColor2 = Color(0xff54e8c8);
+
+  static const datePickerPrimaryColor = Color(0xFF00577B);
+  static const datePickerAccentColor = Color(0xFFD9CD00);
+  static const datePickerCardColor = Color(0xFF008FC9);
+  static const datePickerHighlightColor = Color(0xFFDC4141);
+  static const datePickerSplashColor = Color(0xFF41DC44);
 }
 
 class GeneralWidgetSize {

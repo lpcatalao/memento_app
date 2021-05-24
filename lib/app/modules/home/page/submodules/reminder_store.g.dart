@@ -130,6 +130,83 @@ mixin _$ReminderStore on _ReminderStoreBase, Store {
     });
   }
 
+  final _$activitiesTasksAtom =
+      Atom(name: '_ReminderStoreBase.activitiesTasks');
+
+  @override
+  ObservableFuture<List<Task>> get activitiesTasks {
+    _$activitiesTasksAtom.reportRead();
+    return super.activitiesTasks;
+  }
+
+  @override
+  set activitiesTasks(ObservableFuture<List<Task>> value) {
+    _$activitiesTasksAtom.reportWrite(value, super.activitiesTasks, () {
+      super.activitiesTasks = value;
+    });
+  }
+
+  final _$medicinesTasksAtom = Atom(name: '_ReminderStoreBase.medicinesTasks');
+
+  @override
+  ObservableFuture<List<Task>> get medicinesTasks {
+    _$medicinesTasksAtom.reportRead();
+    return super.medicinesTasks;
+  }
+
+  @override
+  set medicinesTasks(ObservableFuture<List<Task>> value) {
+    _$medicinesTasksAtom.reportWrite(value, super.medicinesTasks, () {
+      super.medicinesTasks = value;
+    });
+  }
+
+  final _$brainFitnessTasksAtom =
+      Atom(name: '_ReminderStoreBase.brainFitnessTasks');
+
+  @override
+  ObservableFuture<List<Task>> get brainFitnessTasks {
+    _$brainFitnessTasksAtom.reportRead();
+    return super.brainFitnessTasks;
+  }
+
+  @override
+  set brainFitnessTasks(ObservableFuture<List<Task>> value) {
+    _$brainFitnessTasksAtom.reportWrite(value, super.brainFitnessTasks, () {
+      super.brainFitnessTasks = value;
+    });
+  }
+
+  final _$taskIdAtom = Atom(name: '_ReminderStoreBase.taskId');
+
+  @override
+  ObservableFuture<int> get taskId {
+    _$taskIdAtom.reportRead();
+    return super.taskId;
+  }
+
+  @override
+  set taskId(ObservableFuture<int> value) {
+    _$taskIdAtom.reportWrite(value, super.taskId, () {
+      super.taskId = value;
+    });
+  }
+
+  final _$formStatusAtom = Atom(name: '_ReminderStoreBase.formStatus');
+
+  @override
+  bool get formStatus {
+    _$formStatusAtom.reportRead();
+    return super.formStatus;
+  }
+
+  @override
+  set formStatus(bool value) {
+    _$formStatusAtom.reportWrite(value, super.formStatus, () {
+      super.formStatus = value;
+    });
+  }
+
   final _$_ReminderStoreBaseActionController =
       ActionController(name: '_ReminderStoreBase');
 
@@ -200,6 +277,50 @@ mixin _$ReminderStore on _ReminderStoreBase, Store {
   }
 
   @override
+  dynamic fetchActivityTask() {
+    final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
+        name: '_ReminderStoreBase.fetchActivityTask');
+    try {
+      return super.fetchActivityTask();
+    } finally {
+      _$_ReminderStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic fetchMedicineTask() {
+    final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
+        name: '_ReminderStoreBase.fetchMedicineTask');
+    try {
+      return super.fetchMedicineTask();
+    } finally {
+      _$_ReminderStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic fetchBrainFitnessTask() {
+    final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
+        name: '_ReminderStoreBase.fetchBrainFitnessTask');
+    try {
+      return super.fetchBrainFitnessTask();
+    } finally {
+      _$_ReminderStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic insertTask(Task task) {
+    final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
+        name: '_ReminderStoreBase.insertTask');
+    try {
+      return super.insertTask(task);
+    } finally {
+      _$_ReminderStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 type: ${type},
@@ -209,7 +330,12 @@ reminderText: ${reminderText},
 reminderTextLength: ${reminderTextLength},
 dateMillisec: ${dateMillisec},
 eventHour: ${eventHour},
-eventMin: ${eventMin}
+eventMin: ${eventMin},
+activitiesTasks: ${activitiesTasks},
+medicinesTasks: ${medicinesTasks},
+brainFitnessTasks: ${brainFitnessTasks},
+taskId: ${taskId},
+formStatus: ${formStatus}
     ''';
   }
 }

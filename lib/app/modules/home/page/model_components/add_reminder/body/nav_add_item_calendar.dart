@@ -9,12 +9,17 @@ class CalendarWidget extends NavAddDayTimeModel {
 
   @override
   Future pickTimeDay(BuildContext context) {
-    // TODO: implement pickTimeDay
     return showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2021),
-        lastDate: DateTime(2099));
-    ;
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime(2099),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.dark(), // This will change to light theme.
+          child: child,
+        );
+      },
+    );
   }
 }
