@@ -26,9 +26,18 @@ class DashboardScreen extends StatelessWidget {
       child: LayoutBuilder(builder: (context, constraints) {
         final width = _size.width;
         final height = _size.height;
-        final sixtyPercentHight =
-            height * .5; //50% height of the screen for the body
+        double percentage = 0;
+
+        if (height < 700) {
+          percentage = .45;
+        } else {
+          percentage = .5;
+        }
+
         final fortyPercentHight = height * .5; //50% height of the screen
+        final sixtyPercentHight =
+            height * percentage; //50% height of the screen for the body
+
         return Column(
           children: [
             DashboardAppBar(width: width, height: fortyPercentHight),
