@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -59,6 +60,7 @@ abstract class _MapStoreBase with Store {
   @action
   onMapCreated(GoogleMapController controller) {
     _controller = controller;
+    // changeMapMode();
   }
 
   @action
@@ -96,8 +98,12 @@ abstract class _MapStoreBase with Store {
   void seachAndUpdate() async {
     List<Location> locations = await locationFromAddress(this.address);
 
-    if (locations == null) {}
+    if (locations == null) {
+      // message = 'Não foi possívek encontrar o endereço';
 
+    }
+
+    // message = '';
     Location location = locations[0];
 
     latLng = LatLng(location.latitude, location.longitude);
@@ -139,4 +145,17 @@ abstract class _MapStoreBase with Store {
       print(e.toString());
     }
   }
+
+// Future<String> getMapStyleJson(String path) async{
+//   return await rootBundle.loadString(path);
+// }
+//
+// void setMapStyle(String mapStyle){
+//   _controller.setMapStyle(mapStyle);
+// }
+//
+// void changeMapMode() async {
+//   String mapStyle = await getMapStyleJson('assets/map/map_style.json');
+//   setMapStyle(mapStyle);
+// }
 }
