@@ -44,5 +44,4 @@ class DashboardBodyItemWidget extends StatelessWidget {
       ),
     );
   }
-
 }

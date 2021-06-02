@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memento_app/app/modules/profile/page/add_user/add_user_profile.dart';
 import 'package:memento_app/app/modules/profile/page/user/appbar/profile_appbar.dart';
@@ -12,13 +13,19 @@ import 'package:memento_app/constants/general_app_constants.dart';
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: ProfileAppBarTitleConfig(),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Modular.to.navigate('/profile/user/map');
+              },
+              icon: Icon(Icons.map_outlined))
+        ],
       ),
       body: Container(
         width: double.infinity,

@@ -26,7 +26,14 @@ class MedicineScreen extends ListScreenWidget {
             },
           );
         }
-        return Text("");
+        return Center(
+            child: Column(
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(height: 10),
+            Text("Loading...")
+          ],
+        ));
       },
     );
   }
