@@ -7,9 +7,8 @@ import 'package:memento_app/shared/model/task_status.dart';
 class DashboardBodyWidget extends StatelessWidget {
   final double width;
   final double height;
-  final BoxConstraints constraints;
 
-  DashboardBodyWidget({this.width, this.height, this.constraints});
+  DashboardBodyWidget({this.width, this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -34,20 +33,19 @@ class DashboardBodyWidget extends StatelessWidget {
     ];
 
     List<DashboardPageViewItem> pageViewItem = [
-      DashboardPageViewItem(width, height, constraints, "Dia", status1),
-      DashboardPageViewItem(width, height, constraints, "Semana", status2),
-      DashboardPageViewItem(width, height, constraints, "Mês", status3)
+      DashboardPageViewItem(width, height, "Diária", status1),
+      DashboardPageViewItem(width, height, "Semanal", status2),
+      DashboardPageViewItem(width, height, "Mensal", status3)
     ];
 
     return Column(
       children: [
-        DashboardBodyTitleWidget(constraints),
+        DashboardBodyTitleWidget(width, height),
         Container(
-          height: height * .7,
+          height: height * .66,
           width: width,
           child: DashboardPageViewWidget(pageViewItem),
         )
-        // dayWeekMonth(),
       ],
     );
   }

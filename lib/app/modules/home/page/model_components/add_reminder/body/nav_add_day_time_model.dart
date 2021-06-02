@@ -7,13 +7,13 @@ import 'package:memento_app/app/modules/home/page/submodules/reminder_store.dart
 
 enum ReminderType { DATE, HOUR }
 
-abstract class NavAddDayTimeModel extends StatelessWidget {
+abstract class AddDayTimeModel extends StatelessWidget {
   final String _text;
   final IconData _icon;
   final ReminderType type;
   final _reminder = Modular.get<ReminderStore>();
 
-  NavAddDayTimeModel(this._text, this._icon, this.type);
+  AddDayTimeModel(this._text, this._icon, this.type);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ abstract class NavAddDayTimeModel extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       fontFamily: "Poppins",
                       fontStyle: FontStyle.normal,
-                      fontSize: 16.0),
+                      fontSize: 13),
                   textAlign: TextAlign.left),
               Observer(
                 builder: (BuildContext context) {
@@ -80,7 +80,7 @@ abstract class NavAddDayTimeModel extends StatelessWidget {
             fontWeight: FontWeight.w700,
             fontFamily: "Poppins",
             fontStyle: FontStyle.normal,
-            fontSize: 16.0),
+            fontSize: 13),
         textAlign: TextAlign.left);
   }
 

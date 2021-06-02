@@ -33,23 +33,24 @@ class _DashboardPageViewWidgetState extends State<DashboardPageViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      controller: _pageController,
-      itemCount: widget.pageViewItems.length,
-      itemBuilder: (context, index) {
-        DashboardPageViewItem pgi = widget.pageViewItems[index];
-        double scale = max(viewportFraction,
-            (1 - (pageOffset - index).abs()) + viewportFraction);
-        return Padding(
-          padding: EdgeInsets.only(
-              right: 15,
-              top: (MediaQuery.of(context).size.width * .05) - scale * 11),
-          child: Container(
-            child: DashboardBodyItemWidget(pgi),
-            width: MediaQuery.of(context).size.width,
-          ),
-        );
-      },
+    return Container(
+      child: PageView.builder(
+        controller: _pageController,
+        itemCount: widget.pageViewItems.length,
+        itemBuilder: (context, index) {
+          DashboardPageViewItem pgi = widget.pageViewItems[index];
+          double scale = max(viewportFraction,
+              (1 - (pageOffset - index).abs()) + viewportFraction);
+          return Padding(
+            padding: EdgeInsets.only(
+                right: 10.0,
+                top: MediaQuery.of(context).size.height * .01 - scale * 2),
+            child: Container(
+              child: DashboardBodyItemWidget(pgi),
+            ),
+          );
+        },
+      ),
     );
   }
 }

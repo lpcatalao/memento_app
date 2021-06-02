@@ -18,37 +18,30 @@ class DashboardBodyItemWidget extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Text(
-              'Meta do ${_pageViewItem.period}',
-              style: TextStyle(
-                  color: GeneralAppColor.dashboardTitleBrown,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+            Padding(
+              padding: EdgeInsets.only(
+                  top: _pageViewItem.height * .05,
+                  bottom: _pageViewItem.height * .05),
+              child: Text(
+                'Meta ${_pageViewItem.period}',
+                style: TextStyle(
+                    color: GeneralAppColor.dashboardTitleBrown,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             DashboardBodyCardItemWidget(
                 BrainFitnessListWidget(taskStatus: _pageViewItem.status[0]),
-                _pageViewItem.constraints),
+                _pageViewItem.width),
             DashboardBodyCardItemWidget(
                 ActivityListWidget(taskStatus: _pageViewItem.status[1]),
-                _pageViewItem.constraints),
+                _pageViewItem.width),
             DashboardBodyCardItemWidget(
                 MedicineListWidget(taskStatus: _pageViewItem.status[2]),
-                _pageViewItem.constraints),
+                _pageViewItem.width),
           ],
         ),
       ),
-    );
-  }
-
-  Widget dayWeekMonth() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 21.0),
-      child: Container(
-          width: _pageViewItem.constraints.maxWidth * .8,
-          height: 34,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(46)),
-              color: const Color(0xff292929))),
     );
   }
 }

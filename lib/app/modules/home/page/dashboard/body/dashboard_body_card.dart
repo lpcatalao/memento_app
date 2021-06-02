@@ -6,18 +6,18 @@ import 'package:memento_app/shared/model/task_status.dart';
 //TODO Arrumar uma maneira de remover esse constrainsts
 class DashboardBodyCardItemWidget extends StatelessWidget {
   final ListScreenModel _model;
-  final BoxConstraints _constraints;
+  final _width;
 
   DashboardBodyCardItemWidget(
     this._model,
-    this._constraints,
+    this._width,
   );
 
   @override
   Widget build(BuildContext context) {
     TaskStatus status = _model.taskStatus;
     return Container(
-      width: _constraints.maxWidth * .9,
+      width: _width * .9,
       child: Card(
         child: ListTileTheme(
           iconColor: Colors.black,
@@ -39,7 +39,7 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
                 ],
               ),
             ),
-            subtitle: buildProgressBar(_model, _constraints.maxWidth),
+            subtitle: buildProgressBar(_model, _width),
           ),
         ),
       ),

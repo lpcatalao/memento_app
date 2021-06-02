@@ -5,7 +5,6 @@ import 'package:memento_app/app/modules/home/page/dashboard/body/dashboard_body.
 import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/shared/model/user_model.dart';
-import 'package:memento_app/utilities/screen_util.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -18,25 +17,33 @@ class DashboardScreen extends StatelessWidget {
     _profile.insertUser(user);
     _profile.updateUserCaretaker(1);
 
-    final _size = ScreenSizeUtil(context);
+    final _size = MediaQuery.of(context).size;
 
     return Container(
       color: GeneralAppColor.appBackgroundGray,
       width: _size.width,
       height: _size.height,
       child: LayoutBuilder(builder: (context, constraints) {
-        final width = constraints.maxWidth;
-        final height = constraints.maxHeight;
-        final sixtyPercentHight =
-            height * .5; //50% height of the screen for the body
+        final width = _size.width;
+        final height = _size.height;
+        double percentage = 0;
+
+        if (height < 700) {
+          percentage = .45;
+        } else {
+          percentage = .5;
+        }
+
         final fortyPercentHight = height * .5; //50% height of the screen
+        final sixtyPercentHight =
+            height * percentage; //50% height of the screen for the body
+
         return Column(
           children: [
             DashboardAppBar(width: width, height: fortyPercentHight),
             DashboardBodyWidget(
               width: width,
               height: sixtyPercentHight,
-              constraints: constraints,
             )
           ],
         );

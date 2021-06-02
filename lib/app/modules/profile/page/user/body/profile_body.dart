@@ -27,7 +27,7 @@ class ProfileBody extends StatelessWidget {
             child: Container(
               child: Column(
                 children: [
-                  SizedBox(height: height * .03),
+                  SizedBox(height: height * .01),
                   buildTitle("Telefone"),
                   Observer(
                     builder: (BuildContext context) {
@@ -106,7 +106,7 @@ class ProfileBody extends StatelessWidget {
 
   Widget buildTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10.0, bottom: 10),
+      padding: const EdgeInsets.only(left: 10.0, bottom: 1),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(title,

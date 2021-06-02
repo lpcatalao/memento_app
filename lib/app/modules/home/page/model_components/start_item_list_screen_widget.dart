@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/shared/model/task.dart';
+import 'package:memento_app/utilities/datetime_formatter.dart';
 
 class ItemListScreenWidget extends StatefulWidget {
   final ListScreenModel model;
@@ -73,7 +74,7 @@ class _ItemListScreenWidgetState extends State<ItemListScreenWidget> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Text('${task.dateMilli}'),
+        Text(fromMillisToDate(task.dateMilli)),
         Text('${task.hour}:${task.min}'),
       ],
     );

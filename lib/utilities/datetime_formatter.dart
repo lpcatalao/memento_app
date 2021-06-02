@@ -12,3 +12,9 @@ String formatHour(TimeOfDay time) {
 String checkDigit(int number) {
   return number <= 9 ? "0${number}" : number.toString();
 }
+
+String fromMillisToDate(int millis) {
+  final date = new DateTime.fromMillisecondsSinceEpoch(millis);
+  var format = new DateFormat("d/M/y");
+  return format.format(date);
+}
