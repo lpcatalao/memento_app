@@ -15,25 +15,31 @@ abstract class _ProfileStoreBase with Store {
 
   final ProfileRepository repository;
 
-  @observable
-  ObservableFuture<List<User>> users;
-
-  @observable
-  ObservableFuture<List<Caretaker>> caretakers;
-
-  @observable
-  ObservableFuture<int> userID;
-
-  @observable
-  ObservableFuture<int> caretakerID;
-
   _ProfileStoreBase(this.user, this.repository, this.caretaker) {
     fetchUser();
     fetchCaretakers();
   }
 
+  @observable
+  ObservableFuture<List<User>> users = ObservableFuture.value([]);
+
+  @observable
+  ObservableFuture<List<Caretaker>> caretakers = ObservableFuture.value([]);
+
+  @observable
+  ObservableFuture<int> userID = ObservableFuture.value(-1);
+
+  @observable
+  ObservableFuture<int> caretakerID = ObservableFuture.value(-1);
+
   @action
   fetchUser() => users = repository.findUser().asObservable();
+
+  void searchUser() {
+    repository.findUser().then((value) {
+      print(value);
+    });
+  }
 
   @action
   fetchCaretakers() =>

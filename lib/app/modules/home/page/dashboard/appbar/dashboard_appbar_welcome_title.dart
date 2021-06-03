@@ -4,37 +4,37 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/shared/model/user_model.dart';
+import 'package:mobx/mobx.dart';
 
 class DashboardAppBarWelcomeTitle extends StatelessWidget {
   final double width;
+  final _profile = Modular.get<ProfileStore>();
 
   DashboardAppBarWelcomeTitle(this.width);
 
   @override
   Widget build(BuildContext context) {
-    final _profile = Modular.get<ProfileStore>();
-
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
-      child: Container(
-        color: Colors.transparent,
-        width: width * .7,
-        child: Align(
-            alignment: Alignment.centerLeft,
-            child: Observer(
-              builder: (BuildContext context) {
-                List<User> users = _profile.users.value;
-                // print(users);
-
-                if (users != null) {
-                  return _buildTitle(users[0].name);
-                }
-
-                return _buildTitle("Utilizador");
-              },
-            )),
-      ),
-    );
+        padding: const EdgeInsets.only(bottom: 16.0),
+        child: Container(
+            color: Colors.transparent,
+            width: width * .7,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Observer(
+                builder: (BuildContext context) {
+                  if (_profile.users.status == FutureStatus.fulfilled) {
+                    List<User> users = _profile.users.value;
+                    if (users.length == 0) {
+                      return _buildTitle("Utilizador");
+                    } else {
+                      return _buildTitle(users[0].name);
+                    }
+                  }
+                  return _buildTitle("Utilizador");
+                },
+              ),
+            )));
   }
 
   RichText _buildTitle(String name) {

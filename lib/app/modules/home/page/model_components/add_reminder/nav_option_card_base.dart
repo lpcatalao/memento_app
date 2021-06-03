@@ -8,7 +8,8 @@ abstract class ListScreenModel {
   final Color circleColor;
   final Color checkBoxSelected;
   final TaskStatus taskStatus;
+  final Color defaultColor;
 
   ListScreenModel.name(this.title, this.icon, this.gradient, this.circleColor,
-      this.checkBoxSelected, this.taskStatus);
+      this.checkBoxSelected, this.taskStatus, this.defaultColor);
 }

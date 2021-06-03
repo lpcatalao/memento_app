@@ -15,6 +15,7 @@ class MedicineListWidget extends ListScreenModel {
       colors: [GeneralAppColor.medicineBar1, GeneralAppColor.medicineBar2]);
   static const Color _CIRCLE_COLOR = GeneralAppColor.medicineCircle;
   static const Color _CHECK_BOX_COLOR = Colors.lightGreen;
+  static const Color _DEFAULT_COLOR = GeneralAppColor.fabGradient1;
 
   MedicineListWidget(
       {double porcentage = 0,
@@ -22,5 +23,5 @@ class MedicineListWidget extends ListScreenModel {
       int completed = 0,
       TaskStatus taskStatus})
       : super.name(_TITLE, _ICON, _GRADIENT, _CIRCLE_COLOR, _CHECK_BOX_COLOR,
-            taskStatus);
+            taskStatus, _DEFAULT_COLOR);
 }

@@ -4,17 +4,18 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/shared/model/user_model.dart';
+import 'package:mobx/mobx.dart';
 
 class ProfileAppBarBottom extends StatelessWidget {
   final double width;
   final double height;
 
+  final _profile = Modular.get<ProfileStore>();
+
   ProfileAppBarBottom(this.width, this.height);
 
   @override
   Widget build(BuildContext context) {
-    final _profile = Modular.get<ProfileStore>();
-
     final bottomHeight = height * .12;
     return Container(
       width: width * .8,
@@ -24,44 +25,51 @@ class ProfileAppBarBottom extends StatelessWidget {
         children: [
           Observer(
             builder: (BuildContext context) {
-              // buildAge(bottomHeight)
-              List<User> users = _profile.users.value;
-
-              if (users != null) {
-                return buildAge(bottomHeight, '${users[0].birthDate}');
+              if (_profile.users.status == FutureStatus.fulfilled) {
+                List<User> users = _profile.users.value;
+                if (users.length == 0) {
+                  return _buildAge(bottomHeight, 'Idade');
+                } else {
+                  return _buildAge(bottomHeight, users[0].birthDate);
+                }
               }
-
-              return Text('Error');
+              return _buildAge(bottomHeight, '${65}');
             },
           ),
-          Column(
-            children: [
-              buildBottomTitle('Cidade/Morada'),
-              Container(
-                width: 180,
-                child: Observer(
-                  builder: (BuildContext context) {
-                    List<User> users = _profile.users.value;
-
-                    if (users != null) {
-                      return Text("${users[0].address}",
-                          style: const TextStyle(
-                              color: const Color(0xff000000),
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Poppins",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 14.0),
-                          textAlign: TextAlign.left);
-                    }
-
-                    return Text('Error');
-                  },
-                ),
-              )
-            ],
-          )
+          Observer(
+            builder: (BuildContext context) {
+              if (_profile.users.status == FutureStatus.fulfilled) {
+                List<User> users = _profile.users.value;
+                if (users.length == 0) {
+                  return _buildAddress("Sua Morada");
+                } else {
+                  return _buildAddress(users[0].address);
+                }
+              }
+              return _buildAddress("Sua Morada");
+            },
+          ),
         ],
       ),
+    );
+  }
+
+  Column _buildAddress(String address) {
+    return Column(
+      children: [
+        buildBottomTitle('Cidade/Morada'),
+        Container(
+          width: 180,
+          child: Text("${address}",
+              style: const TextStyle(
+                  color: const Color(0xff000000),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "Poppins",
+                  fontStyle: FontStyle.normal,
+                  fontSize: 14.0),
+              textAlign: TextAlign.left),
+        )
+      ],
     );
   }
 
@@ -81,7 +89,7 @@ class ProfileAppBarBottom extends StatelessWidget {
     );
   }
 
-  Column buildAge(double bottomHeight, String age) {
+  Column _buildAge(double bottomHeight, String age) {
     return Column(
       children: [
         buildBottomTitle('Idade'),

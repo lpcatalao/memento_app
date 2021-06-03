@@ -3,14 +3,16 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
-
+import 'package:memento_app/shared/model/task.dart';
 
 class DashBoardAppBarItem extends StatefulWidget {
   final double width;
-  final String text;
+  final ListScreenModel model;
+  final Task task;
 
-  DashBoardAppBarItem(this.width, this.text);
+  DashBoardAppBarItem(this.width, this.model, this.task);
 
   @override
   _DashBoardAppBarItemState createState() => _DashBoardAppBarItemState();
@@ -36,7 +38,7 @@ class _DashBoardAppBarItemState extends State<DashBoardAppBarItem> {
               children: [
                 Container(
                   child: AutoSizeText(
-                    widget.text,
+                    widget.task.text,
                     maxLines: 3,
                     style:
                         TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
@@ -47,9 +49,13 @@ class _DashBoardAppBarItemState extends State<DashBoardAppBarItem> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(
-                        Icons.assignment_sharp,
-                        size: 30.0,
+                      Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: widget.model.circleColor,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: widget.model.icon,
                       ),
                       InkWell(
                         onTap: () {

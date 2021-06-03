@@ -36,16 +36,16 @@ abstract class _ReminderStoreBase with Store {
   int eventMin = DateTime.now().minute;
 
   @observable
-  ObservableFuture<List<Task>> activitiesTasks;
+  ObservableFuture<List<Task>> activitiesTasks = ObservableFuture.value([]);
 
   @observable
-  ObservableFuture<List<Task>> medicinesTasks;
+  ObservableFuture<List<Task>> medicinesTasks = ObservableFuture.value([]);
 
   @observable
-  ObservableFuture<List<Task>> brainFitnessTasks;
+  ObservableFuture<List<Task>> brainFitnessTasks = ObservableFuture.value([]);
 
   @observable
-  ObservableFuture<int> taskId;
+  ObservableFuture<int> taskId = ObservableFuture.value(-1);
 
   @observable
   bool formStatus = false;

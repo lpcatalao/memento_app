@@ -21,6 +21,7 @@ class GeneralAppColor {
   //Activity Card
   static const activityBar1 = Color(0xffef0081);
   static const activityBar2 = Color(0xffff006c);
+  static const defaultColor = Color(0xffe84a91);
   static const activityCircle = Color(0xffffd5fd);
 
   //Medicine Card

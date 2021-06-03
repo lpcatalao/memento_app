@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:memento_app/app/modules/calendar/calendar_page.dart';
+import 'package:memento_app/app/modules/calendar/calendar_store.dart';
 import 'package:memento_app/app/modules/home/home_store.dart';
 import 'package:memento_app/app/modules/home/page/activity/activity_add_item_screen.dart';
 import 'package:memento_app/app/modules/home/page/brain_fitness/brainfitness_add_item_screen.dart';
@@ -9,7 +11,8 @@ import 'package:memento_app/app/modules/profile/profile_module.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => HomeStore())
+    Bind.lazySingleton((i) => HomeStore(i())),
+    Bind.lazySingleton((i) => CalendarStore(i()))
   ];
 
   @override
@@ -19,6 +22,7 @@ class HomeModule extends Module {
     ChildRoute('/add_medicine', child: (_, __) => MedicineAddItemScreen()),
     ChildRoute('/add_brain_fitness',
         child: (_, __) => BrainFitnessAddItemScreen()),
+    ChildRoute('/calendar', child: (_, __) => CalendarPage()),
     ModuleRoute('/profile', module: ProfileModule()),
   ];
 }

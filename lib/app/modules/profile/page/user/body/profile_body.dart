@@ -5,17 +5,17 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/shared/model/user_model.dart';
+import 'package:mobx/mobx.dart';
 
 class ProfileBody extends StatelessWidget {
   final double width;
   final double height;
+  final _profile = Modular.get<ProfileStore>();
 
   ProfileBody(this.width, this.height);
 
   @override
   Widget build(BuildContext context) {
-    final _profile = Modular.get<ProfileStore>();
-
     return Expanded(
       child: Container(
         decoration: configBoxDecoration(gradientStatus: true),
@@ -31,13 +31,20 @@ class ProfileBody extends StatelessWidget {
                   buildTitle("Telefone"),
                   Observer(
                     builder: (BuildContext context) {
-                      List<User> users = _profile.users.value;
-                      if (users != null) {
-                        return buildTitleContent(
-                            Icon(Icons.phone), '${users[0].phone}',
-                            bigger: false);
+                      if (_profile.users.status == FutureStatus.fulfilled) {
+                        List<User> users = _profile.users.value;
+                        if (users.length == 0) {
+                          return _buildTitleContent(
+                              Icon(Icons.phone), '${1234567890}',
+                              bigger: false);
+                        } else {
+                          return _buildTitleContent(
+                              Icon(Icons.phone), '${users[0].phone}',
+                              bigger: false);
+                        }
                       }
-                      return buildTitleContent(Icon(Icons.phone), 'Error',
+                      return _buildTitleContent(
+                          Icon(Icons.phone), '${1234567890}',
                           bigger: false);
                     },
                   ),
@@ -45,13 +52,20 @@ class ProfileBody extends StatelessWidget {
                   buildTitle("E-mail"),
                   Observer(
                     builder: (BuildContext context) {
-                      List<User> users = _profile.users.value;
-                      if (users != null) {
-                        return buildTitleContent(
-                            Icon(Icons.mail), '${users[0].name}@gmail.com',
-                            bigger: true);
+                      if (_profile.users.status == FutureStatus.fulfilled) {
+                        List<User> users = _profile.users.value;
+                        if (users.length == 0) {
+                          return _buildTitleContent(
+                              Icon(Icons.mail), 'email@gmail.com',
+                              bigger: true);
+                        } else {
+                          return _buildTitleContent(Icon(Icons.phone),
+                              '${users[0].name.toLowerCase()}@gmail.com',
+                              bigger: true);
+                        }
                       }
-                      return buildTitleContent(Icon(Icons.mail), 'Error',
+                      return _buildTitleContent(
+                          Icon(Icons.mail), 'email@gmail.com',
                           bigger: true);
                     },
                   ),
@@ -65,7 +79,7 @@ class ProfileBody extends StatelessWidget {
     );
   }
 
-  Widget buildTitleContent(Icon icon, String text, {bool bigger = false}) {
+  Widget _buildTitleContent(Icon icon, String text, {bool bigger = false}) {
     var boxWidth = (width * .6);
     return Align(
       alignment: Alignment.centerLeft,

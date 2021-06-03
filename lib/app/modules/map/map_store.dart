@@ -60,7 +60,7 @@ abstract class _MapStoreBase with Store {
   @action
   onMapCreated(GoogleMapController controller) {
     _controller = controller;
-    // changeMapMode();
+    changeMapMode();
   }
 
   @action
@@ -146,16 +146,16 @@ abstract class _MapStoreBase with Store {
     }
   }
 
-// Future<String> getMapStyleJson(String path) async{
-//   return await rootBundle.loadString(path);
-// }
-//
-// void setMapStyle(String mapStyle){
-//   _controller.setMapStyle(mapStyle);
-// }
-//
-// void changeMapMode() async {
-//   String mapStyle = await getMapStyleJson('assets/map/map_style.json');
-//   setMapStyle(mapStyle);
-// }
+  Future<String> getMapStyleJson(String path) async {
+    return await rootBundle.loadString(path);
+  }
+
+  void setMapStyle(String mapStyle) {
+    _controller.setMapStyle(mapStyle);
+  }
+
+  void changeMapMode() async {
+    String mapStyle = await getMapStyleJson('assets/map/map_style.json');
+    setMapStyle(mapStyle);
+  }
 }

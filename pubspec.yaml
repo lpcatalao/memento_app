@@ -67,6 +67,11 @@ dependencies:
   mobx: ^2.0.1
   flutter_mobx: ^2.0.0
 
+  #calendar
+  table_calendar: ^3.0.0
+
+
+
 
 
 dev_dependencies:

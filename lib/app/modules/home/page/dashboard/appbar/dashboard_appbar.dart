@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:memento_app/app/modules/home/home_store.dart';
 import 'package:memento_app/app/modules/home/page/dashboard/appbar/dashboard_appbar_list_item.dart';
 import 'package:memento_app/app/modules/home/page/dashboard/appbar/dashboard_appbar_welcome_title.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 
-//TODO REMOVER appBarBody() PARA DashboardAppBarList
 class DashboardAppBar extends StatelessWidget {
+  final _home = Modular.get<HomeStore>();
+
+  DateTime today = DateTime.now();
   final double width;
   final double height;
 
@@ -14,6 +19,7 @@ class DashboardAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var boxMaxHeight = height * .4;
+    _home.fetchTodayData(today);
 
     return Container(
       decoration: configBoxDecoration(gradientStatus: true),
@@ -45,18 +51,40 @@ class DashboardAppBar extends StatelessWidget {
       width: width,
       height: boxMaxHeight,
       decoration: configBoxDecoration(gradientStatus: false),
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          emptySpace(),
-          DashBoardAppBarItem(boxMaxHeight, "Item 1"),
-          DashBoardAppBarItem(boxMaxHeight, "Item 2"),
-          DashBoardAppBarItem(boxMaxHeight, "Item 3"),
-          DashBoardAppBarItem(boxMaxHeight, "Item 4"),
-        ],
+      child: Observer(
+        builder: (BuildContext context) {
+          final tasks = _home.tasks.value;
+          if (tasks != null) {
+            return ListView.builder(
+              padding: EdgeInsets.only(left: 50),
+              scrollDirection: Axis.horizontal,
+              itemCount: tasks.length,
+              itemBuilder: (BuildContext context, int index) {
+                final t = tasks[index];
+
+                final date =
+                    new DateTime.fromMillisecondsSinceEpoch(t.dateMilli);
+                print(date);
+                _home.setModel(t);
+                return DashBoardAppBarItem(boxMaxHeight, _home.model, t);
+              },
+            );
+          }
+          return Center(
+              child: Column(
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(height: 10),
+              Text("Loading...")
+            ],
+          ));
+        },
       ),
     );
   }
+
+  // scrollDirection: Axis.horizontal,
+  // DashBoardAppBarItem(boxMaxHeight, "Item 1"),
 
   BoxDecoration configBoxDecoration({bool gradientStatus, Color color}) {
     return BoxDecoration(
@@ -68,8 +96,8 @@ class DashboardAppBar extends StatelessWidget {
                 end: Alignment(0, 0.5938237309455872),
                 colors: [
                     GeneralAppColor.customAppBar1,
-                    GeneralAppColor.customAppBar2
-                  ]),
+              GeneralAppColor.customAppBar2
+            ]),
         borderRadius: borderRadius(true));
   }
 

@@ -18,12 +18,16 @@ class MedicineScreen extends ListScreenWidget {
         final tasks = reminder.medicinesTasks.value;
 
         if (tasks != null) {
-          return ListView.builder(
-            itemCount: tasks.length,
-            itemBuilder: (BuildContext context, int index) {
-              final t = tasks[index];
-              return ItemListScreenWidget(model, t);
-            },
+          return MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: ListView.builder(
+              itemCount: tasks.length,
+              itemBuilder: (BuildContext context, int index) {
+                final t = tasks[index];
+                return ItemListScreenWidget(model, t);
+              },
+            ),
           );
         }
         return Center(

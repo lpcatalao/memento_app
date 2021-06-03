@@ -15,9 +15,9 @@ class AppModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.singleton((i) => AppDatabase()),
-    Bind.lazySingleton((i) => UserStore()),
-    Bind.lazySingleton((i) => CaretakerStore()),
-    Bind.lazySingleton((i) => ProfileStore(i(), i(), i())),
+    Bind.singleton((i) => UserStore()),
+    Bind.singleton((i) => CaretakerStore()),
+    Bind.singleton((i) => ProfileStore(i(), i(), i())),
     Bind.lazySingleton((i) => UserDao(i())),
     Bind.lazySingleton((i) => CaretakerDao(i())),
     Bind.lazySingleton((i) => ProfileRepository(i(), i())),

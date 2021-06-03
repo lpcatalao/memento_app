@@ -20,10 +20,10 @@ class DashboardAppBarList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           emptySpace(),
-          DashBoardAppBarItem(height, "Lista 1"),
-          DashBoardAppBarItem(height, "Lista 2"),
-          DashBoardAppBarItem(height, "Lista 3"),
-          DashBoardAppBarItem(height, "Lista 4"),
+          // DashBoardAppBarItem(height, "Lista 1"),
+          // DashBoardAppBarItem(height, "Lista 2"),
+          // DashBoardAppBarItem(height, "Lista 3"),
+          // DashBoardAppBarItem(height, "Lista 4"),
         ],
       ),
     );

@@ -13,8 +13,9 @@ class BrainFitnessListWidget extends ListScreenModel {
       colors: [GeneralAppColor.brainBar1, GeneralAppColor.brainBar2]);
   static const Color _CIRCLE_COLOR = GeneralAppColor.brainCircle;
   static const Color _CHECK_BOX_COLOR = Color(0xFFCBB700);
+  static const Color _DEFAULT_COLOR = GeneralAppColor.brainBar1;
 
   BrainFitnessListWidget({TaskStatus taskStatus})
       : super.name(_TITLE, _ICON, _GRADIENT, _CIRCLE_COLOR, _CHECK_BOX_COLOR,
-            taskStatus);
+            taskStatus, _DEFAULT_COLOR);
 }

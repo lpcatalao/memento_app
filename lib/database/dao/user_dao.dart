@@ -12,9 +12,6 @@ class UserDao {
 
     Future<int> insert = db.insert('user', user.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
-
-    print(user);
-
     return insert;
   }
 
@@ -38,9 +35,5 @@ class UserDao {
     Database db = await this.db.createDatabase();
     db.rawUpdate("UPDATE user SET ${FK_CARETAKER_ID} = ? WHERE ${USER_ID} = 1",
         [userCaretakerId]);
-
-    findAll().then((value) {
-      print(value);
-    });
   }
 }
