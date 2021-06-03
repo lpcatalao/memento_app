@@ -7,17 +7,12 @@ import 'package:memento_app/app/modules/map/map_appbar_widget.dart';
 import 'package:memento_app/app/modules/map/map_store.dart';
 
 class MapPage extends StatefulWidget {
-  final String title;
-
-  const MapPage({Key key, this.title = 'MapPage'}) : super(key: key);
 
   @override
   MapPageState createState() => MapPageState();
 }
 
 class MapPageState extends ModularState<MapPage, MapStore> {
-  String address;
-
   @override
   void initState() {
     store.getPosition();
@@ -26,9 +21,7 @@ class MapPageState extends ModularState<MapPage, MapStore> {
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery
-        .of(context)
-        .size;
+    final _size = MediaQuery.of(context).size;
 
     return Scaffold(
         extendBodyBehindAppBar: true,

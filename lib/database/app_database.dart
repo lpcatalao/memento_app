@@ -32,6 +32,7 @@ class AppDatabase {
           "${TASK_HOUR} INTEGER,"
           "${TASK_MIN} INTEGER,"
           "${TASK_STATUS} INTEGER,"
+          "${TASK_DATE} TEXT,"
           "${TASK_TYPE} TEXT)");
     }, version: 1, onConfigure: _onConfigure);
   }

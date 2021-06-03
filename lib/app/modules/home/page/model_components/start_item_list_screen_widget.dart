@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
@@ -19,28 +20,31 @@ class _ItemListScreenWidgetState extends State<ItemListScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: state == true ? .5 : 1,
-      child: Card(
-        child: ListTileTheme(
-          child: ListTile(
-            leading: buildIcon(widget.model),
-            title: buildText(widget.task),
-            subtitle: buildSubtitle(widget.task),
-            trailing: Checkbox(
-              value: state,
-              activeColor: widget.model.checkBoxSelected,
-              onChanged: (bool value) {
-                setState(() {
-                  print(value);
-                  state = value;
-                });
-              },
+    return MediaQuery.removePadding(
+        removeTop: true,
+        context: context,
+        child: Opacity(
+          opacity: state == true ? .5 : 1,
+          child: Card(
+            child: ListTileTheme(
+              child: ListTile(
+                leading: buildIcon(widget.model),
+                title: buildText(widget.task),
+                subtitle: buildSubtitle(widget.task),
+                trailing: Checkbox(
+                  value: state,
+                  activeColor: widget.model.checkBoxSelected,
+                  onChanged: (bool value) {
+                    setState(() {
+                      print(value);
+                      state = value;
+                    });
+                  },
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   Stack buildIcon(ListScreenModel model) {

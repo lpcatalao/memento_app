@@ -104,7 +104,9 @@ class _StartScreenState extends ModularState<StartScreen, HomeStore> {
       actions: [
         IconButton(
           icon: Icon(FontAwesomeIcons.calendarAlt),
-          onPressed: () {},
+          onPressed: () {
+            Modular.to.pushNamed('/calendar');
+          },
         ),
         IconButton(
           icon: Icon(FontAwesomeIcons.user),

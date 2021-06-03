@@ -24,6 +24,36 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$tasksAtom = Atom(name: 'HomeStoreBase.tasks');
+
+  @override
+  ObservableFuture<List<Task>> get tasks {
+    _$tasksAtom.reportRead();
+    return super.tasks;
+  }
+
+  @override
+  set tasks(ObservableFuture<List<Task>> value) {
+    _$tasksAtom.reportWrite(value, super.tasks, () {
+      super.tasks = value;
+    });
+  }
+
+  final _$modelAtom = Atom(name: 'HomeStoreBase.model');
+
+  @override
+  ListScreenModel get model {
+    _$modelAtom.reportRead();
+    return super.model;
+  }
+
+  @override
+  set model(ListScreenModel value) {
+    _$modelAtom.reportWrite(value, super.model, () {
+      super.model = value;
+    });
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
 
@@ -39,9 +69,33 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
+  void fetchTodayData(DateTime date) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.fetchTodayData');
+    try {
+      return super.fetchTodayData(date);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setModel(Task task) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setModel');
+    try {
+      return super.setModel(task);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-itemSelected: ${itemSelected}
+itemSelected: ${itemSelected},
+tasks: ${tasks},
+model: ${model}
     ''';
   }
 }

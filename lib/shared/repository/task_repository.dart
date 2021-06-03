@@ -25,4 +25,8 @@ class TaskRepository {
   Future<List<Task>> findAllBrainFitness() {
     return _taskDao.findAllBrainFitness();
   }
+
+  Future<List<Task>> findAllFromDate(String date) {
+    return _taskDao.findAllFromDate(date);
+  }
 }

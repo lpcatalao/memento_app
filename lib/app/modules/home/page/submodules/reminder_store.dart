@@ -49,7 +49,6 @@ abstract class _ReminderStoreBase with Store {
 
   @observable
   bool formStatus = false;
-
   _ReminderStoreBase(this.repository);
 
   @action

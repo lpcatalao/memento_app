@@ -23,6 +23,7 @@ class AddItemFabWidget extends StatelessWidget {
                       _reminder.dateMillisec,
                       _reminder.eventHour,
                       _reminder.eventMin,
+                      _reminder.date,
                       _reminder.type);
 
                   _reminder.insertTask(task);

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -19,22 +20,26 @@ class ActivityScreen extends ListScreenWidget {
         final tasks = reminder.activitiesTasks.value;
 
         if (tasks != null) {
-          return ListView.builder(
-            itemCount: tasks.length,
-            itemBuilder: (BuildContext context, int index) {
-              final t = tasks[index];
-              return ItemListScreenWidget(model, t);
-            },
+          return MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: ListView.builder(
+              itemCount: tasks.length,
+              itemBuilder: (BuildContext context, int index) {
+                final t = tasks[index];
+                return ItemListScreenWidget(model, t);
+              },
+            ),
           );
         }
         return Center(
             child: Column(
-          children: [
-            CircularProgressIndicator(),
-            SizedBox(height: 10),
-            Text("Loading...")
-          ],
-        ));
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(height: 10),
+                Text("Loading...")
+              ],
+            ));
       },
     );
   }

@@ -26,7 +26,7 @@ class TaskDao {
     final List<Task> tasks = [];
     for (Map<String, dynamic> map in result) {
       final Task task = Task(map[TASK_TEXT], map[TASK_DATEMILLIS],
-          map[TASK_HOUR], map[TASK_MIN], map[TASK_TYPE]);
+          map[TASK_HOUR], map[TASK_MIN], map[TASK_DATE], map[TASK_TYPE]);
 
       task.id = map[TASK_ID];
       tasks.add(task);
@@ -43,7 +43,7 @@ class TaskDao {
     final List<Task> tasks = [];
     for (Map<String, dynamic> map in result) {
       final Task task = Task(map[TASK_TEXT], map[TASK_DATEMILLIS],
-          map[TASK_HOUR], map[TASK_MIN], map[TASK_TYPE]);
+          map[TASK_HOUR], map[TASK_MIN], map[TASK_DATE], map[TASK_TYPE]);
 
       task.id = map[TASK_ID];
       tasks.add(task);
@@ -61,7 +61,7 @@ class TaskDao {
     final List<Task> tasks = [];
     for (Map<String, dynamic> map in result) {
       final Task task = Task(map[TASK_TEXT], map[TASK_DATEMILLIS],
-          map[TASK_HOUR], map[TASK_MIN], map[TASK_TYPE]);
+          map[TASK_HOUR], map[TASK_MIN], map[TASK_DATE], map[TASK_TYPE]);
 
       task.id = map[TASK_ID];
       tasks.add(task);
@@ -79,7 +79,25 @@ class TaskDao {
     final List<Task> tasks = [];
     for (Map<String, dynamic> map in result) {
       final Task task = Task(map[TASK_TEXT], map[TASK_DATEMILLIS],
-          map[TASK_HOUR], map[TASK_MIN], map[TASK_TYPE]);
+          map[TASK_HOUR], map[TASK_MIN], map[TASK_DATE], map[TASK_TYPE]);
+
+      task.id = map[TASK_ID];
+      tasks.add(task);
+    }
+
+    return tasks;
+  }
+
+  Future<List<Task>> findAllFromDate(String date) async {
+    Database db = await _db.createDatabase();
+
+    List<Map> result =
+        await db.rawQuery("SELECT * FROM task WHERE ${TASK_DATE} = '${date}'");
+
+    final List<Task> tasks = [];
+    for (Map<String, dynamic> map in result) {
+      final Task task = Task(map[TASK_TEXT], map[TASK_DATEMILLIS],
+          map[TASK_HOUR], map[TASK_MIN], map[TASK_DATE], map[TASK_TYPE]);
 
       task.id = map[TASK_ID];
       tasks.add(task);

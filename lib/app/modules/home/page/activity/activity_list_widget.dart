@@ -15,8 +15,9 @@ class ActivityListWidget extends ListScreenModel {
       colors: [GeneralAppColor.activityBar1, GeneralAppColor.activityBar2]);
   static const Color _CIRCLE_COLOR = GeneralAppColor.activityCircle;
   static const Color _CHECK_BOX_COLOR = Colors.red;
+  static const Color _DEFAULT_COLOR = GeneralAppColor.defaultColor;
 
   ActivityListWidget({TaskStatus taskStatus})
       : super.name(_TITLE, _ICON, _GRADIENT, _CIRCLE_COLOR, _CHECK_BOX_COLOR,
-            taskStatus);
+            taskStatus, _DEFAULT_COLOR);
 }
