@@ -2,19 +2,22 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:memento_app/app/modules/profile/profile_store.dart';
 
 class AddUserProfileBodyForm extends StatelessWidget {
   final double width;
   final double height;
+  final _profile = Modular.get<ProfileStore>();
 
   AddUserProfileBodyForm(this.width, this.height);
 
   @override
   Widget build(BuildContext context) {
-    final _profile = Modular.get<ProfileStore>();
-
     final maxHeight = height * .6;
     return Expanded(
       child: Container(
@@ -34,7 +37,9 @@ class AddUserProfileBodyForm extends StatelessWidget {
                         height: maxHeight * .01,
                       ),
                       _buildTextField(
-                          context: context, onChanged: _profile.user.setName),
+                          context: context,
+                          onChanged: _profile.user.setName,
+                          type: TextInputType.text),
                       SizedBox(
                         height: maxHeight * .04,
                       ),
@@ -44,7 +49,8 @@ class AddUserProfileBodyForm extends StatelessWidget {
                       ),
                       _buildTextField(
                           context: context,
-                          onChanged: _profile.user.setAddress),
+                          onChanged: _profile.user.setAddress,
+                          type: TextInputType.streetAddress),
                       SizedBox(
                         height: maxHeight * .04,
                       ),
@@ -53,7 +59,9 @@ class AddUserProfileBodyForm extends StatelessWidget {
                         height: maxHeight * .01,
                       ),
                       _buildTextField(
-                          context: context, onChanged: _profile.user.setCity),
+                          context: context,
+                          onChanged: _profile.user.setCity,
+                          type: TextInputType.streetAddress),
                       SizedBox(
                         height: maxHeight * .04,
                       ),
@@ -62,7 +70,9 @@ class AddUserProfileBodyForm extends StatelessWidget {
                         height: maxHeight * .01,
                       ),
                       _buildTextField(
-                          context: context, onChanged: _profile.user.setPhone),
+                          context: context,
+                          onChanged: _profile.user.setPhone,
+                          type: TextInputType.phone),
                       SizedBox(
                         height: maxHeight * .04,
                       ),
@@ -70,9 +80,11 @@ class AddUserProfileBodyForm extends StatelessWidget {
                       SizedBox(
                         height: maxHeight * .01,
                       ),
-                      _buildTextField(
-                          context: context,
-                          onChanged: _profile.user.setBirthDate),
+                      _calendar(context)
+                      // _buildTextField(
+                      //     context: context,
+                      //     onChanged: _profile.user.setBirthDate,
+                      //     type: TextInputType.datetime),
                     ],
                   ),
                 ),
@@ -82,6 +94,48 @@ class AddUserProfileBodyForm extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _calendar(BuildContext context) {
+    return Align(
+        alignment: Alignment.bottomLeft,
+        child: GestureDetector(
+            onTap: () {
+              showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(1900),
+                lastDate: DateTime(2099),
+                builder: (context, child) {
+                  return Theme(
+                    data: ThemeData.dark(), // This will change to light theme.
+                    child: child,
+                  );
+                },
+              ).then((date) {
+                _profile.user.setBirthDate(date);
+              });
+            },
+            child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30)),
+                width: width * .5,
+                height: 50,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(FontAwesomeIcons.calendarAlt),
+                      Observer(
+                        builder: (BuildContext context) {
+                          return Text(_profile.user.birthDate);
+                        },
+                      )
+                    ],
+                  ),
+                ))));
   }
 
   Widget _buildTitle(String title) {
@@ -101,10 +155,13 @@ class AddUserProfileBodyForm extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField({BuildContext context, onChanged}) {
+  Widget _buildTextField(
+      {BuildContext context, onChanged, TextInputType type}) {
     return Theme(
       data: Theme.of(context).copyWith(splashColor: Colors.transparent),
       child: TextField(
+        keyboardType: type,
+        inputFormatters: [LengthLimitingTextInputFormatter(25)],
         onChanged: onChanged,
         autofocus: false,
         style: TextStyle(fontSize: 16.0, color: Colors.black),

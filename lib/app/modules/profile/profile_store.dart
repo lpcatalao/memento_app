@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:memento_app/shared/model/caretaker_model.dart';
 import 'package:memento_app/shared/model/caretaker_store.dart';
 import 'package:memento_app/shared/model/user_model.dart';
@@ -32,6 +33,9 @@ abstract class _ProfileStoreBase with Store {
   @observable
   ObservableFuture<int> caretakerID = ObservableFuture.value(-1);
 
+  @observable
+  int age = 0;
+
   @action
   fetchUser() => users = repository.findUser().asObservable();
 
@@ -54,5 +58,26 @@ abstract class _ProfileStoreBase with Store {
 
   updateUserCaretaker(int userCaretakerId) {
     repository.updateUserCaretaker(userCaretakerId);
+  }
+
+  @action
+  setAge(String date) {
+    final birthDate = DateFormat('dd/MM/yyyyy').parse(date);
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - birthDate.year;
+    int month1 = currentDate.month;
+    int month2 = birthDate.month;
+
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      int day1 = currentDate.day;
+      int day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+
+    this.age = age;
   }
 }

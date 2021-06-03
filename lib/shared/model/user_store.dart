@@ -1,3 +1,4 @@
+import 'package:memento_app/utilities/datetime_formatter.dart';
 import 'package:mobx/mobx.dart';
 
 part 'user_store.g.dart';
@@ -30,8 +31,30 @@ abstract class _UserStoreBase with Store {
   setPhone(String phone) => this.phone = int.tryParse(phone);
 
   @observable
-  String birthDate = "";
+  String birthDate = formatDate(DateTime.now());
+
+  @observable
+  int age = 0;
 
   @action
-  setBirthDate(String birthDate) => this.birthDate = birthDate;
+  setBirthDate(DateTime birthDate) {
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - birthDate.year;
+    int month1 = currentDate.month;
+    int month2 = birthDate.month;
+
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      int day1 = currentDate.day;
+      int day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+
+    this.age = age;
+
+    this.birthDate = formatDate(birthDate);
+  }
 }

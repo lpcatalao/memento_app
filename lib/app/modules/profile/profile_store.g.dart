@@ -69,6 +69,21 @@ mixin _$ProfileStore on _ProfileStoreBase, Store {
     });
   }
 
+  final _$ageAtom = Atom(name: '_ProfileStoreBase.age');
+
+  @override
+  int get age {
+    _$ageAtom.reportRead();
+    return super.age;
+  }
+
+  @override
+  set age(int value) {
+    _$ageAtom.reportWrite(value, super.age, () {
+      super.age = value;
+    });
+  }
+
   final _$_ProfileStoreBaseActionController =
       ActionController(name: '_ProfileStoreBase');
 
@@ -117,12 +132,24 @@ mixin _$ProfileStore on _ProfileStoreBase, Store {
   }
 
   @override
+  dynamic setAge(String date) {
+    final _$actionInfo = _$_ProfileStoreBaseActionController.startAction(
+        name: '_ProfileStoreBase.setAge');
+    try {
+      return super.setAge(date);
+    } finally {
+      _$_ProfileStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 users: ${users},
 caretakers: ${caretakers},
 userID: ${userID},
-caretakerID: ${caretakerID}
+caretakerID: ${caretakerID},
+age: ${age}
     ''';
   }
 }

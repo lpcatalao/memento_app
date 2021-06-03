@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/app/modules/profile/profile_store.dart';
 
@@ -36,7 +37,8 @@ class AddCaretakerBodyForm extends StatelessWidget {
                         ),
                         _buildTextField(
                             context: context,
-                            onChanged: _profile.caretaker.setName),
+                            onChanged: _profile.caretaker.setName,
+                            type: TextInputType.text),
                         SizedBox(
                           height: maxHeight * .04,
                         ),
@@ -46,7 +48,8 @@ class AddCaretakerBodyForm extends StatelessWidget {
                         ),
                         _buildTextField(
                             context: context,
-                            onChanged: _profile.caretaker.setAddress),
+                            onChanged: _profile.caretaker.setAddress,
+                            type: TextInputType.streetAddress),
                         SizedBox(
                           height: maxHeight * .04,
                         ),
@@ -56,7 +59,8 @@ class AddCaretakerBodyForm extends StatelessWidget {
                         ),
                         _buildTextField(
                             context: context,
-                            onChanged: _profile.caretaker.setCity),
+                            onChanged: _profile.caretaker.setCity,
+                            type: TextInputType.streetAddress),
                         SizedBox(
                           height: maxHeight * .04,
                         ),
@@ -66,7 +70,8 @@ class AddCaretakerBodyForm extends StatelessWidget {
                         ),
                         _buildTextField(
                             context: context,
-                            onChanged: _profile.caretaker.setPhone),
+                            onChanged: _profile.caretaker.setPhone,
+                            type: TextInputType.phone),
                       ],
                     ),
                   ),
@@ -96,10 +101,13 @@ class AddCaretakerBodyForm extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField({BuildContext context, onChanged}) {
+  Widget _buildTextField(
+      {BuildContext context, onChanged, TextInputType type}) {
     return Theme(
       data: Theme.of(context).copyWith(splashColor: Colors.transparent),
       child: TextField(
+        keyboardType: type,
+        inputFormatters: [LengthLimitingTextInputFormatter(25)],
         onChanged: onChanged,
         autofocus: false,
         style: TextStyle(fontSize: 16.0, color: Colors.black),
