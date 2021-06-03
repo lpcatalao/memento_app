@@ -9,6 +9,7 @@ import 'package:memento_app/constants/general_app_constants.dart';
 
 class DashboardAppBar extends StatelessWidget {
   final _home = Modular.get<HomeStore>();
+
   DateTime today = DateTime.now();
   final double width;
   final double height;

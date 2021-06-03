@@ -15,9 +15,6 @@ class CaretakerDao {
         DBConstant.CARETAKER_TABLE, caretaker.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
 
-    findAll().then((value) {
-      print(value);
-    });
     return insert;
   }
 
