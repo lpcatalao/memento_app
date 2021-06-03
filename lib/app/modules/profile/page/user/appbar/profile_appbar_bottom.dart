@@ -30,7 +30,8 @@ class ProfileAppBarBottom extends StatelessWidget {
                 if (users.length == 0) {
                   return _buildAge(bottomHeight, 'Idade');
                 } else {
-                  return _buildAge(bottomHeight, users[0].birthDate);
+                  _profile.setAge(users[0].birthDate);
+                  return _buildAge(bottomHeight, _profile.age.toString());
                 }
               }
               return _buildAge(bottomHeight, '${65}');

@@ -132,7 +132,7 @@ mixin _$UserStore on _UserStoreBase, Store {
   }
 
   @override
-  dynamic setBirthDate(String birthDate) {
+  dynamic setBirthDate(DateTime birthDate) {
     final _$actionInfo = _$_UserStoreBaseActionController.startAction(
         name: '_UserStoreBase.setBirthDate');
     try {
