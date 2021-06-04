@@ -10,19 +10,14 @@ class TaskDao {
   Future<int> insert(Task task) async {
     Database db = await _db.createDatabase();
 
-    Future<int> insert = db.insert('task', task.toMap(),
+    Future<int> insert = db.insert(TASK_TABLE, task.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
-
-    findAll().then((value) {
-      print(value);
-    });
-
     return insert;
   }
 
   Future<List<Task>> findAll() async {
     Database db = await _db.createDatabase();
-    List<Map<String, dynamic>> result = await db.query('task');
+    List<Map<String, dynamic>> result = await db.query(TASK_TABLE);
     final List<Task> tasks = [];
     for (Map<String, dynamic> map in result) {
       final Task task = Task(map[TASK_TEXT], map[TASK_DATEMILLIS],
@@ -34,11 +29,11 @@ class TaskDao {
     return tasks;
   }
 
-  Future<List<Task>> findAllActivity() async {
+  Future<List<Task>> _findTask(String type, int status) async {
     Database db = await _db.createDatabase();
 
-    List<Map> result = await db
-        .rawQuery("SELECT * FROM task WHERE ${TASK_TYPE} = 'Atividade'");
+    List<Map> result = await db.rawQuery(
+        "SELECT * FROM ${TASK_TABLE} WHERE ${TASK_TYPE} = '${type}' AND ${TASK_STATUS} = ${status}");
 
     final List<Task> tasks = [];
     for (Map<String, dynamic> map in result) {
@@ -52,47 +47,25 @@ class TaskDao {
     return tasks;
   }
 
-  Future<List<Task>> findAllMedicine() async {
-    Database db = await _db.createDatabase();
+  Future<List<Task>> findAllActivity() async => _findTask("Atividade", 0);
 
-    List<Map> result = await db
-        .rawQuery("SELECT * FROM task WHERE ${TASK_TYPE} = 'Medicamento'");
+  Future<List<Task>> findAllActivityDone() async => _findTask("Atividade", 1);
 
-    final List<Task> tasks = [];
-    for (Map<String, dynamic> map in result) {
-      final Task task = Task(map[TASK_TEXT], map[TASK_DATEMILLIS],
-          map[TASK_HOUR], map[TASK_MIN], map[TASK_DATE], map[TASK_TYPE]);
+  Future<List<Task>> findAllMedicine() async => _findTask("Medicamento", 0);
 
-      task.id = map[TASK_ID];
-      tasks.add(task);
-    }
+  Future<List<Task>> findAllMedicineDone() async => _findTask("Medicamento", 1);
 
-    return tasks;
-  }
+  Future<List<Task>> findAllBrainFitness() async =>
+      _findTask("BrainFitness", 0);
 
-  Future<List<Task>> findAllBrainFitness() async {
-    Database db = await _db.createDatabase();
-
-    List<Map> result = await db
-        .rawQuery("SELECT * FROM task WHERE ${TASK_TYPE} = 'BrainFitness'");
-
-    final List<Task> tasks = [];
-    for (Map<String, dynamic> map in result) {
-      final Task task = Task(map[TASK_TEXT], map[TASK_DATEMILLIS],
-          map[TASK_HOUR], map[TASK_MIN], map[TASK_DATE], map[TASK_TYPE]);
-
-      task.id = map[TASK_ID];
-      tasks.add(task);
-    }
-
-    return tasks;
-  }
+  Future<List<Task>> findAllBrainFitnessDone() async =>
+      _findTask("BrainFitness", 1);
 
   Future<List<Task>> findAllFromDate(String date) async {
     Database db = await _db.createDatabase();
 
-    List<Map> result =
-        await db.rawQuery("SELECT * FROM task WHERE ${TASK_DATE} = '${date}'");
+    List<Map> result = await db
+        .rawQuery("SELECT * FROM ${TASK_TABLE} WHERE ${TASK_DATE} = '${date}'");
 
     final List<Task> tasks = [];
     for (Map<String, dynamic> map in result) {
@@ -104,5 +77,26 @@ class TaskDao {
     }
 
     return tasks;
+  }
+
+  Future<List<Map>> groudByAllTaskStatus() async {
+    Database db = await _db.createDatabase();
+
+    return db.rawQuery(
+        "SELECT ${TASK_TYPE}, COUNT(*) FROM ${TASK_TABLE} GROUP BY ${TASK_TYPE}");
+  }
+
+  Future<List<Map>> groupByCompletedTaskStatus() async {
+    Database db = await _db.createDatabase();
+
+    return db.rawQuery(
+        "SELECT ${TASK_TYPE}, COUNT(*) FROM ${TASK_TABLE} WHERE ${TASK_STATUS} = 1 GROUP BY ${TASK_TYPE}");
+  }
+
+  void updateUserCaretaker(int taskId, int value) async {
+    Database db = await _db.createDatabase();
+    db.rawUpdate(
+        "UPDATE ${TASK_TABLE} SET ${TASK_STATUS} = ? WHERE ${TASK_ID} = ?",
+        [value, taskId]);
   }
 }

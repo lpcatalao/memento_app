@@ -146,6 +146,22 @@ mixin _$ReminderStore on _ReminderStoreBase, Store {
     });
   }
 
+  final _$activitiesTasksDoneAtom =
+      Atom(name: '_ReminderStoreBase.activitiesTasksDone');
+
+  @override
+  ObservableFuture<List<Task>> get activitiesTasksDone {
+    _$activitiesTasksDoneAtom.reportRead();
+    return super.activitiesTasksDone;
+  }
+
+  @override
+  set activitiesTasksDone(ObservableFuture<List<Task>> value) {
+    _$activitiesTasksDoneAtom.reportWrite(value, super.activitiesTasksDone, () {
+      super.activitiesTasksDone = value;
+    });
+  }
+
   final _$medicinesTasksAtom = Atom(name: '_ReminderStoreBase.medicinesTasks');
 
   @override
@@ -158,6 +174,22 @@ mixin _$ReminderStore on _ReminderStoreBase, Store {
   set medicinesTasks(ObservableFuture<List<Task>> value) {
     _$medicinesTasksAtom.reportWrite(value, super.medicinesTasks, () {
       super.medicinesTasks = value;
+    });
+  }
+
+  final _$medicinesTasksDoneAtom =
+      Atom(name: '_ReminderStoreBase.medicinesTasksDone');
+
+  @override
+  ObservableFuture<List<Task>> get medicinesTasksDone {
+    _$medicinesTasksDoneAtom.reportRead();
+    return super.medicinesTasksDone;
+  }
+
+  @override
+  set medicinesTasksDone(ObservableFuture<List<Task>> value) {
+    _$medicinesTasksDoneAtom.reportWrite(value, super.medicinesTasksDone, () {
+      super.medicinesTasksDone = value;
     });
   }
 
@@ -174,6 +206,23 @@ mixin _$ReminderStore on _ReminderStoreBase, Store {
   set brainFitnessTasks(ObservableFuture<List<Task>> value) {
     _$brainFitnessTasksAtom.reportWrite(value, super.brainFitnessTasks, () {
       super.brainFitnessTasks = value;
+    });
+  }
+
+  final _$brainFitnessTasksDoneAtom =
+      Atom(name: '_ReminderStoreBase.brainFitnessTasksDone');
+
+  @override
+  ObservableFuture<List<Task>> get brainFitnessTasksDone {
+    _$brainFitnessTasksDoneAtom.reportRead();
+    return super.brainFitnessTasksDone;
+  }
+
+  @override
+  set brainFitnessTasksDone(ObservableFuture<List<Task>> value) {
+    _$brainFitnessTasksDoneAtom.reportWrite(value, super.brainFitnessTasksDone,
+        () {
+      super.brainFitnessTasksDone = value;
     });
   }
 
@@ -288,6 +337,17 @@ mixin _$ReminderStore on _ReminderStoreBase, Store {
   }
 
   @override
+  dynamic fetchActivityTaskDone() {
+    final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
+        name: '_ReminderStoreBase.fetchActivityTaskDone');
+    try {
+      return super.fetchActivityTaskDone();
+    } finally {
+      _$_ReminderStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic fetchMedicineTask() {
     final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
         name: '_ReminderStoreBase.fetchMedicineTask');
@@ -299,11 +359,33 @@ mixin _$ReminderStore on _ReminderStoreBase, Store {
   }
 
   @override
+  dynamic fetchMedicineTaskDone() {
+    final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
+        name: '_ReminderStoreBase.fetchMedicineTaskDone');
+    try {
+      return super.fetchMedicineTaskDone();
+    } finally {
+      _$_ReminderStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic fetchBrainFitnessTask() {
     final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
         name: '_ReminderStoreBase.fetchBrainFitnessTask');
     try {
       return super.fetchBrainFitnessTask();
+    } finally {
+      _$_ReminderStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic fetchBrainFitnessTaskDone() {
+    final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
+        name: '_ReminderStoreBase.fetchBrainFitnessTaskDone');
+    try {
+      return super.fetchBrainFitnessTaskDone();
     } finally {
       _$_ReminderStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -332,8 +414,11 @@ dateMillisec: ${dateMillisec},
 eventHour: ${eventHour},
 eventMin: ${eventMin},
 activitiesTasks: ${activitiesTasks},
+activitiesTasksDone: ${activitiesTasksDone},
 medicinesTasks: ${medicinesTasks},
+medicinesTasksDone: ${medicinesTasksDone},
 brainFitnessTasks: ${brainFitnessTasks},
+brainFitnessTasksDone: ${brainFitnessTasksDone},
 taskId: ${taskId},
 formStatus: ${formStatus}
     ''';

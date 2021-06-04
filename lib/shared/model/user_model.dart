@@ -1,3 +1,4 @@
+const USER_TABLE = 'user';
 const USER_ID = 'userId';
 const USER_NAME = 'userName';
 const USER_ADDRESS = 'userAddress';

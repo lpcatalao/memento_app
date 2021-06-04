@@ -31,14 +31,11 @@ class DashboardBodyItemWidget extends StatelessWidget {
               ),
             ),
             DashboardBodyCardItemWidget(
-                BrainFitnessListWidget(taskStatus: _pageViewItem.status[0]),
-                _pageViewItem.width),
+                BrainFitnessListWidget(), _pageViewItem.width),
             DashboardBodyCardItemWidget(
-                ActivityListWidget(taskStatus: _pageViewItem.status[1]),
-                _pageViewItem.width),
+                ActivityListWidget(), _pageViewItem.width),
             DashboardBodyCardItemWidget(
-                MedicineListWidget(taskStatus: _pageViewItem.status[2]),
-                _pageViewItem.width),
+                MedicineListWidget(), _pageViewItem.width),
           ],
         ),
       ),

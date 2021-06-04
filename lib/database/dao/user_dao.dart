@@ -10,14 +10,14 @@ class UserDao {
   Future<int> insert(User user) async {
     Database db = await this.db.createDatabase();
 
-    Future<int> insert = db.insert('user', user.toMap(),
+    Future<int> insert = db.insert(USER_TABLE, user.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
     return insert;
   }
 
   Future<List<User>> findAll() async {
     Database db = await this.db.createDatabase();
-    List<Map<String, dynamic>> result = await db.query('user');
+    List<Map<String, dynamic>> result = await db.query(USER_TABLE);
     final List<User> users = [];
     for (Map<String, dynamic> map in result) {
       final User user = User(map[USER_NAME], map[USER_ADDRESS], map[USER_CITY],
@@ -33,7 +33,8 @@ class UserDao {
 
   void updateUserCaretaker(int userCaretakerId) async {
     Database db = await this.db.createDatabase();
-    db.rawUpdate("UPDATE user SET ${FK_CARETAKER_ID} = ? WHERE ${USER_ID} = 1",
+    db.rawUpdate(
+        "UPDATE ${USER_TABLE} SET ${FK_CARETAKER_ID} = ? WHERE ${USER_ID} = 1",
         [userCaretakerId]);
   }
 }

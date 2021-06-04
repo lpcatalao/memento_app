@@ -1,3 +1,4 @@
+const TASK_TABLE = 'task';
 const TASK_ID = 'taskId';
 const TASK_TEXT = 'taskText';
 const TASK_DATEMILLIS = 'taskDateMillis';

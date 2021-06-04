@@ -39,10 +39,20 @@ abstract class _ReminderStoreBase with Store {
   ObservableFuture<List<Task>> activitiesTasks = ObservableFuture.value([]);
 
   @observable
+  ObservableFuture<List<Task>> activitiesTasksDone = ObservableFuture.value([]);
+
+  @observable
   ObservableFuture<List<Task>> medicinesTasks = ObservableFuture.value([]);
 
   @observable
+  ObservableFuture<List<Task>> medicinesTasksDone = ObservableFuture.value([]);
+
+  @observable
   ObservableFuture<List<Task>> brainFitnessTasks = ObservableFuture.value([]);
+
+  @observable
+  ObservableFuture<List<Task>> brainFitnessTasksDone =
+      ObservableFuture.value([]);
 
   @observable
   ObservableFuture<int> taskId = ObservableFuture.value(-1);
@@ -101,12 +111,24 @@ abstract class _ReminderStoreBase with Store {
       activitiesTasks = repository.findAllActivity().asObservable();
 
   @action
+  fetchActivityTaskDone() =>
+      activitiesTasksDone = repository.findAllActivityDone().asObservable();
+
+  @action
   fetchMedicineTask() =>
       medicinesTasks = repository.findAllMedicine().asObservable();
 
   @action
+  fetchMedicineTaskDone() =>
+      medicinesTasksDone = repository.findAllMedicineDone().asObservable();
+
+  @action
   fetchBrainFitnessTask() =>
       brainFitnessTasks = repository.findAllBrainFitness().asObservable();
+
+  @action
+  fetchBrainFitnessTaskDone() => brainFitnessTasksDone =
+      repository.findAllBrainFitnessDone().asObservable();
 
   @action
   insertTask(Task task) {
@@ -116,11 +138,5 @@ abstract class _ReminderStoreBase with Store {
     fetchBrainFitnessTask();
   }
 
-  bool setFormStatus() {
-    if (reminderText.length > 0) {
-      return true;
-    }
-
-    return false;
-  }
+  bool setFormStatus() => reminderText.length > 0 ? true : false;
 }

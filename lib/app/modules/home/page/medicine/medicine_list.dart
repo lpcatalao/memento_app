@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/constants/memento_icons.dart';
-import 'package:memento_app/shared/model/task_status.dart';
 
 class MedicineListWidget extends ListScreenModel {
   static const String _TITLE = 'Medicamento';
@@ -16,12 +15,9 @@ class MedicineListWidget extends ListScreenModel {
   static const Color _CIRCLE_COLOR = GeneralAppColor.medicineCircle;
   static const Color _CHECK_BOX_COLOR = Colors.lightGreen;
   static const Color _DEFAULT_COLOR = GeneralAppColor.fabGradient1;
+  static const TaskModelType _TYPE = TaskModelType.MEDICINE;
 
-  MedicineListWidget(
-      {double porcentage = 0,
-      int total = 0,
-      int completed = 0,
-      TaskStatus taskStatus})
+  MedicineListWidget()
       : super.name(_TITLE, _ICON, _GRADIENT, _CIRCLE_COLOR, _CHECK_BOX_COLOR,
-            taskStatus, _DEFAULT_COLOR);
+            _DEFAULT_COLOR, _TYPE);
 }
