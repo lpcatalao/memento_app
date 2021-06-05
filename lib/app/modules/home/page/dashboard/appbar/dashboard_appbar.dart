@@ -64,7 +64,6 @@ class DashboardAppBar extends StatelessWidget {
 
                 final date =
                     new DateTime.fromMillisecondsSinceEpoch(t.dateMilli);
-                print(date);
                 _home.setModel(t);
                 return DashBoardAppBarItem(boxMaxHeight, _home.model, t);
               },

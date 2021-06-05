@@ -13,6 +13,8 @@ import 'brain_fitness/brain_fitness_screen.dart';
 import 'medicine/medicine_screen.dart';
 
 class StartScreen extends StatefulWidget {
+  final _home = Modular.get<HomeStore>();
+
   @override
   _StartScreenState createState() => _StartScreenState();
 }
@@ -27,6 +29,8 @@ class _StartScreenState extends ModularState<StartScreen, HomeStore> {
 
   @override
   Widget build(BuildContext context) {
+    widget._home.findTaskStatus();
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: _buildAppBar(),

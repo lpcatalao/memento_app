@@ -84,6 +84,21 @@ mixin _$UserStore on _UserStoreBase, Store {
     });
   }
 
+  final _$ageAtom = Atom(name: '_UserStoreBase.age');
+
+  @override
+  int get age {
+    _$ageAtom.reportRead();
+    return super.age;
+  }
+
+  @override
+  set age(int value) {
+    _$ageAtom.reportWrite(value, super.age, () {
+      super.age = value;
+    });
+  }
+
   final _$_UserStoreBaseActionController =
       ActionController(name: '_UserStoreBase');
 
@@ -149,7 +164,8 @@ name: ${name},
 address: ${address},
 city: ${city},
 phone: ${phone},
-birthDate: ${birthDate}
+birthDate: ${birthDate},
+age: ${age}
     ''';
   }
 }

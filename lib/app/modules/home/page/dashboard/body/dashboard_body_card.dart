@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:memento_app/app/modules/home/home_store.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/shared/model/task_status.dart';
 
@@ -8,6 +11,8 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
   final ListScreenModel _model;
   final _width;
 
+  final _home = Modular.get<HomeStore>();
+
   DashboardBodyCardItemWidget(
     this._model,
     this._width,
@@ -15,7 +20,7 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TaskStatus status = _model.taskStatus;
+    // TaskStatus status = _model.taskStatus;
     return Container(
       width: _width * .9,
       child: Card(
@@ -32,9 +37,14 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
                     _model.title,
                     style: configTextStyle(),
                   ),
-                  Text(
-                    '${status.completed}/${status.total}',
-                    style: configTextStyle(),
+                  Observer(
+                    builder: (BuildContext context) {
+                      TaskStatus status = _home.fechTaskStatus(_model.type);
+                      return Text(
+                        '${status.completed}/${status.total}',
+                        style: configTextStyle(),
+                      );
+                    },
                   )
                 ],
               ),
@@ -71,25 +81,29 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
   }
 
   Widget buildProgressBar(ListScreenModel model, double width) {
-    var status = model.taskStatus;
-    var percentToDivide = checkDivision(status.completed, status.total);
-    var maxWidth = (width * .7) / percentToDivide;
+    return Observer(
+      builder: (BuildContext context) {
+        final status = _home.fechTaskStatus(model.type);
+        double maxWidth =
+            _home.checkProgressbarDivision((width * .7), status.percent);
+        var gradientStatus = maxWidth == 0.0 ? false : true;
+        _home.findTaskStatus();
 
-    var gradientStatus = maxWidth == 0.0 ? false : true;
-
-    return Stack(
-      children: [
-        Container(
-          height: 9,
-          decoration: configProgressBar(gradientStatus: false),
-        ),
-        Container(
-          height: 9,
-          width: maxWidth,
-          decoration:
-              configProgressBar(model: model, gradientStatus: gradientStatus),
-        ),
-      ],
+        return Stack(
+          children: [
+            Container(
+              height: 9,
+              decoration: configProgressBar(gradientStatus: false),
+            ),
+            Container(
+              height: 9,
+              width: maxWidth,
+              decoration: configProgressBar(
+                  model: model, gradientStatus: gradientStatus),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -106,16 +120,5 @@ class DashboardBodyCardItemWidget extends StatelessWidget {
               spreadRadius: 0)
         ],
         color: Color(0xffeaeaea));
-  }
-
-
-  //TODO colocar dentro do taskStatus
-  double checkDivision(int completed, int total) {
-    var division = total / completed;
-    if (division.toString() == double.nan.toString()) {
-      return 0;
-    }
-
-    return division;
   }
 }

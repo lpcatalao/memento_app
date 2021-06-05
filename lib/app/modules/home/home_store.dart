@@ -5,6 +5,7 @@ import 'package:memento_app/app/modules/home/page/medicine/medicine_list.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/shared/model/task.dart';
+import 'package:memento_app/shared/model/task_status.dart';
 import 'package:memento_app/shared/repository/task_repository.dart';
 import 'package:memento_app/utilities/datetime_formatter.dart';
 import 'package:mobx/mobx.dart';
@@ -26,6 +27,15 @@ abstract class HomeStoreBase with Store {
 
   @observable
   ListScreenModel model;
+
+  @observable
+  TaskStatus activityStatus = TaskStatus(0, 0);
+
+  @observable
+  TaskStatus medicineStatus = TaskStatus(0, 0);
+
+  @observable
+  TaskStatus brainFitnessStatus = TaskStatus(0, 0);
 
   @action
   void setItemSelected(int index) {
@@ -63,5 +73,32 @@ abstract class HomeStoreBase with Store {
     } else if (itemSelected == 3) {
       return GeneralAppColor.brainBar1;
     }
+  }
+
+  void findTaskStatus() async {
+    Map<String, TaskStatus> map = await _taskRepository.findTaskStatus();
+
+    activityStatus = map['activity'];
+    medicineStatus = map['medicine'];
+    brainFitnessStatus = map['bf'];
+  }
+
+  TaskStatus fechTaskStatus(TaskModelType type) {
+    if (type == TaskModelType.ACTIVITY) {
+      return activityStatus;
+    } else if (type == TaskModelType.MEDICINE) {
+      return medicineStatus;
+    } else if (type == TaskModelType.BRAIN_FITNESS) {
+      return brainFitnessStatus;
+    }
+  }
+
+  double checkProgressbarDivision(double num1, double num2) {
+    double division = num1 / num2;
+
+    if (division >= 0) {
+      return num1 / num2;
+    }
+    return 0;
   }
 }

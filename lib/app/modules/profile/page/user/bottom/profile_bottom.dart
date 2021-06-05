@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 
 class ProfileBottom extends StatelessWidget {
@@ -8,6 +10,8 @@ class ProfileBottom extends StatelessWidget {
   final double height;
 
   ProfileBottom(this.width, this.height);
+
+  final _profile = Modular.get<ProfileStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +30,16 @@ class ProfileBottom extends StatelessWidget {
             children: [
               SizedBox(height: height * .026),
               buildTitle('Cuidador'),
-              buildTitleContent(
-                  Icon(
-                    FontAwesomeIcons.userNurse,
-                  ),
-                  'Luis Miguel',
-                  bigger: false)
+              Observer(
+                builder: (BuildContext context) {
+                  return buildTitleContent(
+                      Icon(
+                        FontAwesomeIcons.userNurse,
+                      ),
+                      _profile.userCaretaker,
+                      bigger: false);
+                },
+              )
             ],
           ),
         ),

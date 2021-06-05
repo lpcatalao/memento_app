@@ -69,6 +69,21 @@ mixin _$ProfileStore on _ProfileStoreBase, Store {
     });
   }
 
+  final _$userCaretakerAtom = Atom(name: '_ProfileStoreBase.userCaretaker');
+
+  @override
+  String get userCaretaker {
+    _$userCaretakerAtom.reportRead();
+    return super.userCaretaker;
+  }
+
+  @override
+  set userCaretaker(String value) {
+    _$userCaretakerAtom.reportWrite(value, super.userCaretaker, () {
+      super.userCaretaker = value;
+    });
+  }
+
   final _$ageAtom = Atom(name: '_ProfileStoreBase.age');
 
   @override
@@ -143,12 +158,24 @@ mixin _$ProfileStore on _ProfileStoreBase, Store {
   }
 
   @override
+  dynamic fetchUserCaretaker() {
+    final _$actionInfo = _$_ProfileStoreBaseActionController.startAction(
+        name: '_ProfileStoreBase.fetchUserCaretaker');
+    try {
+      return super.fetchUserCaretaker();
+    } finally {
+      _$_ProfileStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 users: ${users},
 caretakers: ${caretakers},
 userID: ${userID},
 caretakerID: ${caretakerID},
+userCaretaker: ${userCaretaker},
 age: ${age}
     ''';
   }

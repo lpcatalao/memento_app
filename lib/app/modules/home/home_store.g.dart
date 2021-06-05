@@ -54,6 +54,52 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$activityStatusAtom = Atom(name: 'HomeStoreBase.activityStatus');
+
+  @override
+  TaskStatus get activityStatus {
+    _$activityStatusAtom.reportRead();
+    return super.activityStatus;
+  }
+
+  @override
+  set activityStatus(TaskStatus value) {
+    _$activityStatusAtom.reportWrite(value, super.activityStatus, () {
+      super.activityStatus = value;
+    });
+  }
+
+  final _$medicineStatusAtom = Atom(name: 'HomeStoreBase.medicineStatus');
+
+  @override
+  TaskStatus get medicineStatus {
+    _$medicineStatusAtom.reportRead();
+    return super.medicineStatus;
+  }
+
+  @override
+  set medicineStatus(TaskStatus value) {
+    _$medicineStatusAtom.reportWrite(value, super.medicineStatus, () {
+      super.medicineStatus = value;
+    });
+  }
+
+  final _$brainFitnessStatusAtom =
+      Atom(name: 'HomeStoreBase.brainFitnessStatus');
+
+  @override
+  TaskStatus get brainFitnessStatus {
+    _$brainFitnessStatusAtom.reportRead();
+    return super.brainFitnessStatus;
+  }
+
+  @override
+  set brainFitnessStatus(TaskStatus value) {
+    _$brainFitnessStatusAtom.reportWrite(value, super.brainFitnessStatus, () {
+      super.brainFitnessStatus = value;
+    });
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
 
@@ -95,7 +141,10 @@ mixin _$HomeStore on HomeStoreBase, Store {
     return '''
 itemSelected: ${itemSelected},
 tasks: ${tasks},
-model: ${model}
+model: ${model},
+activityStatus: ${activityStatus},
+medicineStatus: ${medicineStatus},
+brainFitnessStatus: ${brainFitnessStatus}
     ''';
   }
 }

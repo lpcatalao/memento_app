@@ -8,7 +8,7 @@ class AppDatabase {
   Future<Database> createDatabase() async {
     final path = join(await getDatabasesPath(), 'memento.db');
     return openDatabase(path, onCreate: (db, version) async {
-      await db.execute('CREATE TABLE user('
+      await db.execute('CREATE TABLE ${USER_TABLE}('
           '${USER_ID} INTEGER PRIMARY KEY,'
           '${USER_NAME} TEXT,'
           '${USER_ADDRESS} TEXT,'
@@ -18,14 +18,14 @@ class AppDatabase {
           '${FK_CARETAKER_ID} INTEGER,'
           'FOREIGN KEY(${FK_CARETAKER_ID}) REFERENCES caretaker(${CARETAKER_ID}))');
 
-      await db.execute("CREATE TABLE caretaker("
+      await db.execute("CREATE TABLE ${CARETAKER_TABLE}("
           "${CARETAKER_ID} INTEGER PRIMARY KEY,"
           "${CARETAKER_NAME} TEXT,"
           "${CARETAKER_ADDRESS} TEXT,"
           "${CARETAKER_CITY} TEXT,"
           "${CARETAKER_PHONE} INTEGER)");
 
-      await db.execute("CREATE TABLE task("
+      await db.execute("CREATE TABLE ${TASK_TABLE}("
           "${TASK_ID} INTEGER PRIMARY KEY,"
           "${TASK_TEXT} TEXT,"
           "${TASK_DATEMILLIS} INTEGER,"

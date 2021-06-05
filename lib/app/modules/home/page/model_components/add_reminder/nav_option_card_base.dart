@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/shared/model/task_status.dart';
+
+enum TaskModelType { ACTIVITY, MEDICINE, BRAIN_FITNESS }
 
 abstract class ListScreenModel {
   final String title;
@@ -7,9 +8,9 @@ abstract class ListScreenModel {
   final LinearGradient gradient;
   final Color circleColor;
   final Color checkBoxSelected;
-  final TaskStatus taskStatus;
   final Color defaultColor;
+  final TaskModelType type;
 
   ListScreenModel.name(this.title, this.icon, this.gradient, this.circleColor,
-      this.checkBoxSelected, this.taskStatus, this.defaultColor);
+      this.checkBoxSelected, this.defaultColor, this.type);
 }

@@ -12,6 +12,8 @@ class CaretakerList extends StatelessWidget {
   final double width;
   final double height;
 
+  final _profile = Modular.get<ProfileStore>();
+
   CaretakerList(this.width, this.height);
 
   @override
@@ -45,7 +47,11 @@ class CaretakerList extends StatelessWidget {
     return Card(
       child: ListTile(
         trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _profile.updateUserCaretaker(caretaker.id);
+              _profile.fetchUserCaretaker();
+              Navigator.pop(context);
+            },
             icon: Icon(
               FontAwesomeIcons.plusCircle,
               color: Colors.teal,

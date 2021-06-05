@@ -1,3 +1,4 @@
+const CARETAKER_TABLE = 'caretaker';
 const CARETAKER_ID = 'caretakerId';
 const CARETAKER_NAME = 'caretakerName';
 const CARETAKER_ADDRESS = 'caretakerAddress';
