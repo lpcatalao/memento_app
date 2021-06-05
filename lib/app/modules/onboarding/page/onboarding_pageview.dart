@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/app/modules/onboard/page_view_item.dart';
-import 'package:memento_app/blocs/onboarding_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:memento_app/app/modules/onboarding/onboarding_store.dart';
+import 'package:memento_app/app/modules/onboarding/page/page_view_item.dart';
 
 class OnboardingPageView extends StatelessWidget {
   final PageController _pageController;
+  final _onboarding = Modular.get<OnboardingStore>();
 
   OnboardingPageView(this._pageController);
 
   @override
   Widget build(BuildContext context) {
-    //TODO remove aqui
-    var _bloc = OnboardingBloc();
-    _bloc.stateSink.add(_pageController.initialPage);
     return Container(
       color: Colors.transparent,
       height: MediaQuery.of(context).size.height * .6,
       child: PageView(
         physics: ClampingScrollPhysics(),
         controller: _pageController,
-        onPageChanged: (int page) {
-          _bloc.stateSink.add(page);
+        onPageChanged: (page) {
+          _onboarding.setPage(page);
         },
         children: [
           PageViewItem(

@@ -12,14 +12,14 @@ import 'activity/activities_screen.dart';
 import 'brain_fitness/brain_fitness_screen.dart';
 import 'medicine/medicine_screen.dart';
 
-class StartScreen extends StatefulWidget {
+class StartPage extends StatefulWidget {
   final _home = Modular.get<HomeStore>();
 
   @override
-  _StartScreenState createState() => _StartScreenState();
+  _StartPageState createState() => _StartPageState();
 }
 
-class _StartScreenState extends ModularState<StartScreen, HomeStore> {
+class _StartPageState extends ModularState<StartPage, HomeStore> {
   List<Widget> _optionScreen = [
     DashboardScreen(),
     ActivityScreen(),
@@ -109,13 +109,13 @@ class _StartScreenState extends ModularState<StartScreen, HomeStore> {
         IconButton(
           icon: Icon(FontAwesomeIcons.calendarAlt),
           onPressed: () {
-            Modular.to.pushNamed('/calendar');
+            Modular.to.pushNamed('/home/calendar');
           },
         ),
         IconButton(
           icon: Icon(FontAwesomeIcons.user),
           onPressed: () {
-            Modular.to.pushNamed('/profile/user');
+            Modular.to.pushNamed('/home/profile/user');
           },
         ),
       ],

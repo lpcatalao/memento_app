@@ -1,16 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:memento_app/app/modules/onboarding/onboarding_store.dart';
+
+enum AlertType { REGISTER, MAP, HOME }
 
 abstract class AlertDialogWidget extends StatelessWidget {
+  final _onboarding = Modular.get<OnboardingStore>();
   final String title;
   final String description;
   final String image;
   final ButtonStyle Function() buttonStyle;
+  final AlertType type;
 
-  AlertDialogWidget(this.title, this.description, this.image, this.buttonStyle);
+  AlertDialogWidget(
+      this.title, this.description, this.image, this.buttonStyle, this.type);
 
   @override
   Widget build(BuildContext context) {
+    _onboarding.setAlertType(type);
+
     final _size = MediaQuery.of(context).size;
     final alertHight = _size.height * .5;
     return Dialog(
@@ -26,7 +35,7 @@ abstract class AlertDialogWidget extends StatelessWidget {
           children: [
             Container(
               padding:
-                  EdgeInsets.only(top: 100, left: 16, right: 16, bottom: 16),
+              EdgeInsets.only(top: 100, left: 16, right: 16, bottom: 16),
               margin: EdgeInsets.only(top: 50),
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -58,10 +67,11 @@ abstract class AlertDialogWidget extends StatelessWidget {
                   ElevatedButton.icon(
                       style: buttonStyle(),
                       onPressed: () {
-                        Navigator.pop(context);
+                        _onboarding.setSharedPrefsValue();
+                        Modular.to.pop();
                       },
                       icon: Icon(Icons.done),
-                      label: Text("OBRIGADO :)"))
+                      label: Text("OBRIGADO :)")),
                 ],
               ),
             ),

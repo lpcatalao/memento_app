@@ -10,7 +10,7 @@ import 'package:memento_app/app/modules/profile/page/user/profile_fab.dart';
 import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   final _profile = Modular.get<ProfileStore>();
 
   @override
@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Modular.to.navigate('/profile/user/map');
+                Modular.to.navigate('/home/profile/user/map');
               },
               icon: Icon(Icons.map_outlined))
         ],
@@ -57,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
       height: constraints.maxHeight * .1,
       decoration: BoxDecoration(color: Colors.blue),
       child: GestureDetector(
-        onTap: () => Modular.to.navigate('/profile/user/caretaker'),
+        onTap: () => Modular.to.navigate('/home/profile/user/caretaker'),
         child: Padding(
           padding: const EdgeInsets.only(bottom: 15.0),
           child: Center(

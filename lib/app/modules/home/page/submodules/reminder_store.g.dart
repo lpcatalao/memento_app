@@ -241,6 +241,21 @@ mixin _$ReminderStore on _ReminderStoreBase, Store {
     });
   }
 
+  final _$taskStatusAtom = Atom(name: '_ReminderStoreBase.taskStatus');
+
+  @override
+  bool get taskStatus {
+    _$taskStatusAtom.reportRead();
+    return super.taskStatus;
+  }
+
+  @override
+  set taskStatus(bool value) {
+    _$taskStatusAtom.reportWrite(value, super.taskStatus, () {
+      super.taskStatus = value;
+    });
+  }
+
   final _$formStatusAtom = Atom(name: '_ReminderStoreBase.formStatus');
 
   @override
@@ -258,6 +273,17 @@ mixin _$ReminderStore on _ReminderStoreBase, Store {
 
   final _$_ReminderStoreBaseActionController =
       ActionController(name: '_ReminderStoreBase');
+
+  @override
+  dynamic setTaskStatus(bool status) {
+    final _$actionInfo = _$_ReminderStoreBaseActionController.startAction(
+        name: '_ReminderStoreBase.setTaskStatus');
+    try {
+      return super.setTaskStatus(status);
+    } finally {
+      _$_ReminderStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setTime(dynamic value) {
@@ -420,6 +446,7 @@ medicinesTasksDone: ${medicinesTasksDone},
 brainFitnessTasks: ${brainFitnessTasks},
 brainFitnessTasksDone: ${brainFitnessTasksDone},
 taskId: ${taskId},
+taskStatus: ${taskStatus},
 formStatus: ${formStatus}
     ''';
   }

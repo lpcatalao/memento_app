@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/app/modules/home/page/start_screen.dart';
-import 'package:memento_app/shared/repository/onboard_repository.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class OnboardingSkipButton extends StatefulWidget {
   @override
@@ -14,17 +13,17 @@ class _OnboardingSkipButtonState extends State<OnboardingSkipButton> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => StartScreen(),
-            ),
-          );
-
-          //TODO mudar isso para ficar no padrão de arquitetura BLoC
-          setState(() {
-            setSharedPref(true);
-          });
+          Modular.to.pushReplacementNamed('/home/start');
+          // Modular.navigatorDelegate;
+          // Navigator.pushReplacement(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => StartPage(),
+          //   ),
+          // );
+          // setState(() {
+          //   setSharedPref(true);
+          // });
         },
         child: Row(
           mainAxisSize: MainAxisSize.min,

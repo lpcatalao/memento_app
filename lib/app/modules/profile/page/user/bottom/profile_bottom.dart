@@ -32,11 +32,20 @@ class ProfileBottom extends StatelessWidget {
               buildTitle('Cuidador'),
               Observer(
                 builder: (BuildContext context) {
+                  if (_profile.userCaretaker != null) {
+                    return buildTitleContent(
+                        Icon(
+                          FontAwesomeIcons.userNurse,
+                        ),
+                        _profile.userCaretaker,
+                        bigger: false);
+                  }
+
                   return buildTitleContent(
                       Icon(
                         FontAwesomeIcons.userNurse,
                       ),
-                      _profile.userCaretaker,
+                      "",
                       bigger: false);
                 },
               )

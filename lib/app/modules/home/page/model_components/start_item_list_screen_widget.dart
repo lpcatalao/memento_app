@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
+import 'package:memento_app/app/modules/home/page/submodules/reminder_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/shared/model/task.dart';
 import 'package:memento_app/utilities/datetime_formatter.dart';
@@ -8,6 +10,7 @@ import 'package:memento_app/utilities/datetime_formatter.dart';
 class ItemListScreenWidget extends StatefulWidget {
   final ListScreenModel model;
   final Task task;
+  final _reminder = Modular.get<ReminderStore>();
 
   ItemListScreenWidget(this.model, this.task);
 
@@ -36,7 +39,27 @@ class _ItemListScreenWidgetState extends State<ItemListScreenWidget> {
                   activeColor: widget.model.checkBoxSelected,
                   onChanged: (bool value) {
                     setState(() {
-                      print(value);
+                      int status = 0;
+                      if (value) {
+                        status = 1;
+                      } else {
+                        status = 0;
+                      }
+
+                      widget._reminder.updateTaskStatus(widget.task.id, status);
+                      Future.delayed(const Duration(milliseconds: 800), () {
+                        if (widget.task.type == "Atividade") {
+                          widget._reminder.fetchActivityTask();
+                          widget._reminder.fetchActivityTaskDone();
+                        } else if (widget.task.type == "Medicine") {
+                          widget._reminder.fetchMedicineTask();
+                          widget._reminder.fetchMedicineTaskDone();
+                        } else if (widget.task.type == "BrainFitness") {
+                          widget._reminder.fetchBrainFitnessTask();
+                          widget._reminder.fetchBrainFitnessTaskDone();
+                        }
+                      });
+
                       state = value;
                     });
                   },

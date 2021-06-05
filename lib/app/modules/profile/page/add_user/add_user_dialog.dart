@@ -14,5 +14,5 @@ class AddUserAlertDialog extends AlertDialogWidget {
             onPrimary: Colors.white,
             onSurface: Colors.grey,
           );
-        });
+        }, AlertType.REGISTER);
 }

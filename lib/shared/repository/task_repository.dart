@@ -92,4 +92,8 @@ class TaskRepository {
   Future<List<Task>> findAllBrainFitnessDone() {
     return _taskDao.findAllBrainFitnessDone();
   }
+
+  void updateTaskStatus(int taskId, int value) {
+    _taskDao.updateTaskStatus(taskId, value);
+  }
 }

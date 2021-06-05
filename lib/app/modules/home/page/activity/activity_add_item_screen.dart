@@ -2,8 +2,8 @@ import 'package:memento_app/app/modules/home/page/model_components/add_reminder/
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/constants/memento_icons.dart';
 
-class ActivityAddItemScreen extends AddItemModel {
-  ActivityAddItemScreen()
+class ActivityAddItemPage extends AddItemModel {
+  ActivityAddItemPage()
       : super(
             "NOVA\nATIVIDADE",
             "images/add_activity.png",

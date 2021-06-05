@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/app/modules/onboard/onboarding_animated_dot.dart';
-import 'package:memento_app/app/modules/onboard/onboarding_bottom_button.dart';
-import 'package:memento_app/app/modules/onboard/onboarding_pageview.dart';
-import 'package:memento_app/app/modules/onboard/onboarding_skip.dart';
-import 'package:memento_app/blocs/onboarding_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:memento_app/app/modules/onboarding/onboarding_store.dart';
+import 'package:memento_app/app/modules/onboarding/page/onboarding_animated_dot.dart';
+import 'package:memento_app/app/modules/onboarding/page/onboarding_bottom_button.dart';
+import 'package:memento_app/app/modules/onboarding/page/onboarding_pageview.dart';
+import 'package:memento_app/app/modules/onboarding/page/onboarding_skip.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingPage extends StatelessWidget {
+  final _onboarding = Modular.get<OnboardingStore>();
+
   @override
   Widget build(BuildContext context) {
-    //TODO remove aqui
-    final _onboardingBloc = OnboardingBloc();
+    _onboarding.fetchSharedPreferences();
+
     return Scaffold(
       body: Container(
         decoration: _backgroundConfig(),
-        child: _bodyContent(_onboardingBloc),
+        child: _bodyContent(),
       ),
     );
   }
@@ -23,7 +26,7 @@ class OnboardingScreen extends StatelessWidget {
         color: Color(0xfff6f6f7),
       );
 
-  Widget _bodyContent(OnboardingBloc _onboardingBloc) {
+  Widget _bodyContent() {
     final PageController _pageController = PageController(initialPage: 0);
 
     return SafeArea(

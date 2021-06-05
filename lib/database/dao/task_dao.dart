@@ -93,7 +93,7 @@ class TaskDao {
         "SELECT ${TASK_TYPE}, COUNT(*) FROM ${TASK_TABLE} WHERE ${TASK_STATUS} = 1 GROUP BY ${TASK_TYPE}");
   }
 
-  void updateUserCaretaker(int taskId, int value) async {
+  void updateTaskStatus(int taskId, int value) async {
     Database db = await _db.createDatabase();
     db.rawUpdate(
         "UPDATE ${TASK_TABLE} SET ${TASK_STATUS} = ? WHERE ${TASK_ID} = ?",

@@ -6,7 +6,7 @@ import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/shared/model/caretaker_model.dart';
 
-class AddCaretaker extends StatelessWidget {
+class AddCaretakerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _profile = Modular.get<ProfileStore>();
@@ -38,7 +38,8 @@ class AddCaretaker extends StatelessWidget {
           _profile.insertCaretaker(caretaker);
           _profile.fetchCaretakers();
 
-          Navigator.pop(context);
+          Modular.to.pop();
+          // Navigator.pop(context);
         },
         label: Text("Adicionar"),
         icon: Icon(Icons.add),
