@@ -12,11 +12,11 @@ class ProfileModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/user', child: (_, args) => ProfileScreen()),
-    ChildRoute('/user/caretaker', child: (_, args) => CaretakerScreen()),
-    ChildRoute('/user/new_user', child: (_, args) => AddUserProfile()),
+    ChildRoute('/user', child: (_, args) => ProfilePage()),
+    ChildRoute('/user/caretaker', child: (_, args) => CaretakerPage()),
+    ChildRoute('/user/new_user', child: (_, args) => AddUserProfilePage()),
     ChildRoute('/user/caretaker/new_caretaker',
-        child: (_, args) => AddCaretaker()),
+        child: (_, args) => AddCaretakerPage()),
     ChildRoute('/user/map', child: (_, args) => MapPage())
   ];
 }

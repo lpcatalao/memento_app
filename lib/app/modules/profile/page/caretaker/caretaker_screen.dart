@@ -5,7 +5,7 @@ import 'package:memento_app/constants/general_app_constants.dart';
 
 import 'caretaker_appbar.dart';
 
-class CaretakerScreen extends StatelessWidget {
+class CaretakerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _size = MediaQuery.of(context).size;
@@ -27,7 +27,7 @@ class CaretakerScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Modular.to.pushNamed('/profile/user/caretaker/new_caretaker');
+          Modular.to.pushNamed('/home/profile/user/caretaker/new_caretaker');
         },
         label: Text("Novo Cuidador"),
         icon: Icon(Icons.add),

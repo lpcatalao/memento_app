@@ -58,9 +58,17 @@ abstract class _ReminderStoreBase with Store {
   ObservableFuture<int> taskId = ObservableFuture.value(-1);
 
   @observable
+  bool taskStatus = false;
+
+  @observable
   bool formStatus = false;
 
   _ReminderStoreBase(this.repository);
+
+  @action
+  setTaskStatus(bool status) {
+    taskStatus = status;
+  }
 
   @action
   setTime(dynamic value) {
@@ -139,4 +147,8 @@ abstract class _ReminderStoreBase with Store {
   }
 
   bool setFormStatus() => reminderText.length > 0 ? true : false;
+
+  void updateTaskStatus(int taskId, int value) {
+    repository.updateTaskStatus(taskId, value);
+  }
 }

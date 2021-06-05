@@ -39,7 +39,7 @@ class MapPageState extends ModularState<MapPage, MapStore> {
         body: Stack(
           children: [
             Observer(
-              builder: (BuildContext context) {
+              builder: (context) {
                 return GoogleMap(
                     myLocationEnabled: true,
                     mapType: MapType.normal,

@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:memento_app/blocs/onboarding_bloc.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:memento_app/app/modules/onboarding/onboarding_store.dart';
 
 class OnboardingAnimatedDot extends StatelessWidget {
   final int _numPages = 3;
+  final _onboarding = Modular.get<OnboardingStore>();
 
   @override
   Widget build(BuildContext context) {
-
-    //todo remove aqui
-    final OnboardingBloc _bloc =OnboardingBloc();
-
-    return StreamBuilder(
-        stream: _bloc.stateStream,
-        builder: (context, snapshot) {
-          return Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: _pageIndicator(_numPages, snapshot.data),
-            ),
-          );
-        });
+    return Container(
+      child: Observer(builder: (context) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _pageIndicator(_numPages, _onboarding.page),
+        );
+      }),
+    );
   }
 }
 

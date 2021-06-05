@@ -22,11 +22,11 @@ class StartFabWidget extends StatelessWidget {
       child: buildCustomFab(),
       onPressed: () {
         if (page == 1) {
-          Modular.to.navigate("/add_activity");
+          Modular.to.navigate("/home/add_activity");
         } else if (page == 2) {
-          Modular.to.navigate("/add_medicine");
+          Modular.to.navigate("/home/add_medicine");
         } else if (page == 3) {
-          Modular.to.navigate("/add_brain_fitness");
+          Modular.to.navigate("/home/add_brain_fitness");
         }
       },
     );
