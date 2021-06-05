@@ -34,6 +34,9 @@ abstract class _ProfileStoreBase with Store {
   ObservableFuture<int> caretakerID = ObservableFuture.value(-1);
 
   @observable
+  String userCaretaker = '';
+
+  @observable
   int age = 0;
 
   @action
@@ -79,5 +82,12 @@ abstract class _ProfileStoreBase with Store {
     }
 
     this.age = age;
+  }
+
+  @action
+  fetchUserCaretaker() {
+    repository.findUserCaretaker().then((value) {
+      userCaretaker = value;
+    });
   }
 }

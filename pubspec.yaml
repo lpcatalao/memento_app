@@ -108,6 +108,9 @@ flutter:
     - images/add_activity.png
     - images/add_bf.png
     - images/add_medicine.png
+    - images/map_gif.gif
+    - images/map.png
+    - images/avatar.png
     - assets/map/map_style.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -49,6 +49,7 @@ class CaretakerList extends StatelessWidget {
         trailing: IconButton(
             onPressed: () {
               _profile.updateUserCaretaker(caretaker.id);
+              _profile.fetchUserCaretaker();
               Navigator.pop(context);
             },
             icon: Icon(

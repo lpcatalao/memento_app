@@ -1,4 +1,5 @@
 import 'package:memento_app/database/app_database.dart';
+import 'package:memento_app/shared/model/caretaker_model.dart';
 import 'package:memento_app/shared/model/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -29,6 +30,19 @@ class UserDao {
       users.add(user);
     }
     return users;
+  }
+
+  Future<String> findUserCaretaker() async {
+    Database db = await this.db.createDatabase();
+    List<Map> result = await db.rawQuery(""
+        "SELECT c.caretakerName FROM ${USER_TABLE} AS u INNER JOIN ${CARETAKER_TABLE} AS c ON  c.caretakerId = u.caretakerId");
+
+    String caretakerName;
+    for (Map m in result) {
+      caretakerName = m['caretakerName'];
+    }
+
+    return caretakerName;
   }
 
   void updateUserCaretaker(int userCaretakerId) async {

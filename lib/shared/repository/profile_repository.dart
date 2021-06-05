@@ -28,4 +28,8 @@ class ProfileRepository {
   void updateUserCaretaker(int userCaretakerId) {
     _userDao.updateUserCaretaker(userCaretakerId);
   }
+
+  Future<String> findUserCaretaker() {
+    return _userDao.findUserCaretaker();
+  }
 }

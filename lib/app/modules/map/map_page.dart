@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:memento_app/app/modules/map/map_alert_dialog.dart';
 import 'package:memento_app/app/modules/map/map_appbar_widget.dart';
 import 'package:memento_app/app/modules/map/map_store.dart';
 
 class MapPage extends StatefulWidget {
-
   @override
   MapPageState createState() => MapPageState();
 }
@@ -16,13 +17,19 @@ class MapPageState extends ModularState<MapPage, MapStore> {
   @override
   void initState() {
     store.getPosition();
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return MapAlertDialog();
+          });
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
-
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -68,16 +75,6 @@ class MapPageState extends ModularState<MapPage, MapStore> {
                           icon: Icon(Icons.search),
                           onPressed: () {
                             store.seachAndUpdate();
-
-                            // if (store.message.length > 0) {
-                            //   SnackBar(
-                            //     content: Text(store.message),
-                            //     action: SnackBarAction(
-                            //       onPressed: () {},
-                            //       label: 'Sair',
-                            //     ),
-                            //   );
-                            // }
                           },
                         ),
                       ),
@@ -110,7 +107,7 @@ class MapPageState extends ModularState<MapPage, MapStore> {
                       );
                     },
                   ),
-                ))
+                )),
           ],
         ),
         floatingActionButton: FloatingActionButton(

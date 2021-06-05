@@ -11,11 +11,12 @@ import 'package:memento_app/app/modules/profile/profile_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final modular = Modular.get<ProfileStore>();
+  final _profile = Modular.get<ProfileStore>();
 
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
+    _profile.fetchUserCaretaker();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
