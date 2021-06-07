@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:memento_app/app/modules/home/home_store.dart';
 import 'package:memento_app/app/modules/home/page/model_components/add_reminder/nav_option_card_base.dart';
 import 'package:memento_app/app/modules/home/page/submodules/reminder_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
@@ -11,6 +12,7 @@ class ItemListScreenWidget extends StatefulWidget {
   final ListScreenModel model;
   final Task task;
   final _reminder = Modular.get<ReminderStore>();
+  final _home = Modular.get<HomeStore>();
 
   ItemListScreenWidget(this.model, this.task);
 
@@ -51,7 +53,7 @@ class _ItemListScreenWidgetState extends State<ItemListScreenWidget> {
                         if (widget.task.type == "Atividade") {
                           widget._reminder.fetchActivityTask();
                           widget._reminder.fetchActivityTaskDone();
-                        } else if (widget.task.type == "Medicine") {
+                        } else if (widget.task.type == "Medicamento") {
                           widget._reminder.fetchMedicineTask();
                           widget._reminder.fetchMedicineTaskDone();
                         } else if (widget.task.type == "BrainFitness") {
@@ -59,6 +61,9 @@ class _ItemListScreenWidgetState extends State<ItemListScreenWidget> {
                           widget._reminder.fetchBrainFitnessTaskDone();
                         }
                       });
+
+                      widget._home.fechTaskStatus(widget.model.type);
+                      widget._home.findTaskStatus();
 
                       state = value;
                     });

@@ -9,6 +9,7 @@ import 'package:memento_app/database/dao/task_dao.dart';
 import 'package:memento_app/database/dao/user_dao.dart';
 import 'package:memento_app/shared/model/caretaker_store.dart';
 import 'package:memento_app/shared/model/user_store.dart';
+import 'package:memento_app/shared/notification/local_notification.dart';
 import 'package:memento_app/shared/repository/onboard_repository.dart';
 import 'package:memento_app/shared/repository/profile_repository.dart';
 import 'package:memento_app/shared/repository/task_repository.dart';
@@ -26,8 +27,9 @@ class AppModule extends Module {
     Bind.lazySingleton((i) => ProfileRepository(i(), i())),
     Bind.lazySingleton((i) => TaskDao(i())),
     Bind.lazySingleton((i) => TaskRepository(i())),
-    Bind.lazySingleton((i) => ReminderStore(i())),
-    Bind.lazySingleton((i) => OnboardingStore(i()))
+    Bind.lazySingleton((i) => ReminderStore(i(), i())),
+    Bind.lazySingleton((i) => OnboardingStore(i())),
+    Bind.lazySingleton((i) => LocalNofifyManager())
   ];
 
   @override

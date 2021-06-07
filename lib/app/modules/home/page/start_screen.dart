@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:memento_app/app/modules/home/home_store.dart';
 import 'package:memento_app/app/modules/home/page/dashboard/dashboard_screen.dart';
 import 'package:memento_app/app/modules/home/page/start_fab_widget.dart';
+import 'package:memento_app/app/modules/home/page/submodules/reminder_store.dart';
 import 'package:memento_app/constants/general_app_constants.dart';
 import 'package:memento_app/constants/memento_icons.dart';
 
@@ -14,6 +15,7 @@ import 'medicine/medicine_screen.dart';
 
 class StartPage extends StatefulWidget {
   final _home = Modular.get<HomeStore>();
+  final _reminder = Modular.get<ReminderStore>();
 
   @override
   _StartPageState createState() => _StartPageState();
@@ -28,9 +30,14 @@ class _StartPageState extends ModularState<StartPage, HomeStore> {
   ];
 
   @override
+  void initState() {
+    widget._reminder.initNotificationSettings();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     widget._home.findTaskStatus();
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: _buildAppBar(),
