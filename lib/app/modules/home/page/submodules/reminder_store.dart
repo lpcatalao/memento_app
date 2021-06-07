@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memento_app/shared/model/task.dart';
+import 'package:memento_app/shared/notification/local_notification.dart';
 import 'package:memento_app/shared/repository/task_repository.dart';
 import 'package:memento_app/utilities/datetime_formatter.dart';
 import 'package:mobx/mobx.dart';
@@ -10,6 +11,7 @@ class ReminderStore = _ReminderStoreBase with _$ReminderStore;
 
 abstract class _ReminderStoreBase with Store {
   final TaskRepository repository;
+  final LocalNofifyManager notifyManager;
 
   @observable
   String type = "";
@@ -63,7 +65,7 @@ abstract class _ReminderStoreBase with Store {
   @observable
   bool formStatus = false;
 
-  _ReminderStoreBase(this.repository);
+  _ReminderStoreBase(this.repository, this.notifyManager);
 
   @action
   setTaskStatus(bool status) {
@@ -144,6 +146,15 @@ abstract class _ReminderStoreBase with Store {
     fetchActivityTask();
     fetchMedicineTask();
     fetchBrainFitnessTask();
+  }
+
+  void initNotificationSettings() {
+    notifyManager.initSetting();
+  }
+
+  void displayNotification(
+      DateTime dateTime, DateTime today, String typeTitle, String body) {
+    notifyManager.displayNotification(dateTime, today, typeTitle, body);
   }
 
   bool setFormStatus() => reminderText.length > 0 ? true : false;

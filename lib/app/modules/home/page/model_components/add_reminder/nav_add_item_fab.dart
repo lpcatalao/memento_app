@@ -28,8 +28,16 @@ class AddItemFabWidget extends StatelessWidget {
                       _reminder.date,
                       _reminder.type);
 
-                  _reminder.insertTask(task);
-                  _home.findTaskStatus();
+                  final date = DateTime.fromMillisecondsSinceEpoch(
+                      _reminder.dateMillisec);
+                  final time = DateTime(date.year, date.month, date.day,
+                      _reminder.eventHour, _reminder.eventMin, 5, 0, 0);
+
+                  _reminder.displayNotification(time, DateTime.now(),
+                      _reminder.type, _reminder.reminderText);
+
+                  // _reminder.insertTask(task);
+                  // _home.findTaskStatus();
                 }
               : null,
           label: Text('Adicionar'));

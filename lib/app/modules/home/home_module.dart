@@ -12,7 +12,7 @@ class HomeModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => HomeStore(i())),
-    Bind.lazySingleton((i) => CalendarStore(i()))
+    Bind.lazySingleton((i) => CalendarStore(i())),
   ];
 
   @override
