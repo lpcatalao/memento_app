@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:memento_app/blocs/onboarding_bloc.dart';
-import 'package:memento_app/screen/nav/model_components/add_reminder/nav_add_item_list_model.dart';
-import 'package:memento_app/screen/onboard/onboarding_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
+import 'app/app_module.dart';
+import 'app/app_widget.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,29 +12,6 @@ void main() {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  runApp(Memento());
-}
-
-class Memento extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    //suporte para manter o layout responsivo em questao de width e height e também a fontsize
-    return MultiProvider(
-      providers: [
-        Provider<OnboardingBloc>(create: (_) => OnboardingBloc()),
-      ],
-      child: LayoutBuilder(builder: (context, constraints) {
-        ScreenUtil.init(constraints,
-            designSize: Size(
-              constraints.maxWidth,
-              constraints.maxHeight,
-            ));
-
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Memento App Demo',
-            home: OnboardingScreen());
-      }),
-    );
-  }
+  initializeDateFormatting().then(
+      (value) => runApp(ModularApp(module: AppModule(), child: AppWidget())));
 }
